@@ -1,0 +1,67 @@
+# App-eigene Ansagen (unabhängig von einer Regel).
+# Vertonung: node scripts/audio.mjs --app [--stimme mac|openai] [--neu]
+# Ausgabe: public/audio/app/<schluessel>.m4a
+# Keine personenbezogenen Daten (Repo ist öffentlich) – Namen der Familie nicht eintragen.
+
+texte:
+  # Start & Onboarding
+  los: "Los geht's!"
+  waehle-monster: "Hallo! Such dir dein Wassermonster aus. Tippe auf dein Lieblingsmonster!"
+  monster-plitsch: "Ich bin Plitsch, das kleine Seepferdchen. Warum? Das will ich wissen!"
+  monster-blubbo: "Ich bin Blubbo, der Otter. Brauchst du Hilfe? Ich bin da!"
+  monster-kiesel: "Ich bin Kiesel, die Schildkröte. Immer mit der Ruhe."
+  monster-pingo: "Ich bin Pingo, der Pinguin. Brrr – erst mal abduschen!"
+  monster-tinti: "Ich bin Tinti, die Krake. Acht Arme – null Müll!"
+  monster-bestaetigen: "Willst du dieses Monster? Dann tippe auf den grünen Haken!"
+  waehle-farbe: "Welche Farbe soll dein Monster haben? Tippe auf eine Farbe!"
+  waehle-muster: "Und jetzt ein Muster: Punkte, Streifen oder Sterne?"
+  name-eltern: "Jetzt braucht dein Monster einen Namen. Mama oder Papa tippen ihn ein."
+
+  # Heimat
+  willkommen: "Hallo! Schön, dass du wieder da bist. Welche Insel besuchen wir heute?"
+  heute-dran: "Heute ist diese Insel dran. Tippe drauf!"
+  bald: "Diese Insel kommt bald. Da bauen wir noch."
+
+  # Lob & Hinweise (kein Fehlerton)
+  super: "Super gemacht!"
+  genau: "Ja, genau!"
+  klasse: "Klasse!"
+  nochmal-hinweis: "Hmm, fast! Hör mal zu. Wir probieren das später noch mal."
+  warum-hinweis: "Hmm, das ist nicht der Grund. Hör mal zu."
+  situation-hinweis: "Schau noch mal genau hin. Hör mal zu."
+
+  # Modi
+  mach-mit: "Mach mit!"
+  daumen-frage: "Ist das richtig? Daumen hoch oder Daumen runter?"
+  welche-regel: "Welche Regel passt? Tippe auf das Bild!"
+  warum-tipp: "Tippe auf ein Bild, dann hörst du die Antwort. Tippe noch mal, wenn du sie nehmen willst."
+  trainer-intro: "Jetzt bist du der Trainer! Erklär es Mama, Papa oder deiner Schwester."
+  trainer-geklappt: "Wow! Du bist ein echter Trainer!"
+  trainer-nochmal: "Kein Problem. Wir hören es uns zusammen noch mal an."
+
+  # Sitzungsende & Belohnungen
+  ende: "Das hast du toll gemacht! Tschüss, bis zum nächsten Mal!"
+  karte-neu: "Schau mal! Deine Karte ist gewachsen!"
+  karte-halb: "Super gemacht! Deine Karte fängt schon an zu leuchten. Spiel morgen noch einmal mit mir, dann wächst sie!"
+  karte-glitzert: "Oh, schau mal! Deine Karte glitzert jetzt!"
+  orden-neu: "Hurra! Deine Karte ist aus Gold. Du hast einen Orden bekommen!"
+  # Ziel-Symbole am Sitzungsende: Auge = Kennen, Glühbirne = Verstehen, Daumen = Einschätzen
+  auge-halb: "Dein Auge leuchtet schon halb! Spiel morgen nochmal, dann leuchtet es ganz."
+  auge-voll: "Wow, dein Auge leuchtet jetzt ganz hell! Du kennst die Regel."
+  birne-halb: "Deine Glühbirne leuchtet schon halb! Spiel morgen nochmal, dann leuchtet sie ganz."
+  birne-voll: "Wow, deine Glühbirne leuchtet jetzt ganz hell! Du weißt, warum."
+  daumen-halb: "Dein Daumen leuchtet schon halb! Spiel morgen nochmal, dann leuchtet er ganz."
+  daumen-voll: "Wow, dein Daumen leuchtet jetzt ganz hell! Du erkennst, was richtig ist."
+  ueberraschung: "Oh, eine Überraschungskarte! Die ist ganz selten!"
+  entwicklung: "Oh! Was passiert da? Dein Monster entwickelt sich!"
+
+  # Album & Orden
+  album: "Das ist dein Album. Schieb die Karten, wohin du willst. Tippe drauf, dann hörst du die Regel."
+  album-leer: "Hier kommen deine Karten hin. Besuch eine Insel, dann bekommst du eine!"
+  orden: "Das sind deine Orden. Tippe auf ein Teil, dann zieht dein Monster es an!"
+
+  # Detektiv (Modus C)
+  detektiv-wahl: "Detektiv-Zeit! Wo ermittelst du heute? Tippe auf einen Ort!"
+  detektiv-tipp: "Schau mal hier genauer hin!"
+  detektiv-weiter: "Hier ist alles in Ordnung. Such weiter!"
+  detektiv-fertig: "Du hast alle gefunden! Du bist ein echter Baderegel-Detektiv!"

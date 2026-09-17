@@ -1,0 +1,1236 @@
+{
+  "regeln": [
+    {
+      "id": 1,
+      "regelbild": "{leo} happily showering under an outdoor pool shower right before going into the pool, water drops splashing",
+      "kurz": "Duschen",
+      "symbol": "🚿",
+      "merksatz": "Erst duschen, dann rein – und nur, wenn es mir gut geht.",
+      "geste": {
+        "pose": "abrubbeln",
+        "text": "Rubbel dir mit beiden Händen über die Arme, wie unter der Dusche."
+      },
+      "warum": "Unter der Dusche gewöhnt sich dein Körper langsam an das kühle Wasser. Und das Wasser bleibt sauber. Wenn es dir nicht gut geht, bleibst du lieber draußen.",
+      "raetsel": "Leo kommt aus der heißen Sonne und will ins Becken. Was macht er zuerst?",
+      "geschichte": [
+        {
+          "bild": "{freibad}, hot sunny day with a bright blazing sun: {leo} with red cheeks and little sweat drops running across the green lawn towards the pool, excited big smile, the pool still several meters in front of him, nobody else in the picture",
+          "text": "Leo hat ganz lange in der Sonne gespielt. Ihm ist heiß! Er will sofort ins kalte Wasser."
+        },
+        {
+          "bild": "{freibad}: {leo} standing on the tiled pool deck under a simple outdoor shower (a metal pole with a round shower head), water spraying down on him, giggling and rubbing his arms with both hands, he is clearly still outside the pool, the pool behind him, nobody else in the picture",
+          "text": "Doch halt! Erst geht Leo unter die Dusche. So gewöhnt sich sein Körper langsam an das kühle Wasser."
+        },
+        {
+          "bild": "{freibad}: {leo} slowly walking down wide tiled steps into the shallow non-swimmer part of the pool, the water only up to his knees, wet from the shower, smiling and relaxed, {mama} standing in the shallow water right next to the steps, smiling at him",
+          "text": "Jetzt geht Leo ins Wasser. Ihm geht es gut – und das Baden macht doppelt Spaß!"
+        }
+      ],
+      "warum_frage": {
+        "frage": "Warum duschen wir, bevor wir ins Wasser gehen?",
+        "antworten": [
+          {
+            "richtig": true,
+            "text": "Damit sich der Körper an das kühle Wasser gewöhnt.",
+            "bild": "{leo} fully dressed in his green long-sleeve swim shirt and blue swim shorts, standing at a swimming pool next to a metal pole shower, holding out one arm into the cool water spray, shoulders pulled up and shivering a tiny bit but smiling bravely, plain light blue background, single motif, centered, no other people"
+          },
+          {
+            "richtig": false,
+            "text": "Damit die Haare schön glänzen.",
+            "bild": "{mia} alone with extremely shiny glittering hair buns full of sparkle stars, looking proudly into a small hand mirror, plain light blue background, single motif, centered, no other people, funny"
+          },
+          {
+            "richtig": false,
+            "text": "Weil die Bademeisterin sonst traurig ist.",
+            "bild": "{bademeisterin} alone, pretending to cry with one huge exaggerated cartoon tear and a theatrical funny sad face, plain light blue background, single motif, centered, no other people, funny"
+          }
+        ],
+        "feedback": "Genau! Duschen macht den Körper bereit für das kühle Wasser – und das Wasser bleibt sauber."
+      },
+      "situationen": [
+        {
+          "bild": "{freibad}: {mia} standing on the tiled pool deck under a simple outdoor shower (a metal pole with a round shower head), water spraying down on her, happy, she is clearly still outside the pool, the pool with calm water right next to her, nobody in the pool",
+          "text": "Mia duscht, bevor sie ins Becken geht.",
+          "richtig": true,
+          "feedback": "Richtig! Mia duscht zuerst. So gewöhnt sich ihr Körper an das Wasser."
+        },
+        {
+          "bild": "{badesee}, very hot day with a bright blazing sun and wavy heat lines in the air: {leo} overheated with a bright red face, many big sweat drops flying off his head, sprinting at full speed straight towards the cool lake, one foot already splashing at the water's edge; {papa} standing still on the beach behind him, holding up one hand in a clear stop gesture with a concerned face",
+          "text": "Leo ist ganz heiß und will direkt in den kalten See rennen.",
+          "richtig": false,
+          "feedback": "Lieber nicht! Erst abkühlen oder duschen, dann langsam ins Wasser gehen."
+        },
+        {
+          "bild": "{freibad}: {leo} sitting on a towel on the green lawn, wrapped in a soft blanket, looking a little pale and tired, holding his tummy with one hand, {papa} sitting beside him with an arm around him kindly, in the background {mia} playing in the shallow water of the pool with {mama} standing right next to her in the water",
+          "text": "Leo hat Bauchweh. Er bleibt heute auf dem Handtuch sitzen.",
+          "richtig": true,
+          "feedback": "Richtig! Wenn es dir nicht gut geht, bleibst du draußen."
+        }
+      ],
+      "trainer": {
+        "frage": "Erklär mir die Dusch-Regel! Was machst du, und warum?",
+        "stichworte": [
+          "erst duschen / abkühlen",
+          "Körper gewöhnt sich an kaltes Wasser",
+          "nur rein, wenn es mir gut geht"
+        ]
+      },
+      "eltern_impuls": "Beim nächsten Duschen vor dem Schwimmen fragen: Warum machen wir das eigentlich?",
+      "ordner": "regel-01"
+    },
+    {
+      "id": 2,
+      "regelbild": "{badesee}: {leo} sitting relaxed on a towel on the sandy beach with a round full belly covered by his shirt, next to an empty plate, rubbing his belly, resting and waiting, the calm lake in the background",
+      "kurz": "Bauch",
+      "symbol": "🍝",
+      "merksatz": "Nicht zu satt und nicht zu hungrig ins Wasser.",
+      "geste": {
+        "pose": "bauch_reiben",
+        "text": "Reib dir mit der Hand kreisend über den Bauch."
+      },
+      "warum": "Mit einem ganz vollen Bauch wird dir beim Schwimmen schnell schlecht. Mit einem ganz leeren Bauch hast du keine Kraft.",
+      "raetsel": "Leo hat gerade einen riesigen Teller Nudeln gegessen. Darf er sofort schwimmen gehen?",
+      "geschichte": [
+        {
+          "bild": "{badesee}: {leo} sitting on a picnic blanket on the meadow, a very big plate with only a few noodles left on his lap, his swim shirt stretched over a visibly round tummy like a ball, one hand rubbing his full tummy, cheeks puffed, pointing eagerly towards the lake with the other hand, {papa} sitting next to him on the blanket, nobody in the water",
+          "text": "Leo hat ganz viele Nudeln gegessen. Sein Bauch ist kugelrund. Er will sofort ins Wasser."
+        },
+        {
+          "bild": "{badesee}: {leo} and {papa} kneeling on dry sand a few meters away from the water, building a big sandcastle together with a bucket and a shovel, relaxed and laughing, nobody in the water",
+          "text": "Papa sagt: Erst eine Pause! Mit vollem Bauch wird dir beim Schwimmen schlecht. Sie bauen eine Sandburg."
+        },
+        {
+          "bild": "{badesee}: {leo} happily splashing in shallow lake water that reaches only up to his knees, arms up, energetic, {papa} standing in the water right next to him, the sandy shore close behind them",
+          "text": "Nach der Pause fühlt sich Leos Bauch gut an. Jetzt hat er Kraft zum Planschen!"
+        }
+      ],
+      "warum_frage": {
+        "frage": "Warum gehen wir nicht mit ganz vollem oder ganz leerem Bauch ins Wasser?",
+        "antworten": [
+          {
+            "richtig": true,
+            "text": "Voller Bauch: Mir wird schlecht. Leerer Bauch: Ich habe keine Kraft.",
+            "bild": "one picture divided into two halves by a thin white vertical line, same plain light blue background on both sides, no other frames: on the left {leo} holding his very round overfull belly with a slightly queasy face, his green swim shirt fully covering the round belly; on the right {leo} looking tired and weak with droopy eyes, holding his flat empty belly with small rumble lines next to it, his green swim shirt fully covering his belly; no bare skin on the belly, no other people"
+          },
+          {
+            "richtig": false,
+            "text": "Weil das Essen im Wasser nass wird.",
+            "bild": "a single sandwich floating on calm blue water with a cute surprised cartoon face and wide eyes, small splashes, centered, simple, absolutely no people, no children, funny"
+          },
+          {
+            "richtig": false,
+            "text": "Weil die Fische sonst das Essen haben wollen.",
+            "bild": "explicitly three ordinary cute little orange fish peeking out of blue water at the edge of a wooden jetty, looking hungrily at a plate of spaghetti standing on the jetty, centered, simple, absolutely no people, no children, funny"
+          }
+        ],
+        "feedback": "Genau! Mit vollem Bauch wird dir schlecht, mit leerem Bauch fehlt dir die Kraft."
+      },
+      "situationen": [
+        {
+          "bild": "{freibad}: {leo} hurrying across the green lawn towards the pool, stuffing french fries into his mouth with cheeks full, holding a paper tray of french fries in one hand, the pool edge right in front of him, nobody in the pool",
+          "text": "Leo isst noch Pommes und rennt schon zum Becken.",
+          "richtig": false,
+          "feedback": "Lieber nicht! Erst in Ruhe essen, dann eine Pause machen."
+        },
+        {
+          "bild": "{freibad}: {mia} sitting calmly cross-legged on a towel on the green lawn, eating a few apple slices from a small bowl, relaxed, the pool in the background",
+          "text": "Mia isst einen kleinen Snack und ruht sich kurz aus, bevor sie schwimmt.",
+          "richtig": true,
+          "feedback": "Richtig! Ein kleiner Snack gibt Kraft – und danach eine kleine Pause."
+        },
+        {
+          "bild": "{badesee}: a boy with light brown straight hair, purple UV swim shirt and black swim shorts, swim goggles on his forehead, slowly walking across the dry sand towards the lake, looking tired and weak with droopy eyes and slumped shoulders, holding his flat empty belly with both hands, small cartoon rumble lines at his tummy, no food anywhere",
+          "text": "Der Junge hat den ganzen Tag nichts gegessen und will ganz lange schwimmen.",
+          "richtig": false,
+          "feedback": "Lieber nicht! Mit leerem Bauch hast du keine Kraft. Erst etwas Kleines essen."
+        }
+      ],
+      "trainer": {
+        "frage": "Erklär mir die Bauch-Regel! Was ist mit vollem und mit leerem Bauch?",
+        "stichworte": [
+          "nicht zu satt",
+          "nicht zu hungrig",
+          "voll: schlecht / leer: keine Kraft"
+        ]
+      },
+      "eltern_impuls": "Beim Picknick am See gemeinsam entscheiden: Pause oder schon Wasser?",
+      "ordner": "regel-02"
+    },
+    {
+      "id": 3,
+      "regelbild": "{badesee}: {leo} standing in clear calm lake water that reaches exactly up to his belly button, the water line at his belly, one hand flat on his wet shirt at the water line, proud and safe, {papa} standing close behind him",
+      "kurz": "Bis zum Bauch",
+      "symbol": "🧍",
+      "merksatz": "Kann ich noch nicht sicher schwimmen, geh ich nur bis zum Bauch ins Wasser.",
+      "geste": {
+        "pose": "hand_an_bauch",
+        "text": "Leg deine Hand flach auf den Bauch – bis hier und nicht weiter!"
+      },
+      "warum": "Bis zum Bauch kannst du sicher stehen. Wird es tiefer, kann dich eine Welle umschubsen oder du verlierst den Boden unter den Füßen.",
+      "raetsel": "Leo kann noch nicht sicher schwimmen. Bis wohin darf er ins Wasser gehen?",
+      "geschichte": [
+        {
+          "bild": "{badesee}, sunny day: {leo} wading into the calm clear lake from the sandy beach, the water only up to his knees, happy, {papa} standing in the water one step next to him",
+          "text": "Leo geht in den See. Das Wasser geht ihm bis zu den Knien. Schön kühl!"
+        },
+        {
+          "bild": "{badesee}: {leo} standing still in the lake a few steps further out than before, the water deeper now: his blue swim shorts are completely under the water and not visible, the water surface lies exactly at the middle of his belly, the lower half of his green swim shirt is under water, his swim shirt fully covering his belly, one hand lying flat on his belly right at the water line, proud smile, {papa} standing in the water right next to him",
+          "text": "Jetzt ist das Wasser am Bauch. Leo bleibt stehen. Hier steht er ganz sicher."
+        },
+        {
+          "bild": "{badesee}: {leo} standing still in the lake with water up to his belly, pointing at a red-and-yellow beach ball that floats a few meters further out on the calm water; {papa} wading past Leo out towards the ball, reaching for it, water up to papa's waist; Leo stays where he is, calm and smiling",
+          "text": "Oh, der Ball treibt weg! Leo läuft nicht hinterher. Er ruft Papa – und Papa holt den Ball."
+        }
+      ],
+      "warum_frage": {
+        "frage": "Warum gehst du nur bis zum Bauch ins Wasser?",
+        "antworten": [
+          {
+            "richtig": true,
+            "text": "Bis zum Bauch kann ich sicher stehen.",
+            "bild": "{leo} alone standing firmly with both feet on sandy ground in clear calm water that reaches exactly up to his belly, the water so clear that his legs and feet on the sand are visible, confident smile, single motif, centered, no other people"
+          },
+          {
+            "richtig": false,
+            "text": "Damit mein Bauch nicht kalt wird.",
+            "bild": "{leo} alone wrapping a thick red knitted wool scarf around his belly, funny puzzled face, plain light blue background, single motif, centered, no other people, funny"
+          },
+          {
+            "richtig": false,
+            "text": "Damit die Badehose trocken bleibt.",
+            "bild": "a single pair of blue swim shorts hanging on a washing line with two clothes pegs in the sunshine, blue sky, centered, simple, absolutely no people, no children"
+          }
+        ],
+        "feedback": "Genau! Bis zum Bauch kannst du sicher stehen. Tiefer kann dich eine Welle umschubsen."
+      },
+      "situationen": [
+        {
+          "bild": "{freibad}: the shallow non-swimmer part of the pool, {leo} standing and playing with a small ball in water that reaches exactly up to his belly, {mama} standing in the water right next to him, smiling",
+          "text": "Leo spielt im Nichtschwimmerbecken. Das Wasser geht bis zum Bauch.",
+          "richtig": true,
+          "feedback": "Richtig! Bis zum Bauch steht Leo sicher."
+        },
+        {
+          "bild": "{badesee}: a boy with short straight black hair and a red UV swim shirt wading after a red-and-yellow beach ball that floats just in front of him, the water already very deep for him, the water surface right at his chest just below his armpits, only his shoulders, arms and head above the water, reaching out for the ball, not scared; far behind him on the beach two adults sitting on a blanket reading and not looking",
+          "text": "Der Junge läuft dem Ball hinterher. Das Wasser geht ihm schon bis zur Brust.",
+          "richtig": false,
+          "feedback": "Stopp! Das ist zu tief. Lieber einen Erwachsenen rufen, der den Ball holt."
+        },
+        {
+          "bild": "{badesee}: {mia} and {leo} splashing and laughing in shallow lake water that reaches only up to their knees, close to the sandy shore, {papa} standing in the water right next to them",
+          "text": "Mia und Leo planschen im flachen Wasser. Papa ist ganz nah.",
+          "richtig": true,
+          "feedback": "Richtig! Flaches Wasser und ein Erwachsener ganz nah – perfekt."
+        }
+      ],
+      "trainer": {
+        "frage": "Zeig mir, bis wohin du ins Wasser gehst! Und warum nicht tiefer?",
+        "stichworte": [
+          "zeigt auf den Bauch",
+          "dort sicher stehen",
+          "tiefer: Welle, Boden weg",
+          "Erwachsenen rufen"
+        ]
+      },
+      "eltern_impuls": "In der Badewanne oder im See: Hand an den Bauch – bis hier!",
+      "ordner": "regel-03"
+    },
+    {
+      "id": 4,
+      "regelbild": "{leo} holding the hand of {bademeisterin} and pulling her along the pool edge, pointing ahead with his other hand, getting help from a grown-up, determined friendly faces",
+      "kurz": "Hilfe",
+      "symbol": "📣",
+      "merksatz": "Ich rufe nur ‚Hilfe!‘, wenn es echt ist – und ich helfe anderen.",
+      "geste": {
+        "pose": "haende_trichter",
+        "text": "Leg die Hände wie einen Trichter um den Mund."
+      },
+      "warum": "Wer zum Spaß ‚Hilfe‘ ruft, dem glaubt man irgendwann nicht mehr – auch dann nicht, wenn es wirklich schlimm ist. Braucht jemand Hilfe, holst du schnell einen Erwachsenen.",
+      "raetsel": "Ein Kind ruft ‚Hilfe!‘ – aber nur zum Spaß. Ist das okay?",
+      "geschichte": [
+        {
+          "bild": "{freibad}: a boy with short blond hair, orange UV swim shirt and black swim shorts standing safely in the shallow part of the pool, water up to his belly, cupping his hands around his mouth and shouting while grinning mischievously; {bademeisterin} hurrying along the pool deck towards him with a worried face",
+          "text": "Ein Junge ruft laut ‚Hilfe!‘. Die Bademeisterin rennt sofort los. Aber der Junge lacht nur."
+        },
+        {
+          "bild": "{freibad}: {bademeisterin} kneeling at the pool edge, talking calmly and seriously to the boy with short blond hair and orange UV swim shirt who stands in the shallow water right in front of her, the boy looking down sorry with a sheepish face",
+          "text": "Die Bademeisterin sagt: Ich hatte Angst um dich. Hilfe rufen wir nur, wenn es echt ist."
+        },
+        {
+          "bild": "{freibad}: a small girl with black hair in two pigtails and a pink UV swim shirt sitting on the tiled pool deck, crying a little and holding her knee (tiny pink scrape, no blood); {leo} holding the hand of {bademeisterin} and leading her towards the girl, pointing at the girl with his other hand, nobody in the pool",
+          "text": "Später sieht Leo ein Mädchen weinen. Es ist hingefallen. Leo holt schnell die Bademeisterin. Super geholfen!"
+        }
+      ],
+      "warum_frage": {
+        "frage": "Warum rufen wir nur ‚Hilfe‘, wenn es wirklich echt ist?",
+        "antworten": [
+          {
+            "richtig": true,
+            "text": "Sonst glaubt mir keiner, wenn ich wirklich Hilfe brauche.",
+            "bild": "{leo} standing on a green lawn cupping his hands around his mouth and calling; two adults sitting on a bench with their backs to him, shrugging and not turning around, calm, simple and not scary, plain background, centered"
+          },
+          {
+            "richtig": false,
+            "text": "Weil Rufen im Hals kratzt.",
+            "bild": "{leo} alone with a funny croaky voice: pulling a silly grumpy face with his tongue out, pointing with one finger at his open mouth, small wobbly zigzag scribble lines coming out of his mouth, holding a warm cup of tea in the other hand, plain light blue background, single motif, centered, no other people, funny and cheerful"
+          },
+          {
+            "richtig": false,
+            "text": "Weil die Enten sonst wegfliegen.",
+            "bild": "explicitly three ordinary cartoon ducks flying up startled from a calm lake, a few feathers in the air, funny, centered, simple, absolutely no people, no children"
+          }
+        ],
+        "feedback": "Genau! Wer zum Spaß ruft, dem glaubt man sonst nicht mehr. Und wenn jemand Hilfe braucht, holst du einen Erwachsenen."
+      },
+      "situationen": [
+        {
+          "bild": "{freibad}: two children standing safely in the shallow part of the pool with water up to their bellies: a boy with short blond hair and orange UV swim shirt cupping his hands around his mouth and shouting while laughing, next to him a girl with a brown braid and purple UV swim shirt laughing and splashing, clearly just playing; {bademeisterin} on the pool deck next to the lifeguard tower looking up alarmed",
+          "text": "Ein Kind ruft ‚Hilfe!‘ und lacht dabei. Es ist nur ein Spiel.",
+          "richtig": false,
+          "feedback": "Das ist nicht okay. Hilfe rufen wir nur, wenn es wirklich echt ist."
+        },
+        {
+          "bild": "{freibad}: {leo} (barefoot, with very curly brown hair) pulling {bademeisterin} (barefoot) by the hand along the pool deck, Leo in front, pointing with his other arm outstretched at a small girl with black pigtails and pink UV swim shirt who sits alone and cries on the pool deck a few meters ahead of them, both walking towards the girl, nobody in the pool",
+          "text": "Leo sieht ein Kind weinen und holt die Bademeisterin.",
+          "richtig": true,
+          "feedback": "Richtig! Du hilfst, indem du schnell einen Erwachsenen holst."
+        },
+        {
+          "bild": "{freibad}: a small girl with black pigtails and pink UV swim shirt sitting alone on the pool deck and crying; a boy with short blond hair and orange UV swim shirt walking past her, turning his head away and ignoring her, nobody in the pool",
+          "text": "Ein Kind weint am Beckenrand. Der Junge geht einfach weiter.",
+          "richtig": false,
+          "feedback": "Schade! Wir helfen anderen – zum Beispiel, indem wir einen Erwachsenen holen."
+        }
+      ],
+      "trainer": {
+        "frage": "Wann rufst du ‚Hilfe‘? Und was machst du, wenn ein anderes Kind Hilfe braucht?",
+        "stichworte": [
+          "nur wenn es echt ist",
+          "sonst glaubt es keiner mehr",
+          "Erwachsenen holen",
+          "nicht selbst ins tiefe Wasser"
+        ]
+      },
+      "eltern_impuls": "Die Geschichte vom Hirtenjungen und dem Wolf vorlesen und vergleichen.",
+      "ordner": "regel-04"
+    },
+    {
+      "id": 5,
+      "regelbild": "{freibad}: {leo} standing at the pool edge holding both hands up in a clear stop gesture towards a boy with short blond hair, orange UV swim shirt and black swim shorts who wanted to push someone and now stops, surprised",
+      "kurz": "Nicht schubsen",
+      "symbol": "🤚",
+      "merksatz": "Ich schubse niemanden ins Wasser – auch nicht im Spaß.",
+      "geste": {
+        "pose": "stopp_haende",
+        "text": "Streck beide Hände nach vorne: Stopp!"
+      },
+      "warum": "Wer geschubst wird, erschrickt, schluckt Wasser oder stößt sich am Beckenrand. Das tut weh – auch wenn es nur Spaß sein sollte.",
+      "raetsel": "Ein Junge will Mia zum Spaß vom Beckenrand ins Wasser schubsen. Was sagst du?",
+      "geschichte": [
+        {
+          "bild": "{freibad}: {mia} standing alone on the low tiled pool edge, facing the water and looking happily at the pool, her back turned to the pool deck; behind her on the dry pool deck a boy with short straight blond hair, light skin, orange UV swim shirt and orange swim shorts tiptoeing towards her back with both hands raised, grinning mischievously, still two steps away from her; {mia} does not notice him; nobody touches anyone yet, nobody in the water",
+          "text": "Mia steht am Beckenrand. Ein Junge schleicht sich an. Er will sie zum Spaß ins Wasser schubsen."
+        },
+        {
+          "bild": "{freibad}: on the dry pool deck {leo} stands between {mia} and a boy with short straight blond hair, light skin, orange UV swim shirt and orange swim shorts; {leo} faces the boy and holds both open hands up in a clear stop gesture; the boy has stopped and lowered his hands, looking surprised and a little sorry; {mia} stands at the pool edge behind {leo}, turning around to look; nobody touches anyone, nobody in the water",
+          "text": "Leo ruft: Stopp! Wenn Mia erschrickt, kann sie Wasser schlucken oder sich am Rand wehtun."
+        },
+        {
+          "bild": "{freibad}, side view: {mia} jumping feet first on her own from the pool edge into free open water, nobody in the water below her; {leo} and a boy with short straight blond hair, light skin, orange UV swim shirt and orange swim shorts standing on the pool edge a step apart from each other, waiting for their turn, laughing and cheering; nobody touches anyone; {bademeisterin} standing next to the lifeguard tower, watching and smiling",
+          "text": "Jetzt springen alle nacheinander selbst ins Wasser. Jeder, wann er will. Das macht allen Spaß!"
+        }
+      ],
+      "warum_frage": {
+        "frage": "Warum schubsen wir niemanden ins Wasser?",
+        "antworten": [
+          {
+            "richtig": true,
+            "text": "Der andere erschrickt und kann sich wehtun.",
+            "bild": "{mia} sitting on a towel on a tiled pool deck, eyes wide open with a startled surprised expression, one hand on her chest, a small colorful plaster on her knee, gentle and not scary, single motif, centered, no other people"
+          },
+          {
+            "richtig": false,
+            "text": "Weil man dabei selbst nass wird.",
+            "bild": "{leo} standing on a sunny tiled pool deck with a towel in his hands, his curls and swim shirt all wet with big shiny water drops, making a funny grumpy face with puffed cheeks, single motif, centered, no other people"
+          },
+          {
+            "richtig": false,
+            "text": "Weil der Beckenrand sonst schmutzig wird.",
+            "bild": "a single short piece of beige tiled pool edge next to blue pool water, with a trail of brown muddy footprints on the tiles, single simple motif, centered, absolutely no people, no children, funny"
+          }
+        ],
+        "feedback": "Genau! Wer geschubst wird, erschrickt und kann sich wehtun. Jeder springt selbst, wenn er bereit ist."
+      },
+      "situationen": [
+        {
+          "bild": "{freibad}, side view from the lawn side: {mia} standing at the low tiled pool edge looking down at the water, not noticing anything; a boy with short straight blond hair, light skin, orange UV swim shirt and orange swim shorts tiptoeing towards her with both arms stretched forward, grinning mischievously like planning a prank, still two steps away from her; nobody else nearby, nobody in the water",
+          "text": "Der Junge will das Mädchen von hinten ins Wasser schubsen.",
+          "richtig": false,
+          "feedback": "Stopp! Schubsen ist gefährlich – auch im Spaß."
+        },
+        {
+          "bild": "{freibad}: {leo}, a girl with long blond braids in a pink UV swim shirt and pink swim shorts, and a boy with short black hair in a red UV swim shirt and red swim shorts standing in a neat line on the pool deck with space between them, waiting patiently and smiling; in front of them {mia} jumping feet first on her own from the pool edge into free open water, nobody in the water below her; nobody touches anyone; {bademeisterin} on the lifeguard tower watching",
+          "text": "Die Kinder warten, und jedes springt selbst, wenn es dran ist.",
+          "richtig": true,
+          "feedback": "Richtig! Jeder springt selbst – so hat keiner Angst."
+        },
+        {
+          "bild": "{freibad}: {leo} and {mia} sitting side by side on the low tiled pool edge, dangling their feet in the water, laughing together; the pool deck behind them is empty, nobody standing behind them; {bademeisterin} on the lifeguard tower in the background, calm sunny day",
+          "text": "Leo und Mia sitzen am Rand und lassen die Füße ins Wasser baumeln.",
+          "richtig": true,
+          "feedback": "Richtig! Hier schubst keiner. So ist es schön."
+        }
+      ],
+      "trainer": {
+        "frage": "Darf man andere ins Wasser schubsen? Erklär mir, warum!",
+        "stichworte": [
+          "nein, auch nicht im Spaß",
+          "erschrickt / Wasser schlucken",
+          "am Rand wehtun"
+        ]
+      },
+      "eltern_impuls": "Stopp-Geste als Familiensignal einführen – gilt auch beim Toben zu Hause.",
+      "ordner": "regel-05"
+    },
+    {
+      "id": 6,
+      "regelbild": "{leo} in pajamas wrapped in a blanket on a sofa at home, {mama} next to him holding out a spoon with pink medicine syrup, Leo looking tired but calm, a window showing a sunny pool outside",
+      "kurz": "Medizin",
+      "symbol": "💊",
+      "merksatz": "Wer Medizin nimmt, die müde macht, oder Alkohol getrunken hat, geht nicht ins Wasser.",
+      "geste": {
+        "pose": "hand_an_stirn",
+        "text": "Leg die Hand an die Stirn, als wärst du ganz müde."
+      },
+      "warum": "Manche Medizin und Alkohol machen müde und langsam im Kopf. Im Wasser muss man aber hellwach sein. Das gilt auch für Erwachsene.",
+      "raetsel": "Leo ist krank und hat Medizin genommen. Geht er heute schwimmen?",
+      "geschichte": [
+        {
+          "bild": "cozy living room at home: {leo} in pajamas lying on a sofa under a blanket, a scarf around his neck, looking tired with droopy sleepy eyes; {mama} sitting beside him on the sofa holding a spoon of pink medicine syrup; a medicine bottle and a thermometer on a small table; a packed swim bag with a towel standing unused by the door",
+          "text": "Leo ist krank. Er hat Medizin genommen und ist ganz müde. Eigentlich wollten sie heute schwimmen gehen."
+        },
+        {
+          "bild": "cozy living room at home: {leo} in pajamas and {mama} cuddled together on the sofa under a blanket, seen from behind at an angle, looking out of a big window; outside in the garden a small pond with three ducks swimming; calm, cozy and happy",
+          "text": "Mama sagt: Heute nicht. Wer müde ist, passt im Wasser nicht gut auf. Sie gucken zusammen die Enten an."
+        },
+        {
+          "bild": "{badesee}: a friendly barbecue on the grassy meadow near the lake, a grill with sausages; {papa} standing on the meadow next to the grill holding a plain brown bottle without label, smiling and politely shaking his head with his other hand raised palm out; a friend, a woman with a short black bob haircut, light skin, purple swimsuit, holding a towel, standing on the meadow beside him and pointing invitingly towards the lake; only these two grown-ups in the picture, absolutely no children, nobody standing at the grill, nobody in the water; both calm and cheerful",
+          "text": "Am Wochenende grillt Papa mit Freunden. Er hat ein Bier getrunken. Er sagt: Ich gehe heute nicht mehr schwimmen."
+        }
+      ],
+      "warum_frage": {
+        "frage": "Warum geht man mit müde machender Medizin oder nach Alkohol nicht ins Wasser?",
+        "antworten": [
+          {
+            "richtig": true,
+            "text": "Man wird müde und langsam – im Wasser muss man hellwach sein.",
+            "bild": "{papa} sitting on a towel on a grassy lake shore next to calm water, yawning widely with droopy half-closed sleepy eyes, slumped relaxed posture, single motif, centered, no other people, nobody in the water"
+          },
+          {
+            "richtig": false,
+            "text": "Weil die Medizin im Wasser schmilzt.",
+            "bild": "a single big cartoon pill capsule, half light blue and half white, melting like a soft ice cream with light blue and white drips into a small puddle of blue water, drips, single simple motif, centered, plain light blue background, absolutely no people, no children, funny"
+          },
+          {
+            "richtig": false,
+            "text": "Weil das Wasser sonst bitter schmeckt.",
+            "bild": "{leo} sitting at a kitchen table taking a sip from a glass of water and making a funny sour face with a scrunched nose and squinting eyes, single motif, centered, no other people"
+          }
+        ],
+        "feedback": "Genau! Medizin oder Alkohol machen müde und langsam. Im Wasser muss man hellwach sein."
+      },
+      "situationen": [
+        {
+          "bild": "cozy living room at home: {leo} in pajamas with a scarf around his neck and a red nose, holding his swim goggles and looking hopeful; {mama} kneeling in front of him, gently shaking her head and smiling kindly, holding up a colorful board game box with only a picture and no text; a packed swim bag on the floor",
+          "text": "Leo ist krank. Mama sagt: Heute kein Schwimmbad, wir spielen etwas.",
+          "richtig": true,
+          "feedback": "Richtig! Wer krank ist oder Medizin nimmt, bleibt heute draußen."
+        },
+        {
+          "bild": "{badesee}: a barbecue party with a grill and a few grown-ups on the meadow in the background; in the foreground a man with short blond hair and a short blond beard, light skin, green t-shirt and orange swim shorts, holding a plain brown beer bottle without label in one hand and a towel over his shoulder, walking away from the barbecue across the sand straight towards the lake water to go swimming, about to step into the water, normal walk, nobody in the water",
+          "text": "Ein Mann hat Bier getrunken und will jetzt im See schwimmen.",
+          "richtig": false,
+          "feedback": "Lieber nicht! Alkohol macht langsam. Auch Erwachsene bleiben dann draußen."
+        },
+        {
+          "bild": "{badesee}: {mia} sitting on a picnic blanket on the meadow wrapped in a big towel, holding a warm cup of tea, coughing a little into her elbow, calmly watching; in the background {leo} splashing in shallow water only up to his knees near the shore with {papa} standing right next to him",
+          "text": "Mia hat Husten und Medizin genommen. Sie schaut heute nur zu.",
+          "richtig": true,
+          "feedback": "Richtig! Mia bleibt draußen und ist bald wieder fit."
+        }
+      ],
+      "trainer": {
+        "frage": "Wann bleibt man lieber aus dem Wasser – auch Erwachsene? Und warum?",
+        "stichworte": [
+          "krank / müde machende Medizin",
+          "Alkohol (auch Erwachsene)",
+          "müde und langsam im Kopf"
+        ]
+      },
+      "eltern_impuls": "Beim nächsten Grillabend vorleben und benennen: Ich habe Bier getrunken, ich schwimme nicht mehr.",
+      "ordner": "regel-06"
+    },
+    {
+      "id": 7,
+      "regelbild": "{leo} and {papa} walking quickly out of a lake onto dry land towards a house, a dark cloud with a bright lightning bolt over the lake behind them",
+      "kurz": "Gewitter",
+      "symbol": "⚡",
+      "merksatz": "Donner und Blitz? Sofort raus – und rein ins Haus!",
+      "geste": {
+        "pose": "blitz_arme",
+        "text": "Mach mit den Armen einen Zickzack-Blitz."
+      },
+      "warum": "Ein Blitz kann ins Wasser einschlagen. Im Wasser und unter Bäumen ist es dann gefährlich. Im Haus oder im Auto bist du sicher.",
+      "raetsel": "Es grummelt und blitzt am Himmel. Was machst du im See?",
+      "geschichte": [
+        {
+          "bild": "{leo} and {mia} playing and splashing in shallow lake water that reaches only up to their bellies, close to a sandy shore, {papa} standing next to them in the water, dark storm clouds appearing on the horizon, a faint lightning in the far distance",
+          "text": "Leo und Mia baden im See. Da kommen dunkle Wolken. Es grummelt ganz laut: Donner!"
+        },
+        {
+          "bild": "view from the land side: {leo}, {mia} and {papa} holding hands and walking briskly away from the lake, facing the viewer, the stormy lake with dark clouds and a distant lightning bolt is BEHIND them, they are heading towards a parked car that stands on a grassy parking area in the foreground right, first raindrops, open beach without trees",
+          "text": "Sofort raus aus dem Wasser! Ein Blitz kann ins Wasser einschlagen. Auch unter Bäume stellen sie sich nicht."
+        },
+        {
+          "bild": "{leo}, {mia} and {papa} sitting cozy on the back seat of a car wrapped in towels, holding cups of cocoa, rain running down the car windows, outside the window a paved parking lot with grass and a few parked cars, the lake only far away in the background, everyone smiling and relaxed",
+          "text": "Im Auto sind alle sicher und trocken. Sie trinken Kakao und warten, bis das Gewitter vorbei ist."
+        }
+      ],
+      "warum_frage": {
+        "frage": "Warum müssen wir bei Gewitter sofort aus dem Wasser?",
+        "antworten": [
+          {
+            "richtig": true,
+            "text": "Ein Blitz kann ins Wasser einschlagen – im Haus bin ich sicher.",
+            "bild": "a small cozy house with warm glowing windows standing on a green meadow on dry land, {papa}, {mama}, {leo} and {mia} looking out of the window safely and smiling, grey rainy sky, a lake far away in the background"
+          },
+          {
+            "richtig": false,
+            "text": "Weil der Regen die Haare nass macht.",
+            "bild": "a child with dripping wet hair under a rain cloud, funny"
+          },
+          {
+            "richtig": false,
+            "text": "Weil das Wasser dann zu kalt wird.",
+            "bild": "a single cartoon thermometer showing a very low blue reading next to a big melting ice cube, a few snowflakes, plain light blue background, centered, no people, funny"
+          }
+        ],
+        "feedback": "Genau! Der Blitz kann ins Wasser einschlagen. Im Haus oder im Auto bist du sicher."
+      },
+      "situationen": [
+        {
+          "bild": "{badesee}: {leo} and {mia} still happily splashing in shallow water that reaches only up to their bellies, {papa} standing next to them in the water, all ignoring the sky, a dark storm cloud and a bright lightning bolt clearly visible over the lake in the distance, open sandy shore without trees",
+          "text": "Es blitzt am Himmel, aber die Kinder baden einfach weiter.",
+          "richtig": false,
+          "feedback": "Stopp! Bei Donner und Blitz sofort raus und rein ins Haus."
+        },
+        {
+          "bild": "{papa}, {mama}, {leo} and {mia} walking briskly hand in hand away from a lake towards a small house with a door on the right side of the image, the lake with dark storm clouds and a distant lightning bolt is behind them on the left, first raindrops, towels over their shoulders, open grassy shore without trees, calm but hurrying faces",
+          "text": "Die Familie hört Donner und geht sofort zum Haus.",
+          "richtig": true,
+          "feedback": "Richtig! Raus aus dem Wasser und rein ins Haus."
+        },
+        {
+          "bild": "{papa}, {mama}, {leo} and {mia} standing close together under one big single tree on a grassy lake shore, looking a little unsure up at the sky, dark storm clouds, rain and a lightning bolt in the distance over the lake, no other trees nearby",
+          "text": "Die Familie stellt sich bei Gewitter unter einen großen Baum.",
+          "richtig": false,
+          "feedback": "Lieber nicht! Unter Bäumen ist es bei Gewitter gefährlich. Besser ins Haus oder ins Auto."
+        }
+      ],
+      "trainer": {
+        "frage": "Was machst du, wenn es donnert und blitzt? Und warum?",
+        "stichworte": [
+          "sofort raus",
+          "ins Haus oder Auto",
+          "nicht unter Bäume",
+          "Blitz kann ins Wasser einschlagen"
+        ]
+      },
+      "eltern_impuls": "Beim nächsten Gewitter am Fenster: Wo sind wir jetzt sicher?",
+      "ordner": "regel-07"
+    },
+    {
+      "id": 8,
+      "regelbild": "{leo} throwing an ice cream wrapper into a trash bin on a sandy beach, smiling",
+      "kurz": "Müll",
+      "symbol": "🗑️",
+      "merksatz": "Müll kommt in den Eimer.",
+      "geste": {
+        "pose": "wegwerfen",
+        "text": "Tu so, als würdest du etwas in einen Eimer werfen."
+      },
+      "warum": "Müll kann Tiere krank machen. An Scherben oder Dosen kann sich jemand verletzen. Und sauberes Wasser ist für alle schöner.",
+      "raetsel": "Leo hat sein Eis aufgegessen. Wohin kommt das Papier?",
+      "geschichte": [
+        {
+          "bild": "{badesee}: close view of the sandy beach near the water line, one crumpled ice cream wrapper and one empty plastic bottle lying in the sand, a single mallard duck standing next to the bottle and looking at it curiously, no people",
+          "text": "Am Strand liegt Müll: ein Eispapier und eine Plastikflasche. Die Ente guckt ganz neugierig."
+        },
+        {
+          "bild": "{badesee}: {leo} standing on the sandy beach next to a green trash bin, dropping a crumpled ice cream wrapper and an empty plastic bottle into the bin, proud smile; a single mallard duck standing on the sand a few steps away watching; {mama} sitting on a towel in the background",
+          "text": "Leo sammelt den Müll ein und wirft ihn in den Mülleimer. Sonst frisst die Ente noch das Plastik."
+        },
+        {
+          "bild": "{badesee}: a mallard duck mother with three fluffy ducklings swimming happily in clean sparkling lake water close to the shore; {leo} standing on the clean sandy beach waving at them; {mama} sitting on a towel on the beach behind him, smiling; no trash anywhere",
+          "text": "Jetzt ist alles sauber. Die Enten schwimmen fröhlich. Und keiner tritt in eine Dose."
+        }
+      ],
+      "warum_frage": {
+        "frage": "Warum kommt Müll in den Mülleimer?",
+        "antworten": [
+          {
+            "richtig": true,
+            "text": "Damit sich Tiere und Menschen nicht verletzen.",
+            "bild": "a single mallard duck and {leo} walking happily side by side, {leo} barefoot, on a perfectly clean sandy beach of a calm lake with a green meadow behind, no sea, no trash anywhere, single motif, centered, no other people"
+          },
+          {
+            "richtig": false,
+            "text": "Weil der Mülleimer Hunger hat.",
+            "bild": "a single green trash bin with a funny hungry cartoon face, the open lid like a mouth, licking its lips, single simple motif, centered, plain light background, absolutely no people, no children, funny"
+          },
+          {
+            "richtig": false,
+            "text": "Weil Müll nicht schwimmen kann.",
+            "bild": "a single banana peel wearing tiny swim goggles, sitting in a tiny swim ring on blue water, single simple motif, centered, absolutely no people, no children, funny"
+          }
+        ],
+        "feedback": "Genau! Müll kann Tiere krank machen und Menschen verletzen. Im Eimer ist er gut aufgehoben."
+      },
+      "situationen": [
+        {
+          "bild": "{freibad}: on the green lawn next to the pool a girl with long blond braids, light skin, pink UV swim shirt and pink swim shorts, holding an ice cream cone and walking away, letting a crumpled ice cream wrapper fall onto the grass behind her without looking; a green trash bin clearly visible only a few steps away; otherwise the lawn is clean; the pool in the background is empty, nobody in the water, no other people",
+          "text": "Das Kind lässt das Eispapier auf die Wiese fallen.",
+          "richtig": false,
+          "feedback": "Oh nein! Müll kommt in den Eimer."
+        },
+        {
+          "bild": "{freibad}: {mia} standing on the green lawn next to the pool, throwing an empty juice box into a green trash bin, happy; the lawn is clean",
+          "text": "Mia wirft ihre Saftpackung in den Mülleimer.",
+          "richtig": true,
+          "feedback": "Richtig! Super, Mia!"
+        },
+        {
+          "bild": "{badesee}: a boy with short black hair, light skin, red UV swim shirt and red swim shorts standing on the dry sandy shore, arm raised about to throw an empty plastic bottle into the lake, the bottle still in his hand; a single mallard duck swimming in the clean water nearby, looking at him; nobody in the water",
+          "text": "Der Junge will eine Flasche in den See werfen.",
+          "richtig": false,
+          "feedback": "Stopp! Müll gehört nie ins Wasser. Ab in den Eimer."
+        }
+      ],
+      "trainer": {
+        "frage": "Wohin kommt Müll? Und warum ist das wichtig?",
+        "stichworte": [
+          "in den Mülleimer",
+          "Tiere werden krank",
+          "Menschen verletzen sich",
+          "Wasser bleibt sauber"
+        ]
+      },
+      "eltern_impuls": "Am See eine kleine Müll-Sammelaktion machen – wer findet am meisten?",
+      "ordner": "regel-08"
+    },
+    {
+      "id": 9,
+      "regelbild": "{leo} sitting on an inflatable green crocodile in shallow water, {papa} standing right next to him holding the crocodile firmly",
+      "kurz": "Schwimmtiere",
+      "symbol": "🦆",
+      "merksatz": "Schwimmtiere passen nicht auf mich auf – das machen Erwachsene.",
+      "geste": {
+        "pose": "kopf_schuetteln",
+        "text": "Schüttel den Kopf: Nein, Schwimmtiere passen nicht auf!"
+      },
+      "warum": "Aus Schwimmtieren und Luftmatratzen kann Luft rauskommen, und der Wind treibt sie schnell weit weg. Auch mit Schwimmflügeln bleibt immer ein Erwachsener ganz nah bei dir.",
+      "raetsel": "Leo sitzt auf einem Gummi-Krokodil. Passt das Krokodil auf ihn auf?",
+      "geschichte": [
+        {
+          "bild": "{badesee}: {leo} sitting on an inflatable green crocodile pool toy floating in shallow water close to the sandy shore; {papa} standing knee-deep in the water right next to him with one hand on the crocodile; both smiling, calm sunny day",
+          "text": "Leo sitzt auf seinem Gummi-Krokodil. Papa steht direkt daneben."
+        },
+        {
+          "bild": "{badesee}: wind blowing, shown by swirl lines and waving grass; an inflatable green crocodile pool toy with {leo} sitting on it has drifted a little away from the shore, only an arm's length away from {papa}; {papa} standing in the water, quickly reaching out and firmly holding the crocodile's tail; {leo} holding on, looking surprised but safe, not scared",
+          "text": "Huiii – der Wind schiebt das Krokodil nach draußen! Papa hält es schnell fest."
+        },
+        {
+          "bild": "{badesee}: {leo} standing in shallow water only up to his knees close to the shore, pushing an inflatable green crocodile pool toy and laughing; {papa} crouching in the water right next to him, laughing too",
+          "text": "Leo weiß jetzt: Das Krokodil ist zum Spielen. Aufpassen tut Papa."
+        }
+      ],
+      "warum_frage": {
+        "frage": "Warum passen Schwimmtiere nicht auf dich auf?",
+        "antworten": [
+          {
+            "richtig": true,
+            "text": "Die Luft kann rausgehen, und der Wind treibt mich weg.",
+            "bild": "one single inflatable green crocodile pool toy with exactly one head at the front and one tail at the back, lying flat on lake water, half-deflated, saggy and wrinkly, little puffs of air escaping from a valve on its back, wind swirl lines pushing it away, gentle, single simple motif, centered, absolutely no people, no children"
+          },
+          {
+            "richtig": false,
+            "text": "Weil Schwimmtiere beißen.",
+            "bild": "a single an inflatable green crocodile pool toy with a big funny toothy grin lying on a sandy beach, single simple motif, centered, absolutely no people, no children, funny"
+          },
+          {
+            "richtig": false,
+            "text": "Weil sie zu bunt sind.",
+            "bild": "a single very colorful rainbow-striped inflatable unicorn pool toy standing on a sandy beach, sparkles, single simple motif, centered, absolutely no people, no children"
+          }
+        ],
+        "feedback": "Genau! Luft kann rausgehen und der Wind treibt dich weg. Aufpassen tun Erwachsene."
+      },
+      "situationen": [
+        {
+          "bild": "{badesee}: a girl with a short brown bob haircut, light skin, purple UV swim shirt and purple swim shorts, lying calmly alone on a light blue air mattress that floats a good stretch out on the calm lake, clearly beyond the shallow area; the sandy beach with towels and a few grown-ups lying on them in the background, nobody looking at her, no adults in the water; the girl relaxed, not in distress",
+          "text": "Das Kind liegt allein auf der Luftmatratze, weit draußen im See.",
+          "richtig": false,
+          "feedback": "Lieber nicht! Der Wind kann die Luftmatratze wegtreiben. Ein Erwachsener muss ganz nah sein."
+        },
+        {
+          "bild": "{freibad}: shallow non-swimmer pool area, {leo} wearing orange inflatable arm floaties, standing in water up to his belly; {mama} standing in the water right next to him within arm's reach; both smiling at each other",
+          "text": "Leo hat Schwimmflügel an, und Mama ist direkt neben ihm.",
+          "richtig": true,
+          "feedback": "Richtig! Auch mit Schwimmflügeln bleibt ein Erwachsener ganz nah."
+        },
+        {
+          "bild": "{freibad}: a small boy with short straight blond hair, light skin, light blue UV swim shirt, floating alone in a yellow swim ring in the pool, content; nobody near him in the water; far away at the other end of the pool on the green lawn a woman with long black hair and a bald man lying on towels looking at their phones, not watching him",
+          "text": "Das Kind schwimmt mit Schwimmring. Die Eltern liegen weit weg auf der Wiese.",
+          "richtig": false,
+          "feedback": "Oh nein! Ein Schwimmring passt nicht auf. Ein Erwachsener muss ganz nah sein."
+        }
+      ],
+      "trainer": {
+        "frage": "Passen Schwimmtiere oder Schwimmflügel auf dich auf? Erklär mir, warum nicht!",
+        "stichworte": [
+          "nein",
+          "Luft kann rausgehen",
+          "Wind treibt weg",
+          "Erwachsener ganz nah"
+        ]
+      },
+      "eltern_impuls": "Beim Aufblasen des Schwimmtiers fragen: Wer passt auf dich auf?",
+      "ordner": "regel-09"
+    },
+    {
+      "id": 10,
+      "regelbild": "{leo} standing at the pool edge holding one hand flat over his eyes, carefully looking down at the water below before jumping",
+      "kurz": "Springen",
+      "symbol": "🔍",
+      "merksatz": "Erst gucken, dann springen: Ist es frei und tief genug?",
+      "geste": {
+        "pose": "hand_ueber_augen",
+        "text": "Halt die Hand über die Augen, als würdest du Ausschau halten."
+      },
+      "warum": "Ist das Wasser zu flach, stößt du dich am Boden. Ist unter dir jemand, springst du ihm auf den Kopf. Darum erst gucken!",
+      "raetsel": "Leo steht am Beckenrand und will springen. Was macht er vorher?",
+      "geschichte": [
+        {
+          "bild": "{freibad}: {leo} standing at the pool edge, toes at the edge, knees bent, arms swung back, ready to jump, excited, plain wave pattern on shirt without any letters, nobody else in the pool",
+          "text": "Leo steht am Beckenrand. Gleich springt er!"
+        },
+        {
+          "bild": "{freibad}, side view: {leo} standing at the low tiled pool edge, holding one hand flat over his eyes like a visor and looking straight down; {mia} swimming at the water surface directly below his feet, holding on to the pool wall, looking up at him and smiling",
+          "text": "Aber erst gucken! Oh – genau unten schwimmt Mia. Leo wartet, bis sie weggeschwommen ist."
+        },
+        {
+          "bild": "{freibad}, side view: {leo} has just jumped off the near pool edge in the foreground, his body in mid-air clearly above the open water, feet first, the edge he jumped from visible right behind him, nobody in the water, {bademeisterin} standing on the pool deck next to the lifeguard tower, turning her head towards Leo, watching him and giving a thumbs up",
+          "text": "Jetzt ist es frei und tief genug. Platsch! Die Bademeisterin zeigt: Daumen hoch!"
+        }
+      ],
+      "warum_frage": {
+        "frage": "Warum guckst du, bevor du ins Wasser springst?",
+        "antworten": [
+          {
+            "richtig": true,
+            "text": "Sonst stoße ich mich am Boden oder springe auf jemanden drauf.",
+            "bild": "a child at a pool edge looking carefully into the water, a swimmer below, gentle"
+          },
+          {
+            "richtig": false,
+            "text": "Damit ich sehe, ob das Wasser blau ist.",
+            "bild": "a single open paint bucket full of blue paint with a dripping brush on its rim, standing on the tiled edge of a swimming pool, blue drips on the tiles, centered, simple, no people, funny"
+          },
+          {
+            "richtig": false,
+            "text": "Weil das Wasser sonst überschwappt.",
+            "bild": "a single empty white bathtub with nobody inside, filled to the very top and overflowing, water and foam spilling over the rim onto a tiled bathroom floor, big puddle, centered, simple, absolutely no people, no children, funny"
+          }
+        ],
+        "feedback": "Genau! Erst gucken: Ist es frei und tief genug? Dann springen."
+      },
+      "situationen": [
+        {
+          "bild": "{freibad}, side view: a boy with short black hair crouching at the pool edge with arms swung back, about to jump; another child swimming at the water surface exactly under him, right in front of the pool wall where he would land, looking up surprised",
+          "text": "Der Junge will springen, aber direkt unter ihm schwimmt ein Kind.",
+          "richtig": false,
+          "feedback": "Stopp! Da ist jemand. Warten, bis es frei ist."
+        },
+        {
+          "bild": "{mia} jumping into a clear empty area of a swimming pool, {bademeisterin} watching and smiling",
+          "text": "Mia springt ins Becken. Das Wasser ist frei.",
+          "richtig": true,
+          "feedback": "Richtig! Frei und tief genug – Mia darf springen."
+        },
+        {
+          "bild": "a boy standing at the end of a low wooden jetty, knees bent and arms swung back, about to jump straight down in front of the jetty; the whole lake area around the jetty is very shallow, only ankle deep, with big stones and the sandy bottom clearly visible everywhere and several stones sticking out of the water, no deeper water visible, no other people",
+          "text": "Der Junge will vom Steg springen. Das Wasser ist ganz flach, und man sieht Steine.",
+          "richtig": false,
+          "feedback": "Stopp! Hier ist es zu flach. Man stößt sich am Boden."
+        }
+      ],
+      "trainer": {
+        "frage": "Was machst du, bevor du ins Wasser springst? Und warum?",
+        "stichworte": [
+          "erst gucken",
+          "frei? (niemand darunter)",
+          "tief genug?",
+          "sonst Boden / anderen treffen"
+        ]
+      },
+      "eltern_impuls": "Im Schwimmbad vor jedem Sprung gemeinsam die Guck-Geste machen.",
+      "ordner": "regel-10"
+    }
+  ],
+  "alleRegeln": [
+    {
+      "id": 1,
+      "kurz": "Duschen",
+      "symbol": "🚿",
+      "merksatz": "Erst duschen, dann rein – und nur, wenn es mir gut geht.",
+      "ordner": "regel-01",
+      "regelbild": "bilder/regelbilder/regel-01.webp"
+    },
+    {
+      "id": 2,
+      "kurz": "Bauch",
+      "symbol": "🍝",
+      "merksatz": "Nicht zu satt und nicht zu hungrig ins Wasser.",
+      "ordner": "regel-02",
+      "regelbild": "bilder/regelbilder/regel-02.webp"
+    },
+    {
+      "id": 3,
+      "kurz": "Bis zum Bauch",
+      "symbol": "🧍",
+      "merksatz": "Kann ich noch nicht sicher schwimmen, geh ich nur bis zum Bauch ins Wasser.",
+      "ordner": "regel-03",
+      "regelbild": "bilder/regelbilder/regel-03.webp"
+    },
+    {
+      "id": 4,
+      "kurz": "Hilfe",
+      "symbol": "📣",
+      "merksatz": "Ich rufe nur ‚Hilfe!‘, wenn es echt ist – und ich helfe anderen.",
+      "ordner": "regel-04",
+      "regelbild": "bilder/regelbilder/regel-04.webp"
+    },
+    {
+      "id": 5,
+      "kurz": "Nicht schubsen",
+      "symbol": "🤚",
+      "merksatz": "Ich schubse niemanden ins Wasser – auch nicht im Spaß.",
+      "ordner": "regel-05",
+      "regelbild": "bilder/regelbilder/regel-05.webp"
+    },
+    {
+      "id": 6,
+      "kurz": "Medizin",
+      "symbol": "💊",
+      "merksatz": "Wer Medizin nimmt, die müde macht, oder Alkohol getrunken hat, geht nicht ins Wasser.",
+      "ordner": "regel-06",
+      "regelbild": "bilder/regelbilder/regel-06.webp"
+    },
+    {
+      "id": 7,
+      "kurz": "Gewitter",
+      "symbol": "⚡",
+      "merksatz": "Donner und Blitz? Sofort raus – und rein ins Haus!",
+      "ordner": "regel-07",
+      "regelbild": "bilder/regelbilder/regel-07.webp"
+    },
+    {
+      "id": 8,
+      "kurz": "Müll",
+      "symbol": "🗑️",
+      "merksatz": "Müll kommt in den Eimer.",
+      "ordner": "regel-08",
+      "regelbild": "bilder/regelbilder/regel-08.webp"
+    },
+    {
+      "id": 9,
+      "kurz": "Schwimmtiere",
+      "symbol": "🦆",
+      "merksatz": "Schwimmtiere passen nicht auf mich auf – das machen Erwachsene.",
+      "ordner": "regel-09",
+      "regelbild": "bilder/regelbilder/regel-09.webp"
+    },
+    {
+      "id": 10,
+      "kurz": "Springen",
+      "symbol": "🔍",
+      "merksatz": "Erst gucken, dann springen: Ist es frei und tief genug?",
+      "ordner": "regel-10",
+      "regelbild": "bilder/regelbilder/regel-10.webp"
+    }
+  ],
+  "detektiv": [
+    {
+      "id": "freibad",
+      "intro": "Detektiv-Einsatz im Freibad! Hier haben ein paar Kinder eine Baderegel vergessen. Findest du sie? Tippe auf sie!",
+      "funde": [
+        {
+          "id": "duschen",
+          "regel": 1,
+          "art": "richtig",
+          "text": "Leo duscht, bevor er ins Becken geht. Das macht er richtig!",
+          "bereich": {
+            "x": 13,
+            "y": 60,
+            "r": 12
+          }
+        },
+        {
+          "id": "schubsen",
+          "regel": 5,
+          "art": "fehler",
+          "text": "Oh! Der Junge will das Mädchen ins Wasser schubsen. Das ist gefährlich, auch im Spaß!",
+          "bereich": {
+            "x": 28.8,
+            "y": 33,
+            "r": 9
+          }
+        },
+        {
+          "id": "springen",
+          "regel": 10,
+          "art": "fehler",
+          "text": "Halt! Unter dem Jungen schwimmt ein Mädchen. Erst gucken, dann springen!",
+          "bereich": {
+            "x": 46.7,
+            "y": 55.6,
+            "r": 11
+          }
+        },
+        {
+          "id": "hilfe",
+          "regel": 4,
+          "art": "fehler",
+          "text": "Der Junge ruft zum Spaß Hilfe. Die Bademeisterin erschrickt. Hilfe rufen wir nur, wenn es echt ist!",
+          "bereich": {
+            "x": 68.3,
+            "y": 55,
+            "r": 9
+          }
+        },
+        {
+          "id": "pommes",
+          "regel": 2,
+          "art": "fehler",
+          "text": "Der Junge isst noch Pommes und rennt schon zum Wasser. Mit vollem Bauch erst eine Pause machen!",
+          "bereich": {
+            "x": 88,
+            "y": 73,
+            "r": 12
+          }
+        }
+      ],
+      "bild": "bilder/detektiv/freibad.webp",
+      "bildVorhanden": true
+    },
+    {
+      "id": "badesee",
+      "intro": "Detektiv-Einsatz am Badesee! Wer hat hier eine Baderegel vergessen? Tippe auf sie!",
+      "funde": [
+        {
+          "id": "bauchtief",
+          "regel": 3,
+          "art": "richtig",
+          "text": "Mia planscht nur bis zum Bauch, und Papa ist ganz nah. Super!",
+          "bereich": {
+            "x": 18,
+            "y": 60,
+            "r": 12
+          }
+        },
+        {
+          "id": "luftmatratze",
+          "regel": 9,
+          "art": "fehler",
+          "text": "Das Mädchen ist allein auf der Luftmatratze. Der Wind kann sie wegtreiben. Ein Erwachsener muss ganz nah sein!",
+          "bereich": {
+            "x": 9.5,
+            "y": 32,
+            "r": 8
+          }
+        },
+        {
+          "id": "zutief",
+          "regel": 3,
+          "art": "fehler",
+          "text": "Der Junge läuft dem Ball hinterher. Das Wasser ist schon viel zu tief! Nur bis zum Bauch!",
+          "bereich": {
+            "x": 56.5,
+            "y": 39.8,
+            "r": 9
+          }
+        },
+        {
+          "id": "flasche",
+          "regel": 8,
+          "art": "fehler",
+          "text": "Der Junge wirft eine Flasche in den See. Müll kommt in den Eimer!",
+          "bereich": {
+            "x": 75,
+            "y": 23,
+            "r": 8
+          }
+        },
+        {
+          "id": "bier",
+          "regel": 6,
+          "art": "fehler",
+          "text": "Der Mann hat Bier getrunken und will schwimmen. Alkohol macht langsam. Er bleibt lieber draußen!",
+          "bereich": {
+            "x": 80,
+            "y": 57.5,
+            "r": 13
+          }
+        }
+      ],
+      "bild": "bilder/detektiv/badesee.webp",
+      "bildVorhanden": true
+    },
+    {
+      "id": "gewitter",
+      "intro": "Oh, ein Gewitter zieht auf! Wer macht jetzt etwas falsch? Und wer macht es richtig? Tippe auf sie!",
+      "funde": [
+        {
+          "id": "weiterbaden",
+          "regel": 7,
+          "art": "fehler",
+          "text": "Die Kinder baden weiter, obwohl es blitzt. Bei Gewitter sofort raus aus dem Wasser!",
+          "bereich": {
+            "x": 18,
+            "y": 49,
+            "r": 12
+          }
+        },
+        {
+          "id": "baum",
+          "regel": 7,
+          "art": "fehler",
+          "text": "Die Familie steht unter einem Baum. Bei Gewitter ist das gefährlich. Besser ins Haus oder ins Auto!",
+          "bereich": {
+            "x": 50,
+            "y": 42,
+            "r": 11
+          }
+        },
+        {
+          "id": "auto",
+          "regel": 7,
+          "art": "richtig",
+          "text": "Leo, Mia und Papa gehen schnell zum Auto. Da sind sie sicher. Richtig so!",
+          "bereich": {
+            "x": 74,
+            "y": 67,
+            "r": 16
+          }
+        }
+      ],
+      "bild": "bilder/detektiv/gewitter.webp",
+      "bildVorhanden": true
+    }
+  ],
+  "monster": {
+    "entwicklung": {
+      "stufe_2_ab_orden": 3,
+      "stufe_3_ab_orden": 10
+    },
+    "gestaltung": {
+      "farben": [
+        "meerblau",
+        "tuerkis",
+        "seegruen",
+        "sonnengelb",
+        "korallenrot",
+        "rosa",
+        "lila",
+        "sandbeige"
+      ],
+      "muster": [
+        "keins",
+        "punkte",
+        "streifen",
+        "sterne"
+      ],
+      "zubehoer": [
+        {
+          "id": "taucherbrille",
+          "ab_orden": 1
+        },
+        {
+          "id": "badekappe",
+          "ab_orden": 2
+        },
+        {
+          "id": "handtuch_umhang",
+          "ab_orden": 4
+        },
+        {
+          "id": "sonnenhut",
+          "ab_orden": 6
+        },
+        {
+          "id": "rettungspfeife",
+          "ab_orden": 8
+        }
+      ]
+    },
+    "posen": {
+      "basis": [
+        "stehen",
+        "winken",
+        "jubeln",
+        "nachdenken",
+        "zeigen",
+        "erschrecken_leicht",
+        "schlafen"
+      ],
+      "gesten": [
+        "abrubbeln",
+        "bauch_reiben",
+        "hand_an_bauch",
+        "haende_trichter",
+        "stopp_haende",
+        "hand_an_stirn",
+        "blitz_arme",
+        "wegwerfen",
+        "kopf_schuetteln",
+        "hand_ueber_augen"
+      ]
+    },
+    "monster": [
+      {
+        "id": "plitsch",
+        "tier": "Seepferdchen",
+        "charakter": "neugierig, fragt immer „Warum?“",
+        "lieblingsregel": 10,
+        "spruch": "Warum? Das will ich wissen!",
+        "stufen": [
+          {
+            "name": "Plitsch",
+            "aussehen": "kleines rundes Seepferdchen",
+            "große Augen": null,
+            "Ringelschwanz": null
+          },
+          {
+            "name": "Plitscho",
+            "aussehen": "größer",
+            "kleine Rückenflossen-Zacken": null,
+            "Stirnlocke": null
+          },
+          {
+            "name": "Plitschodrako",
+            "aussehen": "freundlicher Meeresdrache",
+            "flossige Flügel": null,
+            "Krönchen aus Muscheln": null
+          }
+        ]
+      },
+      {
+        "id": "blubbo",
+        "tier": "Otter",
+        "charakter": "verspielt, hilfsbereit",
+        "lieblingsregel": 4,
+        "spruch": "Brauchst du Hilfe? Ich bin da!",
+        "stufen": [
+          {
+            "name": "Blubbo",
+            "aussehen": "Otterbaby",
+            "rund": null,
+            "flauschiger Schwanz": null
+          },
+          {
+            "name": "Blubbolino",
+            "aussehen": "Otter mit Schwimmhäuten",
+            "hält einen Kiesel": null
+          },
+          {
+            "name": "Rettungsblubbo",
+            "aussehen": "stolzer Otter mit Rettungsboje-Schärpe"
+          }
+        ]
+      },
+      {
+        "id": "kiesel",
+        "tier": "Schildkröte",
+        "charakter": "ruhig, vorsichtig, denkt erst nach",
+        "lieblingsregel": 7,
+        "spruch": "Immer mit der Ruhe.",
+        "stufen": [
+          {
+            "name": "Kiesel",
+            "aussehen": "kleine Schildkröte",
+            "Panzer wie ein glatter Kiesel": null
+          },
+          {
+            "name": "Kieselstein",
+            "aussehen": "größer",
+            "Panzer mit Wellenmuster": null
+          },
+          {
+            "name": "Kieselfels",
+            "aussehen": "große Schildkröte",
+            "Panzer mit Blitzschild-Symbol": null
+          }
+        ]
+      },
+      {
+        "id": "pingo",
+        "tier": "Pinguin",
+        "charakter": "fröhlich, friert schnell, liebt Handtücher",
+        "lieblingsregel": 1,
+        "spruch": "Brrr – erst mal abduschen!",
+        "stufen": [
+          {
+            "name": "Pingo",
+            "aussehen": "flauschiges Pinguinküken"
+          },
+          {
+            "name": "Pingolo",
+            "aussehen": "glatter Pinguin",
+            "Schwimmflossen-Füße": null,
+            "Stirnfeder": null
+          },
+          {
+            "name": "Kaiser-Pingo",
+            "aussehen": "großer Pinguin mit Handtuch-Mantel und Federkrone"
+          }
+        ]
+      },
+      {
+        "id": "tinti",
+        "tier": "Krake",
+        "charakter": "ordentlich, erfinderisch, räumt gern auf",
+        "lieblingsregel": 8,
+        "spruch": "Acht Arme – null Müll!",
+        "stufen": [
+          {
+            "name": "Tinti",
+            "aussehen": "winzige runde Krake",
+            "kurze Ärmchen": null
+          },
+          {
+            "name": "Tintolino",
+            "aussehen": "Krake mit gepunkteten Armen",
+            "trägt einen kleinen Eimer": null
+          },
+          {
+            "name": "Tintomax",
+            "aussehen": "große Krake",
+            "jeder Arm hält etwas Nützliches (Eimer": null,
+            "Lupe": null,
+            "Handtuch)": null
+          }
+        ]
+      }
+    ]
+  }
+}

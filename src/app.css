@@ -1,0 +1,76 @@
+/* Baderegel-Meister – Design-Tokens
+   Look: Anime-Kinder-TV. Alles Tippbare ist ein „Cel-Sticker“: dicke Tinten-Outline + harter Schatten,
+   der beim Drücken wie ein Badewannen-Gummitier einfedert. */
+:root {
+  --meer: #0b6fb8;
+  --meer-tief: #08508a;
+  --himmel: #7fd3ff;
+  --himmel-hell: #c9f0ff;
+  --sonne: #ffd23f;
+  --koralle: #ff6b5b;
+  --orange: #ff9a3c;
+  --gras: #43c463;
+  --sand: #f6d9a0;
+  --weiss: #fffdf7;
+  --tinte: #10243a;
+  --lila: #9b6bf2;
+
+  --linie: 5px;
+  --schatten: 0 7px 0 var(--tinte);
+  --schatten-gedrueckt: 0 2px 0 var(--tinte);
+  --rund: 28px;
+  --tipp: 96px; /* Mindest-Touchfläche ≥ 88px */
+
+  --rand-o: max(16px, env(safe-area-inset-top));
+  --rand-u: max(16px, env(safe-area-inset-bottom));
+  --rand-l: max(20px, env(safe-area-inset-left));
+  --rand-r: max(20px, env(safe-area-inset-right));
+
+  --schrift: ui-rounded, "SF Pro Rounded", "Nunito", "Varela Round", system-ui, sans-serif;
+  --weich: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
+html, body { margin: 0; height: 100%; overscroll-behavior: none; overflow: hidden; }
+body {
+  background: var(--meer);
+  color: var(--tinte);
+  font-family: var(--schrift);
+  font-weight: 800;
+  touch-action: manipulation;
+}
+#app { height: 100dvh; width: 100vw; position: relative; overflow: hidden; }
+img { -webkit-user-drag: none; user-drag: none; }
+button { font: inherit; color: inherit; }
+input { user-select: text; -webkit-user-select: text; }
+
+:focus-visible { outline: 4px solid var(--sonne); outline-offset: 4px; border-radius: 12px; }
+
+/* Sticker-Basis */
+.sticker {
+  border: var(--linie) solid var(--tinte);
+  box-shadow: var(--schatten);
+  border-radius: var(--rund);
+}
+
+/* Ansicht füllt den Bildschirm und respektiert Safe-Area */
+.ansicht {
+  position: absolute;
+  inset: 0;
+  padding: var(--rand-o) var(--rand-r) var(--rand-u) var(--rand-l);
+}
+
+.nur-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+@keyframes wippen { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-10px) } }
+@keyframes pulsieren { 0%, 100% { transform: scale(1) } 50% { transform: scale(1.06) } }
+@keyframes hereinploppen { from { transform: scale(0.6); opacity: 0 } to { transform: scale(1); opacity: 1 } }
+@keyframes wackeln { 0%, 100% { transform: rotate(0) } 25% { transform: rotate(-6deg) } 75% { transform: rotate(6deg) } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

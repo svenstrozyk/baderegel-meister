@@ -1,0 +1,72 @@
+# Partner-Wassermonster – Spezifikation
+# Umsetzung als SVG mit gemeinsamem Rig: koerper, kopf, augen, flosse_links, flosse_rechts, schwanz, muster, zubehoer
+# Namen sind Vorschläge; das Kind darf umbenennen.
+
+entwicklung:
+  stufe_2_ab_orden: 3
+  stufe_3_ab_orden: 10
+
+gestaltung:
+  farben: [meerblau, tuerkis, seegruen, sonnengelb, korallenrot, rosa, lila, sandbeige]
+  muster: [keins, punkte, streifen, sterne]
+  zubehoer:            # freischaltbar, nie Schwimmflügel oder Schwimmringe (Regel 9)
+    - {id: taucherbrille, ab_orden: 1}
+    - {id: badekappe, ab_orden: 2}
+    - {id: handtuch_umhang, ab_orden: 4}
+    - {id: sonnenhut, ab_orden: 6}
+    - {id: rettungspfeife, ab_orden: 8}
+
+posen:   # jede Pose für jede Entwicklungsstufe
+  basis: [stehen, winken, jubeln, nachdenken, zeigen, erschrecken_leicht, schlafen]
+  gesten: [abrubbeln, bauch_reiben, hand_an_bauch, haende_trichter, stopp_haende, hand_an_stirn, blitz_arme, wegwerfen, kopf_schuetteln, hand_ueber_augen]
+
+monster:
+  - id: plitsch
+    tier: Seepferdchen
+    charakter: neugierig, fragt immer „Warum?“
+    lieblingsregel: 10   # Erst gucken, dann springen
+    spruch: "Warum? Das will ich wissen!"
+    stufen:
+      - {name: Plitsch, aussehen: kleines rundes Seepferdchen, große Augen, Ringelschwanz}
+      - {name: Plitscho, aussehen: größer, kleine Rückenflossen-Zacken, Stirnlocke}
+      - {name: Plitschodrako, aussehen: freundlicher Meeresdrache, flossige Flügel, Krönchen aus Muscheln}
+
+  - id: blubbo
+    tier: Otter
+    charakter: verspielt, hilfsbereit
+    lieblingsregel: 4    # Nur Hilfe rufen, wenn es echt ist – anderen helfen
+    spruch: "Brauchst du Hilfe? Ich bin da!"
+    stufen:
+      - {name: Blubbo, aussehen: Otterbaby, rund, flauschiger Schwanz}
+      - {name: Blubbolino, aussehen: Otter mit Schwimmhäuten, hält einen Kiesel}
+      - {name: Rettungsblubbo, aussehen: stolzer Otter mit Rettungsboje-Schärpe}
+
+  - id: kiesel
+    tier: Schildkröte
+    charakter: ruhig, vorsichtig, denkt erst nach
+    lieblingsregel: 7    # Gewitter: raus und ins Haus
+    spruch: "Immer mit der Ruhe."
+    stufen:
+      - {name: Kiesel, aussehen: kleine Schildkröte, Panzer wie ein glatter Kiesel}
+      - {name: Kieselstein, aussehen: größer, Panzer mit Wellenmuster}
+      - {name: Kieselfels, aussehen: große Schildkröte, Panzer mit Blitzschild-Symbol}
+
+  - id: pingo
+    tier: Pinguin
+    charakter: fröhlich, friert schnell, liebt Handtücher
+    lieblingsregel: 1    # Erst duschen, nur rein, wenn es mir gut geht
+    spruch: "Brrr – erst mal abduschen!"
+    stufen:
+      - {name: Pingo, aussehen: flauschiges Pinguinküken}
+      - {name: Pingolo, aussehen: glatter Pinguin, Schwimmflossen-Füße, Stirnfeder}
+      - {name: Kaiser-Pingo, aussehen: großer Pinguin mit Handtuch-Mantel und Federkrone}
+
+  - id: tinti
+    tier: Krake
+    charakter: ordentlich, erfinderisch, räumt gern auf
+    lieblingsregel: 8    # Müll kommt in den Eimer
+    spruch: "Acht Arme – null Müll!"
+    stufen:
+      - {name: Tinti, aussehen: winzige runde Krake, kurze Ärmchen}
+      - {name: Tintolino, aussehen: Krake mit gepunkteten Armen, trägt einen kleinen Eimer}
+      - {name: Tintomax, aussehen: große Krake, jeder Arm hält etwas Nützliches (Eimer, Lupe, Handtuch)}

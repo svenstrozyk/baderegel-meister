@@ -1,0 +1,108 @@
+<!--
+  Modus A: Geschichte (3 Bilder mit Audio, auto weiter) → Merksatz + Geste („Mach mit!“) → Daumen hoch.
+  nurMerksatz: kurze Erinnerung ohne Bilder (ab der 2. Sitzung).
+-->
+<script>
+  import Regelbild from '../ui/Regelbild.svelte';
+  import { untrack } from 'svelte';
+  import Knopf from '../ui/Knopf.svelte';
+  import Icon from '../ui/Icon.svelte';
+  import Partner from '../ui/Partner.svelte';
+  import { spiele, spieleFolge, warte, pfad } from '../audio.js';
+
+  let { regel, nurMerksatz = false, onfertig } = $props();
+
+  let bild = $state(untrack(() => (nurMerksatz ? 3 : 0))); // 0..2 Bilder, 3 = Merksatz
+  let bereit = $state(false);
+  let lebt = true;
+  $effect(() => () => (lebt = false));
+
+  const audio = (s) => pfad.regel(regel.ordner, s);
+
+  $effect(() => {
+    const b = bild; // abhängig vom aktuellen Bild
+    let gueltig = true;
+    (async () => {
+      await warte(b === 0 || nurMerksatz ? 500 : 250);
+      if (!gueltig || !lebt) return;
+      if (b < 3) {
+        const ok = await spiele(audio(`geschichte-${b + 1}`));
+        if (ok && gueltig && lebt) {
+          await warte(1200);
+          if (gueltig && lebt && bild === b) bild = b + 1;
+        }
+      } else {
+        bereit = false;
+        await spieleFolge([audio('merksatz'), pfad.app('mach-mit'), audio('geste')]);
+        if (gueltig && lebt) bereit = true;
+      }
+    })();
+    return () => (gueltig = false);
+  });
+
+  function nochmal() {
+    if (bild < 3) spiele(audio(`geschichte-${bild + 1}`));
+    else spieleFolge([audio('merksatz'), pfad.app('mach-mit'), audio('geste')]).then((ok) => ok && (bereit = true));
+  }
+</script>
+
+{#if bild < 3}
+  {#key bild}
+    <div class="bildflaeche">
+      <img src={pfad.bild(regel.ordner, `geschichte-${bild + 1}`)} alt="Geschichte Bild {bild + 1}" />
+    </div>
+  {/key}
+  <div class="monster-ecke"><Partner groesse={Math.min(220, innerHeight * 0.28)} pose="zeigen" /></div>
+  <div class="steuerung">
+    <Knopf label="Nochmal anhören" farbe="weiss" groesse={96} onclick={nochmal}><Icon name="lautsprecher" /></Knopf>
+    <Knopf label="Weiter" farbe="sonne" groesse={120} onclick={() => (bild = bild + 1)}><Icon name="weiter" groesse={60} /></Knopf>
+  </div>
+{:else}
+  <div class="merksatz">
+    <div class="symbolscheibe" aria-hidden="true"><Regelbild regelId={regel.id} /></div>
+    <div class="geste">
+      <Partner groesse={Math.min(400, innerHeight * 0.52)} pose={regel.geste.pose} />
+      <div class="mitmachen" aria-hidden="true">
+        <Icon name="haende" groesse={62} fuellung="#fffdf7" />
+      </div>
+    </div>
+    <div class="steuerung">
+      <Knopf label="Nochmal anhören" farbe="weiss" groesse={96} onclick={nochmal}><Icon name="lautsprecher" /></Knopf>
+      <Knopf label="Gemacht! Weiter" farbe="gras" groesse={150} pulsieren={bereit} onclick={() => onfertig({})}><Icon name="daumen-hoch" groesse={84} fuellung="#fffdf7" /></Knopf>
+    </div>
+  </div>
+{/if}
+
+<style>
+  .bildflaeche { position: absolute; inset: 0; background: var(--tinte); animation: einblenden 0.5s ease-out both; }
+  .bildflaeche img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  @keyframes einblenden { from { opacity: 0; transform: scale(1.03) } to { opacity: 1; transform: none } }
+  .monster-ecke { position: absolute; left: var(--rand-l); bottom: var(--rand-u); z-index: 2; filter: drop-shadow(0 6px 0 rgba(16, 36, 58, 0.3)); }
+  .steuerung { position: absolute; right: var(--rand-r); bottom: var(--rand-u); display: flex; gap: 20px; align-items: flex-end; z-index: 3; }
+
+  .merksatz {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 30% 55%, #fff 0 18%, transparent 45%),
+      linear-gradient(180deg, var(--himmel) 0%, var(--himmel-hell) 70%);
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    align-items: center;
+    padding: calc(var(--rand-o) + 90px) var(--rand-r) var(--rand-u) var(--rand-l);
+  }
+  .symbolscheibe {
+    justify-self: center;
+    width: min(34vh, 300px); aspect-ratio: 1; border-radius: 50%;
+    background: var(--weiss); border: 8px solid var(--tinte); box-shadow: 0 10px 0 var(--tinte), 0 0 0 22px rgba(255, 210, 63, 0.7);
+    overflow: hidden;
+    animation: hereinploppen 0.6s var(--weich) both;
+  }
+  .geste { position: relative; display: grid; place-items: center; }
+  .mitmachen {
+    position: absolute; top: 0; right: 10%;
+    width: 96px; height: 96px; border-radius: 50%;
+    background: var(--sonne); border: var(--linie) solid var(--tinte); box-shadow: var(--schatten);
+    display: grid; place-items: center; font-size: 52px;
+    animation: wackeln 1s ease-in-out infinite;
+  }
+</style>
