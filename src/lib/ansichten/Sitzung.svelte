@@ -108,7 +108,7 @@
       {:else if aktuell.typ === 'kennen'}
         <WelcheRegel {regel} wiederholung={!!aktuell.wiederholung} onfertig={fertig} />
       {:else if aktuell.typ === 'hilft'}
-        <WelcheRegel {regel} hilft onfertig={fertig} />
+        <WelcheRegel {regel} hilft index={aktuell.index} onfertig={fertig} />
       {:else if aktuell.typ === 'misch'}
         <RichtigFalsch regel={regelVon(aktuell.regelId)} index={aktuell.index} mitFrage onfertig={fertig} />
       {:else if aktuell.typ === 'warum'}

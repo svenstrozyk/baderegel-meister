@@ -9,6 +9,7 @@
     frage:        string[] Audio-Dateien der Frage (beim Start und über den Lautsprecher)
     richtigAudio: string[] nach richtiger Wahl
     falschAudio:  string[] nach falscher Wahl (Erklärung)
+    kontext:      optionales Situationsbild zur Frage (Pfad). Steht links groß neben den Karten; Antippen wiederholt die Frage.
     onfertig:     ({ richtig }) => void
 -->
 <script>
@@ -17,7 +18,7 @@
   import Partner from './Partner.svelte';
   import { spiele, spieleFolge, warte } from '../audio.js';
 
-  let { optionen, frage, richtigAudio, falschAudio, onfertig } = $props();
+  let { optionen, frage, richtigAudio, falschAudio, kontext = null, onfertig } = $props();
 
   let angehoben = $state(null);
   let gewaehlt = $state(null);
@@ -82,7 +83,13 @@
 
 <svelte:window bind:innerHeight={hoehe} />
 
-<div class="flaeche">
+<div class="flaeche" class:mit-kontext={!!kontext}>
+  {#if kontext}
+    <button type="button" class="kontext" aria-label="Frage nochmal anhören" onclick={frageStellen}>
+      <img src={kontext} alt="" draggable="false" />
+      <span class="kontext-ton" aria-hidden="true"><Icon name="lautsprecher" groesse={36} /></span>
+    </button>
+  {/if}
   <div class="karten">
     {#each optionen as o, i (o.key)}
       <button
@@ -124,6 +131,27 @@
     padding: calc(var(--rand-o) + var(--kopf)) var(--rand-r) calc(var(--rand-u) + var(--fuss)) var(--rand-l);
   }
   .karten { display: flex; gap: clamp(20px, 3.4vw, 48px); align-items: center; }
+
+  /* Mit Situationsbild: Bild links als Frage, Karten rechts als Antworten */
+  .mit-kontext { grid-template-columns: auto auto; justify-content: center; gap: clamp(20px, 3vw, 44px); }
+  .mit-kontext .karten { gap: clamp(12px, 1.8vw, 26px); }
+  .mit-kontext .karte { --k: min(15.5vw, calc(100dvh - var(--rand-o) - var(--rand-u) - var(--kopf) - var(--fuss) - 30px), 240px); }
+  .kontext {
+    position: relative; padding: 0; cursor: pointer;
+    width: min(36vw, calc((100dvh - var(--rand-o) - var(--rand-u) - var(--kopf) - var(--fuss)) * 1.5), 520px);
+    aspect-ratio: 3 / 2;
+    border-radius: calc(28px * var(--skala)); border: max(4px, calc(6px * var(--skala))) solid var(--tinte);
+    box-shadow: 0 calc(10px * var(--skala)) 0 var(--tinte);
+    background: var(--tinte); overflow: visible;
+  }
+  .kontext img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: calc(22px * var(--skala)); pointer-events: none; }
+  .kontext-ton {
+    position: absolute; left: calc(-14px * var(--skala)); top: calc(-14px * var(--skala));
+    width: max(40px, calc(64px * var(--skala))); height: max(40px, calc(64px * var(--skala))); border-radius: 50%;
+    background: var(--weiss); border: var(--linie) solid var(--tinte); box-shadow: 0 4px 0 var(--tinte);
+    display: grid; place-items: center;
+  }
+  .kontext-ton :global(svg) { max-width: 60%; max-height: 60%; }
   .karte {
     --k: min(28vw, calc(100dvh - var(--rand-o) - var(--rand-u) - var(--kopf) - var(--fuss) - 30px), 330px);
     width: var(--k); aspect-ratio: 1;
