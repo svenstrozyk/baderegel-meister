@@ -2,6 +2,7 @@
 <script>
   import Regelbild from '../ui/Regelbild.svelte';
   import ZielAnzeige from '../ui/ZielAnzeige.svelte';
+  import GeraeteAbgleich from '../ui/GeraeteAbgleich.svelte';
   import { gehe } from '../router.svelte.js';
   import { app, REGELN, ALLE_REGELN, DETEKTIV, orden, monsterStufe, zuruecksetzen, karte, staende } from '../state/app.svelte.js';
   import { erfolgsTage, benoetigteTage } from '../state/fortschritt.js';
@@ -10,6 +11,10 @@
   let bestaetigen = $state(false);
   let zurueckgesetzt = $state(false);
   let name = $state(app.profil?.name ?? '');
+  // Profil kann nachträglich per Geräte-Abgleich kommen → Namensfeld dann befüllen
+  $effect(() => {
+    if (!name && app.profil?.name) name = app.profil.name;
+  });
 
   const ZIEL_NAME = { kennen: 'Kennen', verstehen: 'Verstehen', einschaetzen: 'Einschätzen' };
   const noetig = $derived(benoetigteTage({ testmodus: app.einstellungen.testmodus }));
@@ -102,6 +107,8 @@
         {bestaetigen ? 'Wirklich? Nochmal tippen zum Zurücksetzen' : 'Fortschritt zurücksetzen'}
       </button>
       {#if zurueckgesetzt}<p class="klein">Fortschritt, Album und Zubehör wurden zurückgesetzt.</p>{/if}
+
+      <GeraeteAbgleich />
 
       <p class="klein datenschutz">Alle Daten bleiben nur auf diesem Gerät (localStorage). Kein Konto, kein Server, kein Tracking.</p>
     </div>

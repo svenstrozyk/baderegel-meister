@@ -91,16 +91,16 @@
     grid-template-columns: 1.1fr 1fr;
     align-items: center;
     gap: 3vw;
-    padding: calc(var(--rand-o) + 100px) var(--rand-r) calc(var(--rand-u) + 116px) var(--rand-l);
+    padding: calc(var(--rand-o) + var(--kopf)) var(--rand-r) calc(var(--rand-u) + var(--fuss)) var(--rand-l);
   }
   .buehne { position: relative; display: grid; justify-items: center; }
   .pfeife {
     position: absolute; top: -10px; left: 12%;
     font-size: 64px; animation: wackeln 1.2s ease-in-out infinite;
   }
-  .publikum { display: flex; gap: 14px; margin-top: -10px; }
+  .publikum { display: flex; gap: calc(14px * var(--skala)); margin-top: -10px; }
   .publikum span {
-    font-size: 54px; width: 84px; height: 84px; border-radius: 50%;
+    font-size: 54px; width: calc(84px * var(--skala)); height: calc(84px * var(--skala)); border-radius: 50%;
     background: var(--weiss); border: 4px solid var(--tinte); display: grid; place-items: center;
     animation: wippen 2s ease-in-out infinite; animation-delay: calc(var(--i) * -0.4s);
   }
@@ -127,5 +127,20 @@
   .gut { background: var(--gras); }
   .ueben { background: var(--himmel-hell); }
   .info { margin: 0; font-weight: 700; }
-  .steuerung { position: absolute; right: var(--rand-r); bottom: var(--rand-u); display: flex; gap: 20px; align-items: flex-end; }
+  .steuerung { position: absolute; right: var(--rand-r); bottom: var(--rand-u); display: flex; gap: max(10px, calc(20px * var(--skala))); align-items: flex-end; }
+  .publikum :global(svg), .pfeife :global(svg) { max-width: 70%; max-height: 70%; }
+  .pfeife { width: calc(64px * var(--skala)); height: calc(64px * var(--skala)); display: grid; place-items: center; }
+
+  /* iPhone quer: Knöpfe oben rechts in die Kopfzeile, Eltern-Karte nutzt die volle Höhe und kompaktere Schrift */
+  @media (max-height: 560px) {
+    .flaeche { padding-bottom: var(--rand-u); gap: 2vw; }
+    .steuerung { top: var(--rand-o); bottom: auto; z-index: 11; }
+    .eltern { padding: 10px 14px; font-size: 14px; line-height: 1.25; align-self: stretch; }
+    .titel { font-size: 11px; margin-bottom: 2px; }
+    .frage { margin-bottom: 4px; }
+    ul { margin-bottom: 8px; padding-left: 18px; }
+    li { margin: 1px 0; }
+    .knoepfe { gap: 8px; }
+    .eknopf { min-height: 52px; font-size: 15px; border-radius: 16px; padding: 4px 8px; }
+  }
 </style>

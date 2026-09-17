@@ -22,7 +22,7 @@
   let feier = $state(null);
 
   const heuteId = $derived(vorschlag());
-  const monsterGroesse = $derived(Math.min(340, breite * 0.27, hoehe * 0.42));
+  const monsterGroesse = $derived(Math.min(340, breite * 0.27, hoehe * (hoehe < 560 ? 0.3 : 0.42)));
 
   // Inselpositionen (Prozent): obere Reihe links→rechts, untere rechts→links – ein Bootsweg.
   const POS = [[11, 24], [30, 17], [50, 26], [70, 17], [89, 26], [88, 72], [68, 80], [49, 70], [30, 80], [11, 71]];
@@ -83,8 +83,8 @@
     {#if app.profil}<div class="namensschild">{app.profil.name}</div>{/if}
     {#if heuteId != null}
       <div class="los">
-        <Knopf label="Heute dran: los geht's" farbe="sonne" groesse={Math.min(132, hoehe * 0.16)} pulsieren onclick={() => gehe('sitzung', { regelId: heuteId })}>
-          <Icon name="play" groesse={Math.min(68, hoehe * 0.08)} />
+        <Knopf label="Heute dran: los geht's" farbe="sonne" groesse={132} pulsieren onclick={() => gehe('sitzung', { regelId: heuteId })}>
+          <Icon name="play" groesse={68} />
         </Knopf>
       </div>
     {/if}
@@ -137,19 +137,19 @@
     column-gap: 2vw;
   }
   .leiste { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; }
-  .rechts { display: flex; gap: 20px; align-items: center; }
-  .gate { margin-left: 28px; opacity: 0.55; }
-  .los { margin-top: 10px; }
+  .rechts { display: flex; gap: max(10px, calc(20px * var(--skala))); align-items: center; }
+  .gate { margin-left: calc(28px * var(--skala)); opacity: 0.55; }
+  .los { margin-top: calc(10px * var(--skala)); }
 
-  .partnerbereich { display: grid; justify-items: center; align-content: center; gap: 8px; padding-bottom: 6vh; }
+  .partnerbereich { display: grid; justify-items: center; align-content: center; gap: calc(8px * var(--skala)); padding-bottom: 6vh; min-height: 0; }
   .monsterknopf { background: none; border: 0; padding: 0; cursor: pointer; }
   .namensschild {
-    font-size: clamp(26px, 3vw, 38px);
+    font-size: clamp(20px, min(3vw, 5vh), 38px);
     background: var(--weiss);
     border: var(--linie) solid var(--tinte);
     box-shadow: 0 5px 0 var(--tinte);
     border-radius: 999px;
-    padding: 6px 26px;
+    padding: calc(6px * var(--skala)) calc(26px * var(--skala));
     transform: rotate(-2deg);
     max-width: 100%;
     overflow: hidden;
@@ -159,7 +159,7 @@
 
   .karte {
     position: relative;
-    margin: 1vh 0 3vh;
+    margin: 1vh 0 max(12px, 3vh);
     border: var(--linie) solid var(--tinte);
     border-radius: 40px;
     box-shadow: var(--schatten);
@@ -174,7 +174,7 @@
   .weg path { fill: none; stroke: var(--weiss); stroke-width: 5; stroke-dasharray: 2 14; stroke-linecap: round; vector-effect: non-scaling-stroke; opacity: 0.85; }
 
   .insel {
-    --d: clamp(92px, 11.5vw, 128px);
+    --d: clamp(52px, min(11.5vw, 19vh), 128px);
     position: absolute;
     width: var(--d);
     height: var(--d);
@@ -235,4 +235,15 @@
     filter: drop-shadow(0 -4px 0 var(--tinte)) drop-shadow(0 4px 0 var(--tinte));
   }
   .wackelt { animation: wackeln 0.3s ease-in-out 2; }
+  /* iPhone quer: schmalere Monsterspalte, Inseln nie breiter als ihr Abstand auf der Karte */
+  @media (max-height: 560px) {
+    .heimat { grid-template-columns: minmax(150px, 24%) 1fr; }
+    .insel { --d: clamp(48px, min(19vh, calc((100vw - 190px) / 6.2)), 128px); }
+  }
+  /* Abzeichen an den Inseln auf kleinen Bildschirmen mitverkleinern */
+  .ziele, .medaille, .wolke, .boje { scale: max(0.62, var(--skala)); }
+  .ziele { transform-origin: top center; }
+  .medaille { transform-origin: top right; }
+  .wolke { transform-origin: bottom right; }
+  .boje { transform-origin: bottom center; }
 </style>

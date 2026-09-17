@@ -71,8 +71,8 @@
 
 <style>
   .gate {
-    width: var(--g);
-    height: var(--g);
+    width: max(44px, calc(var(--g) * var(--skala)));
+    height: max(44px, calc(var(--g) * var(--skala)));
     border-radius: 50%;
     border: 4px solid var(--tinte);
     background: rgba(255, 253, 247, 0.75);

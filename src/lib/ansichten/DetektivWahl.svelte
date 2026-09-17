@@ -75,7 +75,7 @@
   }
   .leiste { display: flex; justify-content: space-between; align-items: center; }
   .abzeichen {
-    width: 110px; height: 110px; border-radius: 50%;
+    width: calc(110px * var(--skala)); height: calc(110px * var(--skala)); border-radius: 50%;
     background: var(--sonne); border: var(--linie) solid var(--tinte); box-shadow: var(--schatten);
     display: grid; place-items: center; transform: rotate(-8deg);
   }
@@ -89,25 +89,26 @@
   .szene {
     position: relative; padding: 0; cursor: pointer;
     aspect-ratio: 3 / 2; width: 100%;
-    border-radius: 28px; border: 6px solid var(--tinte); box-shadow: 0 10px 0 var(--tinte);
+    border-radius: calc(28px * var(--skala)); border: max(4px, calc(6px * var(--skala))) solid var(--tinte); box-shadow: 0 calc(10px * var(--skala)) 0 var(--tinte);
     background: var(--weiss); overflow: visible;
     animation: hereinploppen 0.45s var(--weich) backwards;
     animation-delay: calc(var(--i) * 90ms);
     transition: transform 0.2s var(--weich);
   }
   .szene:active { transform: translateY(6px); box-shadow: 0 4px 0 var(--tinte); }
-  .szene img, .platzhalter { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 22px; }
+  .szene img, .platzhalter { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: calc(22px * var(--skala)); }
   .platzhalter { background: repeating-linear-gradient(135deg, #dfe8ee 0 18px, #eef3f6 18px 36px); }
   .gesperrt img { filter: grayscale(1) brightness(1.1) opacity(0.5); }
   .gesperrt { box-shadow: 0 10px 0 rgba(16, 36, 58, 0.5); }
   .schloss, .geloest {
-    position: absolute; right: -18px; top: -18px;
-    width: 84px; height: 84px; border-radius: 50%;
+    position: absolute; right: calc(-18px * var(--skala)); top: calc(-18px * var(--skala));
+    width: max(40px, calc(84px * var(--skala))); height: max(40px, calc(84px * var(--skala))); border-radius: 50%;
     border: var(--linie) solid var(--tinte); box-shadow: 0 5px 0 var(--tinte);
     display: grid; place-items: center;
   }
   .schloss { background: var(--weiss); }
   .geloest { background: var(--sonne); }
   .wackelt { animation: wackeln 0.3s ease-in-out 2; }
+  .abzeichen :global(svg), .schloss :global(svg), .geloest :global(svg) { max-width: 60%; max-height: 60%; }
   .monster { position: absolute; left: var(--rand-l); bottom: var(--rand-u); pointer-events: none; }
 </style>

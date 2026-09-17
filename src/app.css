@@ -21,6 +21,12 @@
   --rund: 28px;
   --tipp: 96px; /* Mindest-Touchfläche ≥ 88px */
 
+  /* Skalierung für kleine Bildschirme (iPhone quer). --skala wird in src/lib/ui/masse.js gesetzt (0.55–1). */
+  --skala: 1;
+  --min-tipp: 56px; /* kleinste Knopfgröße auf dem iPhone */
+  --kopf: max(64px, calc(104px * var(--skala))); /* Platz für die Kopfleiste über Inhalten */
+  --fuss: max(68px, calc(116px * var(--skala))); /* Platz für die Knopfleiste unter Inhalten */
+
   --rand-o: max(16px, env(safe-area-inset-top));
   --rand-u: max(16px, env(safe-area-inset-bottom));
   --rand-l: max(20px, env(safe-area-inset-left));

@@ -61,7 +61,9 @@
 {#if bild < 3}
   {#key bild}
     <div class="bildflaeche">
-      <img src={pfad.bild(regel.ordner, `geschichte-${bild + 1}`)} alt="Geschichte Bild {bild + 1}" />
+      <!-- unscharfer Hintergrund füllt die Ränder, wenn das 3:2-Bild auf breiten Handy-Bildschirmen ganz gezeigt wird -->
+      <img class="hintergrund" src={pfad.bild(regel.ordner, `geschichte-${bild + 1}`)} alt="" aria-hidden="true" />
+      <img class="bild" src={pfad.bild(regel.ordner, `geschichte-${bild + 1}`)} alt="Geschichte Bild {bild + 1}" />
     </div>
   {/key}
   <div class="monster-ecke"><Partner groesse={Math.min(220, innerHeight * 0.28)} pose="zeigen" /></div>
@@ -90,12 +92,18 @@
 
 <style>
   .bildflaeche { position: absolute; inset: 0; background: var(--tinte); animation: einblenden 0.5s ease-out both; }
-  .bildflaeche img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .bildflaeche img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .bildflaeche .hintergrund { display: none; }
+  /* Breiter als ~16:9 (iPhone quer): Bild nicht beschneiden, sondern ganz zeigen */
+  @media (min-aspect-ratio: 16/9) {
+    .bildflaeche .bild { object-fit: contain; }
+    .bildflaeche .hintergrund { display: block; filter: blur(18px) brightness(0.8); transform: scale(1.1); }
+  }
   @keyframes einblenden { from { opacity: 0; transform: scale(1.03) } to { opacity: 1; transform: none } }
   .monster-ecke { position: absolute; left: var(--rand-l); bottom: var(--rand-u); z-index: 2; filter: drop-shadow(0 6px 0 rgba(16, 36, 58, 0.3)); }
   .platzhalter { transition: opacity 0.3s var(--weich), transform 0.3s var(--weich); }
   .verborgen { visibility: hidden; opacity: 0; transform: scale(0.6); }
-  .steuerung { position: absolute; right: var(--rand-r); bottom: var(--rand-u); display: flex; gap: 20px; align-items: flex-end; z-index: 3; }
+  .steuerung { position: absolute; right: var(--rand-r); bottom: var(--rand-u); display: flex; gap: max(10px, calc(20px * var(--skala))); align-items: flex-end; z-index: 3; }
 
   .merksatz {
     position: absolute; inset: 0;
@@ -105,21 +113,23 @@
     display: grid;
     grid-template-columns: 1fr 1.3fr;
     align-items: center;
-    padding: calc(var(--rand-o) + 90px) var(--rand-r) var(--rand-u) var(--rand-l);
+    padding: calc(var(--rand-o) + var(--kopf) - 14px) var(--rand-r) var(--rand-u) var(--rand-l);
   }
   .symbolscheibe {
     justify-self: center;
     width: min(34vh, 300px); aspect-ratio: 1; border-radius: 50%;
-    background: var(--weiss); border: 8px solid var(--tinte); box-shadow: 0 10px 0 var(--tinte), 0 0 0 22px rgba(255, 210, 63, 0.7);
+    background: var(--weiss); border: calc(8px * var(--skala)) solid var(--tinte);
+    box-shadow: 0 calc(10px * var(--skala)) 0 var(--tinte), 0 0 0 calc(22px * var(--skala)) rgba(255, 210, 63, 0.7);
     overflow: hidden;
     animation: hereinploppen 0.6s var(--weich) both;
   }
   .geste { position: relative; display: grid; place-items: center; }
   .mitmachen {
     position: absolute; top: 0; right: 10%;
-    width: 96px; height: 96px; border-radius: 50%;
+    width: calc(96px * var(--skala)); height: calc(96px * var(--skala)); border-radius: 50%;
     background: var(--sonne); border: var(--linie) solid var(--tinte); box-shadow: var(--schatten);
     display: grid; place-items: center; font-size: 52px;
     animation: wackeln 1s ease-in-out infinite;
   }
+  .mitmachen :global(svg) { max-width: 66%; max-height: 66%; }
 </style>

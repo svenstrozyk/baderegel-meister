@@ -11,7 +11,7 @@
   let szene = $state();
   let breite = $state(1180);
   let hoehe = $state(820);
-  const kartenBreite = $derived(Math.max(110, Math.min(150, hoehe * 0.18)));
+  const kartenBreite = $derived(Math.max(64, Math.min(150, hoehe * 0.18)));
 
   const karten = $derived([
     ...ALLE_REGELN.filter((r) => staende(r.id).some((z) => z.stand !== 'leer')).map((r) => ({ key: `regel-${r.id}`, regelId: r.id })),
@@ -159,5 +159,5 @@
   .karte.gezogen { cursor: grabbing; transform: scale(1.08) rotate(-3deg); z-index: 5; filter: drop-shadow(0 16px 10px rgba(16, 36, 58, 0.3)); }
   .leer { position: absolute; left: 0; right: 0; top: 62%; display: flex; justify-content: center; gap: 40px; }
   .platzhalter { width: var(--b); aspect-ratio: 5 / 7; border: 5px dashed rgba(16, 36, 58, 0.45); border-radius: 18px; background: rgba(255, 253, 247, 0.35); }
-  .zurueck { position: absolute; left: var(--rand-l); top: var(--rand-o); z-index: 10; display: flex; gap: 20px; align-items: center; }
+  .zurueck { position: absolute; left: var(--rand-l); top: var(--rand-o); z-index: 10; display: flex; gap: max(10px, calc(20px * var(--skala))); align-items: center; }
 </style>

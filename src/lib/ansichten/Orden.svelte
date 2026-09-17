@@ -86,10 +86,10 @@
 
 <style>
   .ordenseite { z-index: 1; display: grid; grid-template-columns: 0.8fr 1.2fr; align-items: center; gap: 3vw; }
-  .zurueck { position: absolute; left: var(--rand-l); top: var(--rand-o); z-index: 2; display: flex; gap: 20px; align-items: center; }
+  .zurueck { position: absolute; left: var(--rand-l); top: var(--rand-o); z-index: 2; display: flex; gap: max(10px, calc(20px * var(--skala))); align-items: center; }
   .monster { justify-self: center; }
   .rechts { display: grid; gap: 5vh; }
-  .orden { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+  .orden { display: grid; grid-template-columns: repeat(5, clamp(48px, 17vh, 120px)); gap: calc(16px * var(--skala)); justify-content: center; }
   .medaille {
     aspect-ratio: 1; border-radius: 50%;
     display: grid; place-items: center;
@@ -105,9 +105,9 @@
     background: radial-gradient(circle at 35% 30%, #fff5c4, var(--sonne) 55%, #e8a21a);
     border: 5px solid var(--tinte); box-shadow: 0 6px 0 var(--tinte), 0 0 0 8px rgba(255, 255, 255, 0.6);
   }
-  .zubehoer { display: grid; grid-template-columns: repeat(5, minmax(88px, 110px)); gap: 12px; }
+  .zubehoer { display: grid; grid-template-columns: repeat(5, clamp(52px, 17vh, 110px)); gap: calc(12px * var(--skala)); justify-content: center; }
   .teil {
-    width: 100%; aspect-ratio: 1; border-radius: 28px; position: relative;
+    width: 100%; aspect-ratio: 1; border-radius: calc(28px * var(--skala)); position: relative;
     background: var(--weiss); border: var(--linie) solid var(--tinte); box-shadow: var(--schatten);
     display: grid; place-items: center; cursor: pointer; padding: 0;
     font-size: 54px;

@@ -81,39 +81,41 @@
     grid-template-columns: 1fr auto;
     align-items: center;
     gap: clamp(20px, 3vw, 44px);
-    padding: calc(var(--rand-o) + 104px) var(--rand-r) calc(var(--rand-u) + 116px) var(--rand-l);
+    padding: calc(var(--rand-o) + var(--kopf)) var(--rand-r) calc(var(--rand-u) + var(--fuss)) var(--rand-l);
   }
   .bild {
     position: relative; justify-self: center;
     width: 100%; max-height: 100%; aspect-ratio: 3 / 2;
-    border-radius: 32px; border: 6px solid var(--tinte); box-shadow: 0 10px 0 var(--tinte);
+    border-radius: calc(32px * var(--skala)); border: max(4px, calc(6px * var(--skala))) solid var(--tinte); box-shadow: 0 calc(10px * var(--skala)) 0 var(--tinte);
     overflow: hidden; background: var(--tinte);
     transition: box-shadow 0.3s;
   }
-  .bild.gut { box-shadow: 0 10px 0 var(--tinte), 0 0 0 16px var(--sonne); }
+  .bild.gut { box-shadow: 0 calc(10px * var(--skala)) 0 var(--tinte), 0 0 0 calc(16px * var(--skala)) var(--sonne); }
   .bild img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .stempel {
-    position: absolute; right: 16px; top: 16px;
-    width: 110px; height: 110px; border-radius: 50%;
+    position: absolute; right: calc(16px * var(--skala)); top: calc(16px * var(--skala));
+    width: calc(110px * var(--skala)); height: calc(110px * var(--skala)); border-radius: 50%;
     display: grid; place-items: center; font-size: 64px;
     background: var(--orange); border: var(--linie) solid var(--tinte); box-shadow: var(--schatten);
     animation: hereinploppen 0.4s var(--weich) both;
   }
   .stempel.hoch { background: var(--gras); }
-  .daumen { display: grid; gap: clamp(20px, 4vh, 40px); }
+  .daumen { display: grid; gap: clamp(14px, 4vh, 40px); }
   .daumenknopf {
-    width: clamp(150px, 17vw, 200px); aspect-ratio: 1;
+    --d: clamp(64px, min(17vw, calc((100dvh - var(--rand-o) - var(--rand-u) - var(--kopf) - var(--fuss)) / 2 - 12px)), 200px);
+    width: var(--d); height: var(--d);
     border-radius: 50%;
-    border: 7px solid var(--tinte); box-shadow: 0 10px 0 var(--tinte);
+    border: max(4px, calc(7px * var(--skala))) solid var(--tinte); box-shadow: 0 calc(10px * var(--skala)) 0 var(--tinte);
     font-size: clamp(80px, 9vw, 110px); line-height: 1;
     cursor: pointer; display: grid; place-items: center; padding: 0;
     transition: transform 0.2s var(--weich), opacity 0.3s;
   }
   .daumenknopf:active { transform: translateY(6px); box-shadow: 0 4px 0 var(--tinte); }
+  .daumenknopf :global(svg), .stempel :global(svg) { width: 60%; height: auto; }
   .hoch { background: var(--gras); }
   .runter { background: var(--orange); }
   .gedrueckt { transform: scale(1.08); outline: 8px solid var(--weiss); outline-offset: 2px; }
   .leise { opacity: 0.35; transform: scale(0.9); }
   .monster { position: absolute; left: var(--rand-l); bottom: var(--rand-u); }
-  .steuerung { position: absolute; right: var(--rand-r); bottom: var(--rand-u); display: flex; gap: 20px; align-items: flex-end; }
+  .steuerung { position: absolute; right: var(--rand-r); bottom: var(--rand-u); display: flex; gap: max(10px, calc(20px * var(--skala))); align-items: flex-end; }
 </style>

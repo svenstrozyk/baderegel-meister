@@ -153,7 +153,7 @@
     right: var(--rand-r);
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: max(10px, calc(20px * var(--skala)));
     pointer-events: none;
     z-index: 10;
   }
@@ -162,12 +162,12 @@
     display: flex; gap: 8px; margin: 0; padding: 8px 14px; list-style: none;
     background: rgba(255, 253, 247, 0.85); border: 3px solid var(--tinte); border-radius: 999px;
   }
-  .perlen li { width: 18px; height: 18px; border-radius: 50%; border: 3px solid var(--tinte); background: var(--weiss); transition: background 0.3s, transform 0.3s; }
+  .perlen li { width: max(12px, calc(18px * var(--skala))); height: max(12px, calc(18px * var(--skala))); border-radius: 50%; border: 3px solid var(--tinte); background: var(--weiss); transition: background 0.3s, transform 0.3s; }
   .perlen li.fertig { background: var(--sonne); }
   .hausfrage {
     position: absolute; inset: 0; z-index: 20;
     background: rgba(16, 36, 58, 0.55);
-    display: flex; align-items: center; justify-content: center; gap: 72px;
+    display: flex; align-items: center; justify-content: center; gap: calc(72px * var(--skala));
   }
   .perlen li.jetzt { background: var(--himmel); transform: scale(1.3); }
 </style>

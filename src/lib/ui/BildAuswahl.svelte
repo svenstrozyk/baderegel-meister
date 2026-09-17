@@ -121,34 +121,35 @@
     position: absolute; inset: 0;
     background: linear-gradient(180deg, var(--himmel) 0%, var(--himmel-hell) 100%);
     display: grid; place-items: center;
-    padding: calc(var(--rand-o) + 104px) var(--rand-r) calc(var(--rand-u) + 116px) var(--rand-l);
+    padding: calc(var(--rand-o) + var(--kopf)) var(--rand-r) calc(var(--rand-u) + var(--fuss)) var(--rand-l);
   }
-  .karten { display: flex; gap: clamp(24px, 3.4vw, 48px); align-items: center; }
+  .karten { display: flex; gap: clamp(20px, 3.4vw, 48px); align-items: center; }
   .karte {
-    --k: min(28vw, calc(100dvh - var(--rand-o) - var(--rand-u) - 250px), 330px);
+    --k: min(28vw, calc(100dvh - var(--rand-o) - var(--rand-u) - var(--kopf) - var(--fuss) - 30px), 330px);
     width: var(--k); aspect-ratio: 1;
     position: relative; padding: 0; overflow: visible; cursor: pointer;
-    border-radius: 32px; border: 6px solid var(--tinte); box-shadow: 0 10px 0 var(--tinte);
+    border-radius: calc(32px * var(--skala)); border: max(4px, calc(6px * var(--skala))) solid var(--tinte); box-shadow: 0 calc(10px * var(--skala)) 0 var(--tinte);
     background: var(--weiss);
     transition: transform 0.3s var(--weich), opacity 0.4s, box-shadow 0.25s;
     /* backwards statt both: sonst überschreibt die Endphase transform/opacity der Zustände */
     animation: hereinploppen 0.45s var(--weich) backwards;
     animation-delay: calc(var(--i) * 80ms);
   }
-  .karte img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 26px; pointer-events: none; }
+  .karte img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: calc(26px * var(--skala)); pointer-events: none; }
   .karte:active { box-shadow: 0 4px 0 var(--tinte); }
   .angehoben { transform: translateY(-18px) scale(1.04); box-shadow: 0 22px 0 var(--tinte), 0 0 0 12px var(--weiss); }
   .richtig { transform: scale(1.14) rotate(-1.5deg); box-shadow: 0 10px 0 var(--tinte), 0 0 0 16px var(--sonne); z-index: 1; }
   .daneben { opacity: 0.6; transform: scale(0.94); }
   .leise { opacity: 0.35; transform: scale(0.9); }
   .nochmal-tippen, .stern {
-    position: absolute; right: -20px; bottom: -20px;
-    width: 88px; height: 88px; border-radius: 50%;
+    position: absolute; right: calc(-20px * var(--skala)); bottom: calc(-20px * var(--skala));
+    width: max(44px, calc(88px * var(--skala))); height: max(44px, calc(88px * var(--skala))); border-radius: 50%;
     border: var(--linie) solid var(--tinte); box-shadow: 0 6px 0 var(--tinte);
     display: grid; place-items: center; pointer-events: none;
   }
   .nochmal-tippen { background: var(--gras); animation: hereinploppen 0.3s var(--weich) both, pulsieren 1.4s 0.3s ease-in-out infinite; }
   .stern { background: var(--sonne); animation: hereinploppen 0.5s var(--weich) both, wackeln 0.5s 0.5s ease-in-out 2; }
   .monster { position: absolute; left: var(--rand-l); bottom: var(--rand-u); }
-  .steuerung { position: absolute; right: var(--rand-r); bottom: var(--rand-u); display: flex; gap: 20px; align-items: flex-end; }
+  .steuerung { position: absolute; right: var(--rand-r); bottom: var(--rand-u); display: flex; gap: max(10px, calc(20px * var(--skala))); align-items: flex-end; }
+  .nochmal-tippen :global(svg), .stern :global(svg) { max-width: 60%; max-height: 60%; }
 </style>

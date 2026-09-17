@@ -52,11 +52,13 @@ Eltern-Gate (3 s gedrückt halten), Fortschritt pro Regel und Lernziel, Tagesvor
 ## Technik
 
 - PWA (offline, installierbar auf iPad), kein Konto, kein Tracking, alles lokal (IndexedDB)
+- Läuft auf iPad und iPhone (jeweils quer): Knöpfe und Abstände skalieren mit der Bildschirmhöhe (`src/lib/ui/masse.js`, `--skala`), Mindest-Tippfläche 56 px; auf dem iPhone rücken Detektiv- und Trainer-Leisten an die Seite
 - Monster als geriggte **SVG** (einfärbbar, Gesten, Entwicklung)
 - Szenen-Illustrationen per **OpenAI Bild-API** (Anime-/Monster-Comic-Stil), vom Agenten generiert und visuell geprüft
 - Audio: vorgerenderte Dateien – Prototyp **macOS „Anna“**, Endfassung **OpenAI TTS** (gpt-4o-mini-tts: Erzähler „ballad“, Monster „sage“); Monstername live per iPad-Sprachausgabe
 - Hosting: lokal + git, nach Prototyp **GitHub Pages**
 - Keine personenbezogenen Daten im Repo
+- Geräte-Abgleich (iPad ↔ iPhone) im Elternbereich ohne Konto/Server: komprimierter Code als QR (App scannt selbst), Zwischenablage oder Datei; Stände werden verlustfrei zusammengeführt
 
 ## Phasen
 

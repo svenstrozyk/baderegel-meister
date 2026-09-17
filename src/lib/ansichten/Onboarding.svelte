@@ -22,7 +22,7 @@
   let hoehe = $state(820);
   let feld = $state();
 
-  const kachel = $derived(Math.max(120, Math.min(190, (breite - 180) / 5 - 24)));
+  const kachel = $derived(Math.max(hoehe < 560 ? 76 : 120, Math.min(190, (breite - 180) / 5 - 24, hoehe * 0.3)));
   const vorschau = $derived(Math.min(360, hoehe * 0.46));
 
   const ansage = (s) => spiele(pfad.app(s));
@@ -190,7 +190,7 @@
 <style>
   .onboarding { z-index: 1; display: grid; grid-template-rows: auto 1fr auto; }
   .kopf { display: flex; justify-content: flex-start; }
-  .auswahl { display: flex; justify-content: center; align-items: center; gap: 24px; flex-wrap: nowrap; }
+  .auswahl { display: flex; justify-content: center; align-items: center; gap: max(14px, calc(24px * var(--skala))); flex-wrap: nowrap; }
   .blase {
     width: var(--k);
     height: var(--k);
@@ -208,15 +208,15 @@
   }
   .blase.gewaehlt { transform: scale(1.18); background: radial-gradient(circle at 35% 30%, #fffbe0, var(--sonne) 75%); animation: none; }
   .blase.gedimmt { opacity: 0.6; filter: saturate(0.6); scale: 0.9; }
-  .fuss { min-height: 140px; display: flex; justify-content: center; align-items: center; }
+  .fuss { min-height: calc(140px * var(--skala)); display: flex; justify-content: center; align-items: center; }
 
   .aussehen, .namen { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 3vw; grid-row: 1 / -1; }
   .buehne { display: grid; place-items: center; position: relative; }
   .buehne :global(svg) { animation: wippen 3s ease-in-out infinite; }
-  .palette { display: grid; gap: 28px; justify-items: center; }
-  .farben { display: grid; grid-template-columns: repeat(4, 96px); gap: 18px; }
+  .palette { display: grid; gap: calc(28px * var(--skala)); justify-items: center; --t: max(52px, calc(96px * var(--skala))); }
+  .farben { display: grid; grid-template-columns: repeat(4, var(--t)); gap: calc(18px * var(--skala)); }
   .tupfer {
-    width: 96px; height: 96px; border-radius: 50%;
+    width: var(--t); height: var(--t); border-radius: 50%;
     background: var(--f);
     border: var(--linie) solid var(--tinte);
     box-shadow: var(--schatten);
@@ -225,9 +225,9 @@
   }
   .tupfer.an { transform: scale(1.12); outline: 7px solid var(--weiss); outline-offset: 2px; }
   .tupfer:active { transform: translateY(4px); box-shadow: var(--schatten-gedrueckt); }
-  .muster { display: grid; grid-template-columns: repeat(4, 96px); gap: 18px; }
+  .muster { display: grid; grid-template-columns: repeat(4, var(--t)); gap: calc(18px * var(--skala)); }
   .musterknopf {
-    width: 96px; height: 96px; border-radius: 24px; padding: 14px;
+    width: var(--t); height: var(--t); border-radius: calc(24px * var(--skala)); padding: calc(14px * var(--skala));
     background: var(--f);
     border: var(--linie) solid var(--tinte);
     box-shadow: var(--schatten);
@@ -235,14 +235,14 @@
   }
   .musterknopf svg { width: 100%; height: 100%; fill: rgba(255, 253, 247, 0.9); stroke: var(--tinte); stroke-width: 2; }
   .musterknopf.an { outline: 7px solid var(--weiss); outline-offset: 2px; transform: scale(1.08); }
-  .aktionen { display: flex; gap: 24px; align-items: center; }
+  .aktionen { display: flex; gap: max(40px, calc(64px * var(--skala))); align-items: center; }
 
   .ecke { position: absolute; left: var(--rand-l); top: var(--rand-o); z-index: 2; }
   .frage {
     position: absolute; top: 4%; right: 14%;
-    width: 84px; height: 84px; border-radius: 50%;
+    width: calc(84px * var(--skala)); height: calc(84px * var(--skala)); border-radius: 50%;
     background: var(--weiss); border: var(--linie) solid var(--tinte); box-shadow: var(--schatten);
-    display: grid; place-items: center; font-size: 56px; font-weight: 900;
+    display: grid; place-items: center; font-size: calc(56px * var(--skala)); font-weight: 900;
     animation: wackeln 2s ease-in-out infinite;
   }
   .gatebox { display: grid; justify-items: center; gap: 18px; }
@@ -257,5 +257,13 @@
   }
   .vorschlaege { display: flex; gap: 10px; flex-wrap: wrap; }
   .chip { font-size: 20px; padding: 10px 18px; border-radius: 999px; border: 3px solid var(--tinte); background: var(--himmel-hell); cursor: pointer; min-height: 48px; }
-  .knopftext { font-size: 32px; }
+  .knopftext { font-size: max(20px, calc(32px * var(--skala))); }
+
+  /* iPhone quer: Namenskarte kompakt, damit sie neben der Bildschirmtastatur Platz hat */
+  @media (max-height: 560px) {
+    .namenskarte { padding: 12px 16px; gap: 8px; }
+    .namenskarte label { font-size: 16px; }
+    .namenskarte input { font-size: 24px; padding: 6px 12px; }
+    .chip { min-height: 40px; font-size: 16px; padding: 6px 14px; }
+  }
 </style>

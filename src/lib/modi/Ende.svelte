@@ -93,24 +93,25 @@
     display: grid;
     grid-template-columns: 1fr 1.3fr;
     align-items: center;
-    padding: var(--rand-o) var(--rand-r) calc(var(--rand-u) + 120px) var(--rand-l);
+    padding: var(--rand-o) var(--rand-r) calc(var(--rand-u) + var(--fuss)) var(--rand-l);
   }
   .monster { justify-self: center; }
-  .gewinne { display: flex; gap: 40px; justify-content: center; align-items: center; }
+  .gewinne { display: flex; gap: calc(40px * var(--skala)); justify-content: center; align-items: center; }
   .spalte { display: grid; justify-items: center; gap: 28px; }
   .kartenplatz { position: relative; isolation: isolate; }
   .kartenplatz.orden::before {
-    content: ''; position: absolute; inset: -40px; border-radius: 50%;
+    content: ''; position: absolute; inset: calc(-40px * var(--skala)); border-radius: 50%;
     background: repeating-conic-gradient(rgba(255, 210, 63, 0.6) 0 12deg, transparent 12deg 24deg);
     animation: drehen 18s linear infinite; z-index: -1;
   }
   @keyframes drehen { to { transform: rotate(360deg) } }
   .medaille {
-    position: absolute; right: -28px; top: -28px;
-    width: 96px; height: 96px; border-radius: 50%;
+    position: absolute; right: calc(-28px * var(--skala)); top: calc(-28px * var(--skala));
+    width: calc(96px * var(--skala)); height: calc(96px * var(--skala)); border-radius: 50%;
     background: var(--sonne); border: 6px solid var(--tinte); box-shadow: var(--schatten);
     display: grid; place-items: center;
     animation: hereinploppen 0.6s 0.4s var(--weich) both;
   }
-  .steuerung { position: absolute; right: var(--rand-r); bottom: var(--rand-u); display: flex; gap: 20px; align-items: flex-end; }
+  .steuerung { position: absolute; right: var(--rand-r); bottom: var(--rand-u); display: flex; gap: max(10px, calc(20px * var(--skala))); align-items: flex-end; }
+  .medaille :global(svg) { max-width: 60%; max-height: 60%; }
 </style>

@@ -9,11 +9,15 @@
   import { gehe } from '../router.svelte.js';
   import { app, MONSTER } from '../state/app.svelte.js';
 
+  let hoehe = $state(820);
+
   function los() {
     gehe(app.profil ? 'heimat' : 'onboarding', app.profil ? { begruessen: true } : {});
     entsperren();
   }
 </script>
+
+<svelte:window bind:innerHeight={hoehe} />
 
 <Wasser hoehe={30} />
 <section class="ansicht start">
@@ -24,10 +28,10 @@
 
   <div class="figuren">
     {#if app.profil}
-      <Partner groesse={260} pose="winken" />
+      <Partner groesse={Math.min(260, hoehe * 0.3)} pose="winken" />
     {:else}
       {#each MONSTER.monster as m, i}
-        <div class="fig" style:--i={i}><Monster art={m.id} farbe={['meerblau', 'tuerkis', 'sonnengelb', 'korallenrot', 'lila'][i]} pose="winken" groesse={130} /></div>
+        <div class="fig" style:--i={i}><Monster art={m.id} farbe={['meerblau', 'tuerkis', 'sonnengelb', 'korallenrot', 'lila'][i]} pose="winken" groesse={Math.min(130, hoehe * 0.16)} /></div>
       {/each}
     {/if}
   </div>
@@ -45,10 +49,10 @@
     grid-template-rows: auto 1fr auto;
     justify-items: center;
     align-items: center;
-    padding-bottom: calc(var(--rand-u) + 5vh);
+    padding-bottom: calc(var(--rand-u) + 4vh);
   }
   .logo {
-    margin: 3vh 0 0;
+    margin: 2vh 0 0;
     text-align: center;
     line-height: 0.85;
     font-weight: 900;
@@ -58,13 +62,13 @@
   .logo span {
     display: block;
     color: var(--weiss);
-    -webkit-text-stroke: 9px var(--tinte);
+    -webkit-text-stroke: calc(9px * var(--skala)) var(--tinte);
     paint-order: stroke fill;
-    text-shadow: 0 8px 0 var(--tinte);
+    text-shadow: 0 calc(8px * var(--skala)) 0 var(--tinte);
   }
-  .z1 { font-size: clamp(56px, 8.5vw, 104px); }
-  .z2 { font-size: clamp(72px, 11vw, 136px); color: var(--sonne) !important; }
-  .figuren { display: flex; align-items: flex-end; gap: 1vw; }
+  .z1 { font-size: clamp(34px, min(8.5vw, 12.5vh), 104px); }
+  .z2 { font-size: clamp(44px, min(11vw, 16.5vh), 136px); color: var(--sonne) !important; }
+  .figuren { display: flex; align-items: flex-end; gap: 1vw; min-height: 0; }
   .fig { animation: wippen 2.6s ease-in-out infinite; animation-delay: calc(var(--i) * -0.5s); }
-  .los { font-size: 44px; padding-right: 8px; }
+  .los { font-size: max(26px, calc(44px * var(--skala))); padding-right: 8px; }
 </style>

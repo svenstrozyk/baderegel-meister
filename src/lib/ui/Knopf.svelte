@@ -23,7 +23,7 @@
   class:rund
   class:pulsieren
   class:aktiv
-  style:--g="{groesse}px"
+  style:--g-soll="{groesse}px"
   aria-label={label}
   {disabled}
   {onclick}
@@ -34,6 +34,8 @@
 
 <style>
   .knopf {
+    /* Solltgröße skaliert mit dem Bildschirm, nie kleiner als --min-tipp */
+    --g: max(var(--min-tipp), calc(var(--g-soll) * var(--skala)));
     min-width: var(--g);
     min-height: var(--g);
     padding: 0 calc(var(--g) * 0.22);
@@ -53,6 +55,8 @@
     touch-action: manipulation;
     position: relative;
   }
+  /* Icons wachsen nicht über den (ggf. verkleinerten) Knopf hinaus */
+  .knopf > :global(svg) { max-width: 64%; max-height: 64%; }
   .rund { border-radius: 999px; padding: 0; width: var(--g); height: var(--g); }
   .knopf:active:not(:disabled) { transform: translateY(5px) scale(0.97); box-shadow: var(--schatten-gedrueckt); }
   .knopf:disabled { opacity: 0.45; cursor: default; }

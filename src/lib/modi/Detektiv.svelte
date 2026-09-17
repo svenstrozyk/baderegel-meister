@@ -281,7 +281,10 @@
   .blase i:nth-child(3) { left: -18px; top: -2px; width: 9px; height: 9px; animation-delay: 0.18s; }
   @keyframes blubb { from { transform: translateY(0) scale(0.4); opacity: 1 } to { transform: translateY(-46px) scale(1.2); opacity: 0 } }
 
-  .werkzeuge { display: flex; gap: 16px; align-items: center; }
+  .werkzeuge { display: flex; gap: max(8px, calc(16px * var(--skala))); align-items: center; }
+  .lupe :global(svg) { width: max(28px, calc(44px * var(--skala))); height: max(28px, calc(44px * var(--skala))); }
+  .kleinstern :global(svg) { width: max(20px, calc(30px * var(--skala))); height: max(20px, calc(30px * var(--skala))); }
+  .abzeichen :global(svg) { max-width: 66%; max-height: 66%; }
   .monster { pointer-events: none; line-height: 0; }
 
   .feier {
@@ -298,7 +301,7 @@
   @keyframes drehen { to { transform: rotate(360deg) } }
   .inhalt { position: relative; display: flex; align-items: center; gap: 4vw; }
   .abzeichen {
-    width: 180px; height: 180px; border-radius: 50%;
+    width: calc(180px * var(--skala)); height: calc(180px * var(--skala)); border-radius: 50%;
     background: var(--weiss); border: 7px solid var(--tinte); box-shadow: 0 10px 0 var(--tinte);
     display: grid; place-items: center;
     animation: hereinploppen 0.6s var(--weich) both, wackeln 0.6s 0.6s ease-in-out 2;
@@ -306,5 +309,16 @@
   .weiter { position: absolute; right: var(--rand-r); bottom: var(--rand-u); }
   @media (prefers-reduced-motion: reduce) {
     .kreis.tipp { animation: none; }
+  }
+
+  /* iPhone quer: Leisten an die Seiten, damit das Suchbild die volle Höhe bekommt */
+  @media (max-height: 560px) {
+    .detektiv { grid-template-columns: auto 1fr auto; grid-template-rows: auto 1fr; column-gap: 10px; row-gap: 8px; }
+    .leiste { display: contents; }
+    .leiste > :global(:first-child) { grid-column: 1; grid-row: 1; }
+    .fortschritt { grid-column: 1; grid-row: 2; flex-direction: column; align-self: start; justify-self: center; padding: 8px 4px; border-radius: 999px; gap: 4px; }
+    .trenner { width: 24px; height: 3px; margin: 2px 0; }
+    .werkzeuge { grid-column: 3; grid-row: 1 / 3; flex-direction: column-reverse; justify-content: flex-end; align-self: stretch; }
+    .flaeche { grid-column: 2; grid-row: 1 / 3; }
   }
 </style>
