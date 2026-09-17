@@ -46,14 +46,22 @@ export function spiele(src) {
   if (!player) return Promise.resolve(false);
   const meins = token;
   return new Promise((resolve) => {
+    let erledigt = false;
+    const beiEnde = () => fertig(true);
+    const beiFehler = () => fertig(false);
+    // Nur die eigenen Listener entfernen: ein verspätetes play()-Reject eines abgebrochenen
+    // Aufrufs darf die Handler des nachfolgenden Aufrufs nicht löschen.
     const fertig = (ok) => {
-      player.onended = player.onerror = null;
+      if (erledigt) return;
+      erledigt = true;
+      player.removeEventListener('ended', beiEnde);
+      player.removeEventListener('error', beiFehler);
       if (beenden === fertig) beenden = null;
       resolve(ok && meins === token);
     };
     beenden = fertig;
-    player.onended = () => fertig(true);
-    player.onerror = () => fertig(false);
+    player.addEventListener('ended', beiEnde);
+    player.addEventListener('error', beiFehler);
     player.src = src;
     player.play().catch(() => fertig(false));
   });

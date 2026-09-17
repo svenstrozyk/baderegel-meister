@@ -3,12 +3,14 @@
   import Knopf from '../ui/Knopf.svelte';
   import Icon from '../ui/Icon.svelte';
   import Partner from '../ui/Partner.svelte';
+  import ElternAufgabe from '../ui/ElternAufgabe.svelte';
   import { spiele, spieleFolge, warte, pfad } from '../audio.js';
 
   let { regel, onfertig } = $props();
   const audio = (s) => pfad.regel(regel.ordner, s);
   let phase = $state('frage'); // frage | geklappt | ueben
   let pose = $state('zeigen');
+  let bestaetigen = $state(false); // Eltern-Aufgabe offen – verhindert Selbst-Bestätigung durch das Kind
   let lebt = true;
 
   const frage = () => spieleFolge([pfad.app('trainer-intro'), audio('trainer-frage')]);
@@ -52,13 +54,24 @@
     </ul>
     {#if phase === 'frage'}
       <div class="knoepfe">
-        <button type="button" class="eknopf gut" onclick={geklappt}><Icon name="haken" groesse={26} /> hat geklappt</button>
+        <button type="button" class="eknopf gut" onclick={() => (bestaetigen = true)}><Icon name="haken" groesse={26} /> hat geklappt</button>
         <button type="button" class="eknopf ueben" onclick={ueben}><Icon name="nochmal" groesse={26} /> nochmal üben</button>
       </div>
     {:else if phase === 'ueben'}
       <p class="info">Zusammen noch einmal anhören – beim nächsten Mal zählt es.</p>
     {/if}
   </aside>
+
+  {#if bestaetigen && phase === 'frage'}
+    <ElternAufgabe
+      titel="Erwachsene bestätigen"
+      onrichtig={() => {
+        bestaetigen = false;
+        geklappt();
+      }}
+      onabbrechen={() => (bestaetigen = false)}
+    />
+  {/if}
 
   <div class="steuerung">
     <Knopf label="Nochmal anhören" farbe="weiss" groesse={96} onclick={phase === 'ueben' ? ueben : frage}><Icon name="lautsprecher" /></Knopf>

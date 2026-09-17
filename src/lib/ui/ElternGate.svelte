@@ -1,10 +1,12 @@
-<!-- Eltern-Gate: 3 Sekunden gedrückt halten. Ring füllt sich; loslassen bricht ab. -->
+<!-- Eltern-Gate: 3 Sekunden gedrückt halten (Ring füllt sich; loslassen bricht ab), danach Zahlwort-Aufgabe. -->
 <script>
   import Icon from './Icon.svelte';
+  import ElternAufgabe from './ElternAufgabe.svelte';
 
   let { onoffen, groesse = 88, label = 'Elternbereich: 3 Sekunden gedrückt halten', icon = 'schloss' } = $props();
   const DAUER = 3000;
   let fortschritt = $state(0);
+  let aufgabe = $state(false);
   let start = 0;
   let frame = 0;
 
@@ -21,7 +23,7 @@
       fortschritt = Math.min(1, (t - start) / DAUER);
       if (fortschritt >= 1) {
         fortschritt = 0;
-        onoffen?.();
+        aufgabe = true;
         return;
       }
       frame = requestAnimationFrame(tick);
@@ -48,7 +50,7 @@
   onpointercancel={abbrechen}
   onpointerleave={abbrechen}
   oncontextmenu={(e) => e.preventDefault()}
-  onkeydown={(e) => e.key === 'Enter' && e.repeat === false && onoffen?.()}
+  onkeydown={(e) => e.key === 'Enter' && e.repeat === false && (aufgabe = true)}
 >
   <svg viewBox="0 0 100 100" class="ring" aria-hidden="true">
     <circle cx="50" cy="50" r={r} class="spur" />
@@ -56,6 +58,16 @@
   </svg>
   <Icon name={icon} groesse={groesse * 0.4} />
 </button>
+
+{#if aufgabe}
+  <ElternAufgabe
+    onrichtig={() => {
+      aufgabe = false;
+      onoffen?.();
+    }}
+    onabbrechen={() => (aufgabe = false)}
+  />
+{/if}
 
 <style>
   .gate {

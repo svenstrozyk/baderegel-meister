@@ -14,6 +14,8 @@
 
   let bild = $state(untrack(() => (nurMerksatz ? 3 : 0))); // 0..2 Bilder, 3 = Merksatz
   let bereit = $state(false);
+  let gehoert = $state(false); // „Weiter“ erst, wenn der Text zum Bild einmal gelaufen ist
+  let nochmalLaeuft = false;
   let lebt = true;
   $effect(() => () => (lebt = false));
 
@@ -22,11 +24,14 @@
   $effect(() => {
     const b = bild; // abhängig vom aktuellen Bild
     let gueltig = true;
+    gehoert = false;
     (async () => {
       await warte(b === 0 || nurMerksatz ? 500 : 250);
       if (!gueltig || !lebt) return;
       if (b < 3) {
         const ok = await spiele(audio(`geschichte-${b + 1}`));
+        // Abbruch durch „Nochmal“ zählt nicht; Ladefehler geben „Weiter“ frei, damit niemand festhängt.
+        if (gueltig && lebt && (ok || !nochmalLaeuft)) gehoert = true;
         if (ok && gueltig && lebt) {
           await warte(1200);
           if (gueltig && lebt && bild === b) bild = b + 1;
@@ -41,7 +46,14 @@
   });
 
   function nochmal() {
-    if (bild < 3) spiele(audio(`geschichte-${bild + 1}`));
+    if (bild < 3) {
+      const b = bild;
+      nochmalLaeuft = true;
+      spiele(audio(`geschichte-${b + 1}`)).then((ok) => {
+        nochmalLaeuft = false;
+        if (ok && lebt && bild === b) gehoert = true;
+      });
+    }
     else spieleFolge([audio('merksatz'), pfad.app('mach-mit'), audio('geste')]).then((ok) => ok && (bereit = true));
   }
 </script>
@@ -55,7 +67,10 @@
   <div class="monster-ecke"><Partner groesse={Math.min(220, innerHeight * 0.28)} pose="zeigen" /></div>
   <div class="steuerung">
     <Knopf label="Nochmal anhören" farbe="weiss" groesse={96} onclick={nochmal}><Icon name="lautsprecher" /></Knopf>
-    <Knopf label="Weiter" farbe="sonne" groesse={120} onclick={() => (bild = bild + 1)}><Icon name="weiter" groesse={60} /></Knopf>
+    <!-- Platz bleibt reserviert, damit der Lautsprecher nicht springt und kein Tipp auf „Weiter“ landet -->
+    <div class="platzhalter" class:verborgen={!gehoert} aria-hidden={!gehoert}>
+      <Knopf label="Weiter" farbe="sonne" groesse={120} disabled={!gehoert} onclick={() => (bild = bild + 1)}><Icon name="weiter" groesse={60} /></Knopf>
+    </div>
   </div>
 {:else}
   <div class="merksatz">
@@ -78,6 +93,8 @@
   .bildflaeche img { width: 100%; height: 100%; object-fit: cover; display: block; }
   @keyframes einblenden { from { opacity: 0; transform: scale(1.03) } to { opacity: 1; transform: none } }
   .monster-ecke { position: absolute; left: var(--rand-l); bottom: var(--rand-u); z-index: 2; filter: drop-shadow(0 6px 0 rgba(16, 36, 58, 0.3)); }
+  .platzhalter { transition: opacity 0.3s var(--weich), transform 0.3s var(--weich); }
+  .verborgen { visibility: hidden; opacity: 0; transform: scale(0.6); }
   .steuerung { position: absolute; right: var(--rand-r); bottom: var(--rand-u); display: flex; gap: 20px; align-items: flex-end; z-index: 3; }
 
   .merksatz {
