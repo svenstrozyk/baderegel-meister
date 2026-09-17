@@ -34,9 +34,11 @@ export function badekappe(ctx, A) {
 export function sonnenhut(ctx, A) {
   const { c, rx, ry } = A.kopf;
   const H = A.hut ?? {};
-  const yb = c[1] - ry * (H.hoehe ?? 0.6);
   const cx = c[0] + (H.dx ?? 0);
   const brx = rx * (H.krempe ?? 1.5), bry = rx * 0.3;
+  // Krempe bleibt über den Augen – sonst wirkt das Monster schläfrig oder traurig
+  const augenOben = Math.min(A.augen.l[1], A.augen.r[1]) - A.augen.rad * 1.15;
+  const yb = Math.min(c[1] - ry * (H.hoehe ?? 0.6), augenOben - bry * 0.55);
   const krone = ctx.P(`M${cx - rx * 0.7} ${yb} C${cx - rx * 0.72} ${yb - ry * 0.95} ${cx + rx * 0.72} ${yb - ry * 0.95} ${cx + rx * 0.7} ${yb}Z`);
   const band = ctx.P(`M${cx - rx * 0.71} ${yb - ry * 0.02} C${cx - rx * 0.71} ${yb - ry * 0.24} ${cx + rx * 0.71} ${yb - ry * 0.24} ${cx + rx * 0.71} ${yb - ry * 0.02} Q${cx} ${yb + ry * 0.1} ${cx - rx * 0.71} ${yb - ry * 0.02}Z`);
   const [ox, oy] = ctx.m(cx, yb);
@@ -87,15 +89,17 @@ export function handtuchUmhang(ctx, A) {
   }).join('');
   const hinten = ctx.form(d, { fill: TUCH, schatten: TUCH_SCHATTEN, versatz: [10, 0], innen: streifen });
   // Knoten vorne am Hals
-  const zipfel = (f) => ctx.form(ctx.glatt([[hx + f * 4, hy - 2], [hx + f * sb * 0.42, hy + 2], [hx + f * sb * 0.3, hy + sb * 0.5], [hx + f * 8, hy + 12]], true, 0.8),
+  const zipfel = (f) => ctx.form(ctx.glatt([[hx + f * 4, hy - 2], [hx + f * sb * 0.5, hy + 2], [hx + f * sb * 0.46, hy + sb * 0.34], [hx + f * sb * 0.16, hy + sb * 0.26]], true, 0.9),
     { fill: TUCH, schatten: TUCH_SCHATTEN, versatz: [0, 5], linie: ctx.lw * 0.8 });
   const knoten = `<path d="${ctx.ell(hx, hy + 5, sb * 0.14, sb * 0.12)}" fill="${k.f}" stroke="${ctx.pal.linie}" stroke-width="${ctx.lw * 0.7}"/>`;
   return { hinten, vorne: zipfel(-1) + zipfel(1) + knoten };
 }
 
-export function rettungspfeife(ctx, A) {
+export function rettungspfeife(ctx, A, mitUmhang = false) {
   const [hx, hy] = A.hals;
-  const [bx, by] = A.pfeife ?? A.brust;
+  const [bx0, by0] = A.pfeife ?? A.brust;
+  // Mit Umhang rutscht die Pfeife nach unten, damit sie nicht auf dem Knoten liegt
+  const [bx, by] = mitUmhang ? [bx0 + A.schulterBreite * 0.18, by0 + 16] : [bx0, by0];
   const sb = A.schulterBreite;
   const schnur = ctx.strich(ctx.P(`M${hx - sb * 0.36} ${hy - 2} Q${hx - sb * 0.3} ${by - 4} ${bx - 3} ${by - 13}`), ctx.n(4.5) + 1.5, '#ffffff') +
     ctx.strich(ctx.P(`M${hx + sb * 0.36} ${hy - 2} Q${hx + sb * 0.3} ${by - 4} ${bx + 3} ${by - 13}`), ctx.n(4.5) + 1.5, '#ffffff');

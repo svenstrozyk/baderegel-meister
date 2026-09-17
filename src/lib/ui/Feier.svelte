@@ -4,11 +4,12 @@
   import Icon from './Icon.svelte';
   import Partner from './Partner.svelte';
   import Konfetti from './Konfetti.svelte';
-  import { spiele, sprich, warte, pfad } from '../audio.js';
+  import { spiele, sprich, stoppe, warte, pfad } from '../audio.js';
   import { app, monsterVon } from '../state/app.svelte.js';
 
   let { von = 1, zu = 2, onfertig } = $props();
   let phase = $state('vorher'); // vorher | blitz | nachher
+  let fertigBereit = $state(false); // „Weiter“ erst, wenn der neue Name gesagt wurde
   const stufe = $derived(phase === 'nachher' ? zu : von);
 
   $effect(() => {
@@ -25,8 +26,12 @@
       if (!lebt) return;
       const neuerName = monsterVon(app.profil.art)?.stufen[zu - 1]?.name;
       if (neuerName) await sprich(`${app.profil.name} ist jetzt ${neuerName}!`);
+      if (lebt) fertigBereit = true;
     })();
-    return () => (lebt = false);
+    return () => {
+      lebt = false;
+      stoppe();
+    };
   });
 </script>
 
@@ -37,7 +42,7 @@
   </div>
   {#if phase === 'nachher'}
     <Konfetti />
-    <div class="weiter">
+    <div class="weiter" class:bereit={fertigBereit}>
       <Knopf label="Weiter" farbe="gras" groesse={120} pulsieren onclick={onfertig}><Icon name="weiter" groesse={64} /></Knopf>
     </div>
   {/if}
@@ -60,5 +65,12 @@
   .phase-vorher { animation: wackeln 0.4s ease-in-out infinite; }
   .phase-blitz { filter: brightness(0) invert(1) drop-shadow(0 0 40px #fff); transform: scale(1.25); }
   .phase-nachher { animation: hereinploppen 0.6s var(--weich) both; }
-  .weiter { position: absolute; right: var(--rand-r); bottom: var(--rand-u); }
+  .weiter { position: absolute; right: var(--rand-r); bottom: var(--rand-u); opacity: 0.45; transition: opacity 0.3s; }
+  .weiter.bereit { opacity: 1; }
+
+  /* Ohne Bewegung: kein greller Vollbild-Blitz, sondern sanftes Aufhellen */
+  @media (prefers-reduced-motion: reduce) {
+    .phase-blitz { filter: brightness(1.5); transform: none; }
+    .strahlen { display: none; }
+  }
 </style>

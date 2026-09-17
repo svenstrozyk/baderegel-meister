@@ -25,10 +25,10 @@ export const AUSDRUCK = {
   hand_an_bauch: { augen: 'offen', mund: 'wellig', blick: [0, 0.15] },
   haende_trichter: { augen: 'offen', mund: 'ruf' },
   stopp_haende: { augen: 'offen', mund: 'ernst' },
-  hand_an_stirn: { augen: 'offen', mund: 'wellig', blick: [0, -0.15] },
+  hand_an_stirn: { augen: 'zu', mund: 'wellig' },
   blitz_arme: { augen: 'gross', mund: 'o' },
   wegwerfen: { augen: 'offen', mund: 'laecheln', blick: [0.2, 0.12] },
-  kopf_schuetteln: { augen: 'offen', mund: 'ernst' },
+  kopf_schuetteln: { augen: 'offen', mund: 'ernst', blick: [-0.18, 0] },
   hand_ueber_augen: { augen: 'offen', mund: 'laecheln', blick: [0.15, 0] },
 };
 
@@ -139,6 +139,7 @@ function beschreibe(pose, A) {
         ganz: { dauer: 1.2, frames: [[0, { sy: 0.95, sx: 1.03 }], [20, { sy: 1.01, sx: 0.99 }], [50, { ty: -22 }], [80, { sy: 1.01, sx: 0.99 }], [100, { sy: 0.95, sx: 1.03 }]] },
         arm_links: hin(richte(A, 'l', spiegelW(-45)), richte(A, 'l', spiegelW(-62)), 1.2),
         arm_rechts: hin(richte(A, 'r', -45), richte(A, 'r', -62), 1.2),
+        still: { ganz: { ty: -10 } },
       };
     case 'nachdenken': {
       const g = greife(A, 'r', [A.mund[0] + A.mundW * 0.2, A.mund[1] + A.kopfRy * 0.28], { augenFrei: true });
@@ -203,7 +204,8 @@ function beschreibe(pose, A) {
     case 'hand_an_bauch': {
       const g = greife(A, 'r', [A.bauch[0] - kr * 0.05, A.bauch[1]]);
       return {
-        arm_rechts: hin(g, um(g, 2), 3),
+        // Hand tippt zweimal deutlich an den Bauch („bis hier und nicht weiter“)
+        arm_rechts: { dauer: 2.2, frames: [[0, g], [20, um(g, -9, 0.06)], [40, g], [60, um(g, -9, 0.06)], [80, g], [100, g]] },
         arm_links: ruhig('l', 3),
         koerper: hin({ r: 0 }, { r: 2, sy: 0.985 }, 3),
         kopf: hin({ r: 6, ty: 2 }, { r: 8, ty: 3 }, 3),
@@ -211,17 +213,15 @@ function beschreibe(pose, A) {
       };
     }
     case 'haende_trichter': {
-      const w = A.mundW * 0.6 + A.armHalbe * 1.6;
-      // Hände an die Mundwinkel, aber nie quer über das ganze Gesicht greifen
-      const zlx = Math.min(A.mund[0] - w, A.kopfC[0] - kr * 0.25), zrx = Math.max(A.mund[0] + w, A.kopfC[0] + kr * 0.25);
-      const zy = A.mund[1] + A.kopfRy * 0.12;
-      const gl = greife(A, 'l', [zlx, zy], { augenFrei: true, kMin: 0.68 });
-      const gr = greife(A, 'r', [zrx, zy], { augenFrei: true, kMin: 0.68 });
+      // Rufen: beide Arme schräg neben dem Kopf (feste Winkel – kurze Arme erreichen den Mund sonst nie),
+      // Kopf reckt sich im Takt nach vorn.
+      const gl = richte(A, 'l', spiegelW(-78), 0.95), gr = richte(A, 'r', -78, 0.95);
       return {
-        arm_links: hin(gl, um(gl, -3), 1.6),
-        arm_rechts: hin(gr, um(gr, 3), 1.6),
-        kopf: hin({ ty: 0 }, { ty: -2, sx: 1.02, sy: 1.02 }, 1.6),
-        koerper: hin({ sy: 1 }, { sy: 1.025 }, 1.6),
+        arm_links: { dauer: 1.5, frames: [[0, um(gl, 8, 0.05)], [40, um(gl, -4)], [100, um(gl, 8, 0.05)]] },
+        arm_rechts: { dauer: 1.5, frames: [[0, um(gr, -8, 0.05)], [40, um(gr, 4)], [100, um(gr, -8, 0.05)]] },
+        kopf: { dauer: 1.5, frames: [[0, { ty: 0, sx: 1, sy: 1 }], [40, { ty: -4, sx: 1.04, sy: 1.04 }], [100, { ty: 0, sx: 1, sy: 1 }]] },
+        koerper: hin({ sy: 1 }, { sy: 1.03 }, 1.5),
+        still: { arm_links: um(gl, -4), arm_rechts: um(gr, 4), kopf: { ty: -4, sx: 1.04, sy: 1.04 } },
       };
     }
     case 'stopp_haende': {
@@ -236,13 +236,14 @@ function beschreibe(pose, A) {
       };
     }
     case 'hand_an_stirn': {
+      // müde/krank: Kopf sinkt schwer nach vorn und hebt sich mühsam, Hand stützt die Stirn
       const g = greife(A, 'r', [A.stirn[0] + kr * 0.35, A.stirn[1] + A.augeRad * 0.3], { augenFrei: true, kMax: 1.45, kMin: 0.7 });
       return {
-        arm_rechts: hin(g, um(g, -2), 2.8),
-        kopf: hin({ r: 3 }, { r: 6 }, 2.8),
-        ganz: hin({ r: -1 }, { r: -2.5 }, 2.8),
+        arm_rechts: { dauer: 3.4, frames: [[0, um(g, 5)], [45, um(g, -3)], [100, um(g, 5)]] },
+        kopf: { dauer: 3.4, frames: [[0, { r: 13, ty: 5 }], [45, { r: 5, ty: 1 }], [100, { r: 13, ty: 5 }]] },
+        koerper: { dauer: 3.4, frames: [[0, { sy: 0.975 }], [45, { sy: 1.01 }], [100, { sy: 0.975 }]] },
         arm_links: ruhig('l', 3),
-        augen: blinzeln,
+        still: { kopf: { r: 13, ty: 5 } },
       };
     }
     case 'blitz_arme': {
@@ -254,6 +255,7 @@ function beschreibe(pose, A) {
       return {
         arm_links: { dauer: 2.4, frames: fr(l) },
         arm_rechts: { dauer: 2.4, frames: fr(r) },
+        still: { arm_links: l[1], arm_rechts: r[1] },
         ganz: { dauer: 2.4, frames: [[0, { r: 0 }], [25, { r: -2 }], [50, { r: 1 }], [75, { r: 2 }], [100, { r: 0 }]] },
       };
     }
@@ -263,22 +265,29 @@ function beschreibe(pose, A) {
         arm_rechts: { dauer: 2, frames: [[0, aus], [35, um(aus, -6)], [60, wurf], [80, wurf], [100, aus]] },
         ganz: { dauer: 2, frames: [[0, { r: -1.5 }], [35, { r: -2.5 }], [60, { r: 2.5 }], [80, { r: 1.5 }], [100, { r: -1.5 }]] },
         arm_links: ruhig('l', 3),
+        still: { arm_rechts: wurf, ganz: { r: 2.5 } },
       };
     }
-    case 'kopf_schuetteln':
+    case 'kopf_schuetteln': {
+      // „Nein“: Kopf dreht sichtbar hin und her (Versatz + leichte Stauchung), dazu wackelt die erhobene Hand
+      const links = { tx: -kr * 0.16, r: -7, sx: 0.96 };
+      const rechts = { tx: kr * 0.16, r: 7, sx: 0.96 };
+      const hoch = richte(A, 'r', -74);
       return {
-        kopf: { dauer: 1.6, frames: [[0, { r: 0 }], [25, { r: -10 }], [75, { r: 10 }], [100, { r: 0 }]] },
-        koerper: { dauer: 3.2, frames: ATMEN },
+        kopf: { dauer: 1.5, frames: [[0, links], [25, { tx: 0, r: 0, sx: 1 }], [50, rechts], [75, { tx: 0, r: 0, sx: 1 }], [100, links]] },
+        arm_rechts: { dauer: 1.5, frames: [[0, um(hoch, -9)], [50, um(hoch, 9)], [100, um(hoch, -9)]] },
+        koerper: { dauer: 3, frames: ATMEN },
         arm_links: ruhig('l', 2),
-        arm_rechts: ruhig('r', -2),
+        still: { kopf: links, arm_rechts: um(hoch, -9) },
       };
+    }
     case 'hand_ueber_augen': {
       const g = greife(A, 'r', [A.augeR[0] + A.augeRad * 0.4, A.augeR[1] - A.augeRad * 1.9], { augenFrei: true, kMax: 1.45, kMin: 0.7 });
       return {
-        arm_rechts: hin(g, um(g, 2), 3.2),
-        kopf: hin({ r: 0 }, { r: 5 }, 3.2),
-        blick: hin({ tx: -A.augeRad * 0.2 }, { tx: A.augeRad * 0.2 }, 3.2),
-        ganz: hin({ r: -1.5 }, { r: 1.5 }, 3.2),
+        arm_rechts: hin(g, um(g, 2), 2.6),
+        kopf: { dauer: 2.6, frames: [[0, { tx: -kr * 0.1, r: -5 }], [50, { tx: kr * 0.12, r: 6 }], [100, { tx: -kr * 0.1, r: -5 }]] },
+        blick: hin({ tx: -A.augeRad * 0.35 }, { tx: A.augeRad * 0.35 }, 2.6),
+        ganz: hin({ r: -1.5 }, { r: 1.5 }, 2.6),
         arm_links: ruhig('l', 3),
       };
     }
@@ -291,7 +300,7 @@ const erzeugt = new Set();
 
 /** CSS für eine (Art, Stufe, Pose)-Kombination */
 export function poseCss(schluessel, pose, A) {
-  const teile = beschreibe(pose, A);
+  const { still = {}, ...teile } = beschreibe(pose, A);
   const ursprung = {
     ganz: A.boden, koerper: A.boden, kopf: A.hals,
     arm_links: A.schulterL, arm_rechts: A.schulterR,
@@ -307,7 +316,13 @@ export function poseCss(schluessel, pose, A) {
     css += `@keyframes ${name}{${def.frames.map(([p, t]) => `${p}%{transform:${tf(t)}}`).join('')}}`;
     css += `${sel}{transform-box:view-box;transform-origin:${r2(o[0])}px ${r2(o[1])}px;transform:${tf(def.frames[0][1])};` +
       `animation:${name} ${def.dauer}s ${def.easing ?? 'cubic-bezier(.45,0,.55,1)'} calc(var(--wm-phase,0) * -${def.dauer}s) infinite}`;
-    ruhig += `${sel}{animation:none}`;
+    // Ohne Animation zählt nur dieses Bild: möglichst der aussagekräftigste Moment der Geste
+    ruhig += `${sel}{animation:none;transform:${tf(still[teil] ?? def.frames[0][1])}}`;
+  }
+  for (const [teil, t] of Object.entries(still)) {
+    if (teile[teil]) continue;
+    const o = ursprung[teil] ?? A.boden;
+    ruhig += `.${schluessel} [data-teil="${teil}"]{transform-box:view-box;transform-origin:${r2(o[0])}px ${r2(o[1])}px;transform:${tf(t)}}`;
   }
   return css + `@media (prefers-reduced-motion: reduce){${ruhig}}`;
 }

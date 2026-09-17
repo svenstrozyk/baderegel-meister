@@ -51,7 +51,7 @@
       if (lebt) pose = aenderungen.length ? 'jubeln' : 'winken';
       if (lebt) await spieleFolge([...folge]);
       if (lebt && diff.entwickelt && app.gesehenEntwicklung < diff.entwicklungZu) {
-        feier = { von: diff.entwicklungVon, zu: diff.entwicklungZu };
+        feier = { von: app.gesehenEntwicklung, zu: app.gesehenEntwicklung + 1 };
       }
       if (lebt) pose = 'winken';
     })();
@@ -81,7 +81,11 @@
 </div>
 
 {#if feier}
-  <Feier von={feier.von} zu={feier.zu} onfertig={() => { app.gesehenEntwicklung = feier.zu; feier = null; }} />
+  <!-- mehrere Stufen auf einmal: jede Stufe bekommt ihre eigene Feier -->
+  <Feier von={feier.von} zu={feier.zu} onfertig={() => {
+    app.gesehenEntwicklung = feier.zu;
+    feier = diff.entwicklungZu > feier.zu ? { von: feier.zu, zu: feier.zu + 1 } : null;
+  }} />
 {/if}
 
 <style>

@@ -208,6 +208,8 @@
   }
   .blase.gewaehlt { transform: scale(1.18); background: radial-gradient(circle at 35% 30%, #fffbe0, var(--sonne) 75%); animation: none; }
   .blase.gedimmt { opacity: 0.6; filter: saturate(0.6); scale: 0.9; }
+  /* Nicht gewählte Monster als Standbild – spart Rechenzeit auf älteren Geräten */
+  .blase.gedimmt :global(svg *) { animation-play-state: paused; }
   .fuss { min-height: calc(140px * var(--skala)); display: flex; justify-content: center; align-items: center; }
 
   .aussehen, .namen { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 3vw; grid-row: 1 / -1; }

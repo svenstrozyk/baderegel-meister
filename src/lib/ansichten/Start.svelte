@@ -70,5 +70,8 @@
   .z2 { font-size: clamp(44px, min(11vw, 16.5vh), 136px); color: var(--sonne) !important; }
   .figuren { display: flex; align-items: flex-end; gap: 1vw; min-height: 0; }
   .fig { animation: wippen 2.6s ease-in-out infinite; animation-delay: calc(var(--i) * -0.5s); }
+  /* nur die mittlere Figur animieren – die anderen als Standbild (Rechenzeit) */
+  .fig:not(:nth-child(3)) { animation: none; }
+  .fig:not(:nth-child(3)) :global(svg *) { animation-play-state: paused; }
   .los { font-size: max(26px, calc(44px * var(--skala))); padding-right: 8px; }
 </style>

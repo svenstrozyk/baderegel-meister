@@ -111,8 +111,8 @@ export default function blubbo(ctx, stufe) {
       { fill: '#3a2733', schatten: '#1c1320', versatz: [2, 2], linie: 2.5 }) +
     `<path d="${ctx.ell(mx - 3 * mk, my - 8 * mk, 3 * mk, 1.8 * mk)}" fill="#ffffff" opacity="0.8"/>`;
   if (stufe === 3) {
-    // selbstbewusste Brauen
-    out.kopfVorne = [-1, 1].map((f) => ctx.strich(ctx.P(`M${150 + f * 14} ${66} Q${150 + f * 24} ${60} ${150 + f * 36} ${63}`), 4)).join('');
+    // freundlich hochgezogene Brauen (innen höher als außen)
+    out.kopfVorne = [-1, 1].map((f) => ctx.strich(ctx.P(`M${150 + f * 14} ${61} Q${150 + f * 25} ${58} ${150 + f * 36} ${66}`), 4)).join('');
   }
 
   // Arme
@@ -121,8 +121,8 @@ export default function blubbo(ctx, stufe) {
     const e = pts[pts.length - 1];
     a += `<path d="${ctx.ell(e[0], e[1] + 3, S.armB[1] * 0.28, S.armB[1] * 0.2)}" fill="${pal.hell}" opacity="0.8"/>`;
     if (mitKiesel) {
-      a += ctx.form(ctx.ell(e[0] + 2, e[1] + 10, 14, 10), { fill: '#a9bfd6', schatten: '#7c93ad', versatz: [4, 3] }) +
-        `<path d="${ctx.ell(e[0] - 3, e[1] + 6, 4, 2.2)}" fill="#ffffff" opacity="0.8"/>`;
+      a += ctx.form(ctx.ell(e[0] + 2, e[1] + 15, 20, 15), { fill: '#d6dfea', schatten: '#8a99ad', versatz: [4, 3] }) +
+        `<path d="${ctx.ell(e[0] - 4, e[1] + 10, 5.5, 3)}" fill="#ffffff" opacity="0.85"/>`;
     }
     return a;
   };

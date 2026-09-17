@@ -47,7 +47,7 @@ const STUFEN = {
   },
 };
 
-export default function plitsch(ctx, stufe) {
+export default function plitsch(ctx, stufe, { ausdruck } = {}) {
   const S = STUFEN[stufe];
   const { pal } = ctx;
   const out = {};
@@ -96,11 +96,42 @@ export default function plitsch(ctx, stufe) {
     kopfHinten += [[104, 82, 11], [120, 62, 12]].map(([x, y, r]) =>
       ctx.form(ctx.ell(x, y, r, r), { fill: pal.akzent, schatten: pal.akzentSchatten, versatz: [4, 4] })).join('');
   }
-  kopfHinten += ctx.form(ctx.P(S.ruessel), { versatz: [0, 7] });
-  const [sx, sy] = S.spitze;
-  kopfHinten += `<path d="${ctx.ell(sx - 2, sy - S.spitzeR[1] * 0.35, S.spitzeR[0] * 0.55, S.spitzeR[1] * 0.3)}" fill="#ffffff" opacity="0.4"/>` +
-    `<path d="${ctx.ell(sx + S.spitzeR[0] * 0.55, sy - 1, 2.2, 2.6)}" fill="${pal.linie}"/>`;
   out.kopfHinten = kopfHinten;
+
+  // Schnauze nach Referenz (Seepferdchen von vorn): ein rundes Rohr, etwa so dick wie ein Auge, das
+  // MITTEN im Gesicht zwischen den Augen ansetzt (Oberkante knapp unter den Augen) und seitlich, leicht
+  // nach unten, aus dem Gesicht herausragt. Es liegt VOR dem Kopf wie eine Hunde-/Pferdeschnauze in
+  // Dreiviertelansicht; der Mund ist das dunkle „O“ am Rohrende.
+  const AL = S.augen.l, AR = S.augen.r, arad = S.augen.rad;
+  const neig = ((S.schnauze?.neigung ?? 12) * Math.PI) / 180;
+  const dir = [Math.cos(neig), Math.sin(neig)];
+  const nor = [-dir[1], dir[0]];
+  const hb = arad * 0.72, ht = arad * 0.6; // halbe Dicke am Ansatz / an der Spitze
+  const bx = (AL[0] + AR[0]) / 2 - arad * 0.15;
+  const by = Math.max(AL[1], AR[1]) + arad * 0.95 + hb * 0.55; // Oberkante schmiegt sich unter das Auge
+  const L = K.c[0] + K.rx - bx + arad * (S.schnauze?.ueberstand ?? 1.35); // ragt gut ein Auge weit heraus
+  const sp = (t, w) => [bx + dir[0] * L * t + nor[0] * w, by + dir[1] * L * t + nor[1] * w];
+  // Ansatz beginnt ein Stück im Gesicht; die Umrisslinie läuft nur über Ober-, Vorder- und Unterkante,
+  // am Ansatz gibt es keine Linie – so wächst die Schnauze aus dem Gesicht statt aufgeklebt zu wirken.
+  const hmi = (hb + ht) / 2;
+  const rohrPfad = ctx.glatt([sp(-0.06, -hb), sp(0.5, -hmi), sp(0.96, -ht), sp(1.0, 0), sp(0.96, ht), sp(0.5, hmi), sp(-0.06, hb)], true, 0.9);
+  // Linie setzt erst im vorderen Gesichtsdrittel an (wie in der Referenz), nicht quer über das ganze Gesicht
+  const rohrLinie = ctx.glatt([sp(0.3, -(hb * 0.7 + hmi * 0.3)), sp(0.5, -hmi), sp(0.96, -ht), sp(1.0, 0), sp(0.96, ht), sp(0.5, hmi), sp(0.22, hb * 0.78 + hmi * 0.22)], false, 0.9);
+  const [sx, sy] = sp(0.86, 0);
+  const schnauzeSvg = ctx.form(rohrPfad, { muster: true, versatz: [4, 6], linieD: rohrLinie }) +
+    `<path d="${ctx.ell(...sp(0.55, -(hb + ht) * 0.28), L * 0.2, ht * 0.28)}" fill="#ffffff" opacity="0.35"/>`;
+
+  // Mund = Rohröffnung an der Spitze (Ellipse, weil das Rohr leicht zum Betrachter zeigt)
+  out.mund = (v) => {
+    const auf = { ruf: 1.25, offen: 1.1, o: 1.0, laecheln: 0.8, klein: 0.55, hmm: 0.6, wellig: 0.6, ernst: 0.55 }[v] ?? 0.7;
+    let m = `<path d="${ctx.ell(sx, sy, ht * 0.42 * auf, ht * 0.68 * auf)}" fill="#7c1f3c" stroke="${pal.linie}" stroke-width="${ctx.lw * 0.7}"/>`;
+    if (['ruf', 'offen'].includes(v)) m += `<path d="${ctx.ell(sx, sy + ht * 0.25, ht * 0.22, ht * 0.2)}" fill="#ff7f9a"/>`;
+    if (['laecheln', 'offen', 'ruf'].includes(v)) {
+      const a = sp(0.6, ht * 0.9), b = sp(0.9, ht * 0.75);
+      m += ctx.strich(ctx.P(`M${a[0]} ${a[1]} Q${(a[0] + b[0]) / 2} ${(a[1] + b[1]) / 2 + ht * 0.45} ${b[0]} ${b[1]}`), ctx.lw * 0.55);
+    }
+    return schnauzeSvg + m;
+  };
 
   out.kopf = ctx.form(ctx.ell(K.c[0], K.c[1], K.rx, K.ry), { muster: true, versatz: [9, 8] }) +
     `<path d="${ctx.ell(K.c[0] - K.rx * 0.45, K.c[1] - K.ry * 0.62, K.rx * 0.2, K.ry * 0.1)}" fill="#ffffff" opacity="0.45"/>`;
@@ -118,6 +149,8 @@ export default function plitsch(ctx, stufe) {
     oben += muschel(122, 58, 13, '#ffd3e1', '#f09bb6') + muschel(174, 56, 13, '#ffd3e1', '#f09bb6') + muschel(148, 46, 17, '#fff0c2', '#f2c46b');
   }
   out.kopfOben = oben;
+
+
 
   // --- Arme (Flossenärmchen)
   const arm = (pts) => {
@@ -138,7 +171,7 @@ export default function plitsch(ctx, stufe) {
     ...S.anker,
     kopf: K,
     augen: S.augen,
-    mund: { p: [S.spitze[0] - 6, S.spitze[1] + S.spitzeR[1] * 0.55], w: 16 },
+    mund: { p: [sx, sy], w: arad * 1.2 },
     wangen: S.wangen,
     armBreite: S.armB[1],
     schulterL: S.armL[0], handL: S.armL[S.armL.length - 1],

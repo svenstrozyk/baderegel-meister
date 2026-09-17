@@ -42,7 +42,7 @@ export function baueMonster({ art = 'plitsch', stufe = 1, farbe = 'meerblau', mu
   const umhang = hat('handtuch_umhang') ? Z.handtuchUmhang(ctx, A) : null;
   const kappe = hat('badekappe') ? Z.badekappe(ctx, A) : '';
   const hut = hat('sonnenhut') ? Z.sonnenhut(ctx, A) : '';
-  const pfeife = hat('rettungspfeife') ? Z.rettungspfeife(ctx, A) : '';
+  const pfeife = hat('rettungspfeife') ? Z.rettungspfeife(ctx, A, hat('handtuch_umhang')) : '';
 
   // Schlafblasen
   const blasen = pose === 'schlafen'

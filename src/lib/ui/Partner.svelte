@@ -4,10 +4,12 @@
   import { app, monsterStufe, zubehoerAn } from '../state/app.svelte.js';
 
   let { pose = 'stehen', groesse = 240, stufe = null, wippen = true } = $props();
+  // Posen mit eigener Auf-ab-Bewegung nicht zusätzlich wippen lassen (sonst zwei unsynchrone Bounces)
+  const wippt = $derived(wippen && !['jubeln', 'schlafen', 'blitz_arme'].includes(pose));
 </script>
 
 {#if app.profil}
-  <div class="partner" class:wippen style:--g="{groesse}px">
+  <div class="partner" class:wippen={wippt} style:--g="{groesse}px">
     <Monster
       art={app.profil.art}
       farbe={app.profil.farbe}

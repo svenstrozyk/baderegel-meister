@@ -34,7 +34,7 @@
       await warte(750);
       if (!lebt) return;
       if (monsterStufe() > app.gesehenEntwicklung) {
-        feier = { von: app.gesehenEntwicklung, zu: monsterStufe() };
+        feier = { von: app.gesehenEntwicklung, zu: app.gesehenEntwicklung + 1 };
         return;
       }
       await ansage();
@@ -125,7 +125,11 @@
 </section>
 
 {#if feier}
-  <Feier von={feier.von} zu={feier.zu} onfertig={() => { app.gesehenEntwicklung = feier.zu; feier = null; }} />
+  <!-- mehrere Stufen auf einmal: jede Stufe bekommt ihre eigene Feier -->
+  <Feier von={feier.von} zu={feier.zu} onfertig={() => {
+    app.gesehenEntwicklung = feier.zu;
+    feier = monsterStufe() > feier.zu ? { von: feier.zu, zu: feier.zu + 1 } : null;
+  }} />
 {/if}
 
 <style>
