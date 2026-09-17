@@ -38,6 +38,8 @@ texte:
   trainer-intro: "Jetzt bist du der Trainer! Erklär es Mama, Papa oder deiner Schwester."
   trainer-geklappt: "Wow! Du bist ein echter Trainer!"
   trainer-nochmal: "Kein Problem. Wir hören es uns zusammen noch mal an."
+  welche-regel-hilft: "Welche Regel hilft hier? Tippe auf das Bild!"
+  weiterspielen: "Möchtest du weiterspielen? Dann tippe auf den gelben Knopf!"
 
   # Sitzungsende & Belohnungen
   ende: "Das hast du toll gemacht! Tschüss, bis zum nächsten Mal!"

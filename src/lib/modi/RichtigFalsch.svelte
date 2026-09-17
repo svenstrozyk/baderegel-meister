@@ -13,12 +13,19 @@
   const audio = (s) => pfad.regel(regel.ordner, s);
   let antwort = $state(null); // true = Daumen hoch, false = runter
   let fertigKnopf = $state(false);
+  let spricht = $state(false); // Rückmeldung läuft – Lautsprecher gesperrt, damit die Erklärung nicht abbricht
   let lebt = true;
 
-  const frage = () => spieleFolge(mitFrage ? [audio(`situation-${index + 1}`), pfad.app('daumen-frage')] : [audio(`situation-${index + 1}`)]);
+  const frageAudio = () => spieleFolge(mitFrage ? [audio(`situation-${index + 1}`), pfad.app('daumen-frage')] : [audio(`situation-${index + 1}`)]);
+  function frage() {
+    if (spricht) return;
+    // Nach falscher Antwort wiederholt der Lautsprecher die Erklärung
+    if (antwort !== null) return spieleFolge([audio(`situation-${index + 1}-feedback`)]);
+    return frageAudio();
+  }
 
   $effect(() => {
-    warte(450).then(() => lebt && frage());
+    warte(450).then(() => lebt && frageAudio());
     return () => (lebt = false);
   });
 
@@ -26,14 +33,17 @@
     if (antwort !== null) return;
     antwort = daumenHoch;
     const richtig = daumenHoch === situation.richtig;
+    spricht = true;
     if (richtig) {
       await spieleFolge([pfad.app(eins(['super', 'genau', 'klasse'])), audio(`situation-${index + 1}-feedback`)]);
+      spricht = false;
       if (lebt) {
         await warte(500);
         lebt && onfertig({ richtig: true });
       }
     } else {
       await spieleFolge([pfad.app('situation-hinweis'), audio(`situation-${index + 1}-feedback`)]);
+      spricht = false;
       if (lebt) fertigKnopf = true;
     }
   }
@@ -56,7 +66,7 @@
 
   <div class="monster"><Partner groesse={Math.min(170, innerHeight * 0.22)} pose={richtigBeantwortet ? 'jubeln' : 'nachdenken'} /></div>
   <div class="steuerung">
-    <Knopf label="Nochmal anhören" farbe="weiss" groesse={96} onclick={frage}><Icon name="lautsprecher" /></Knopf>
+    <Knopf label="Nochmal anhören" farbe="weiss" groesse={96} disabled={spricht || richtigBeantwortet} onclick={frage}><Icon name="lautsprecher" /></Knopf>
     {#if fertigKnopf}
       <Knopf label="Weiter" farbe="sonne" groesse={120} pulsieren onclick={() => onfertig({ richtig: false })}><Icon name="weiter" groesse={60} /></Knopf>
     {/if}

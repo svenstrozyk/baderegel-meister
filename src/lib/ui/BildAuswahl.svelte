@@ -1,6 +1,8 @@
 <!--
   Gemeinsame Bild-Auswahl für „Welche Regel?“ und „Warum?“ – gleiches Layout, gleiche Bedienung, gleiches Feedback.
-  Bedienung: 1. Tippen = vorlesen + Karte hebt sich an, 2. Tippen auf dieselbe Karte = auswählen.
+  Bedienung: 1. Tippen = vorlesen + Karte hebt sich an, 2. Tippen auf dieselbe Karte = auswählen
+  (frühestens nach MIN_ANHOEREN ms oder wenn die Karte fertig vorgelesen ist – schneller Doppeltipp wählt nicht aus).
+  Lautsprecher: während der Rückmeldung gesperrt, danach wiederholt er die Erklärung.
   Feedback richtig: Karte groß + Sonnenring + Monster jubelt. Falsch: freundlich, richtige Karte hervorheben, Erklärung, Weiter-Knopf.
   props:
     optionen:     [{ key, bild, audio, richtig }]  (Reihenfolge wird vom Aufrufer gemischt)
@@ -23,9 +25,18 @@
   let fertigKnopf = $state(false);
   let pose = $state('nachdenken');
   let hoehe = $state(820);
+  let spricht = $state(false); // Rückmeldung läuft
   let lebt = true;
+  let angehobenSeit = 0;
+  let karteGehoert = false;
+  const MIN_ANHOEREN = 800;
 
-  const frageStellen = () => spieleFolge(frage);
+  function frageStellen() {
+    if (spricht) return;
+    if (ergebnis === 'falsch') return spieleFolge(falschAudio);
+    if (ergebnis) return;
+    return spieleFolge(frage);
+  }
 
   $effect(() => {
     warte(450).then(() => lebt && frageStellen());
@@ -37,9 +48,12 @@
     if (angehoben !== o.key) {
       angehoben = o.key;
       pose = 'zeigen';
-      spiele(o.audio);
+      angehobenSeit = Date.now();
+      karteGehoert = false;
+      spiele(o.audio).then((ok) => ok && angehoben === o.key && (karteGehoert = true));
       return;
     }
+    if (!karteGehoert && Date.now() - angehobenSeit < MIN_ANHOEREN) return;
     waehle(o);
   }
 
@@ -48,7 +62,9 @@
     if (o.richtig) {
       ergebnis = 'richtig';
       pose = 'jubeln';
+      spricht = true;
       await spieleFolge(richtigAudio);
+      spricht = false;
       if (lebt) {
         await warte(500);
         lebt && onfertig({ richtig: true });
@@ -56,7 +72,9 @@
     } else {
       ergebnis = 'falsch';
       pose = 'nachdenken';
+      spricht = true;
       await spieleFolge(falschAudio);
+      spricht = false;
       if (lebt) fertigKnopf = true;
     }
   }
@@ -91,7 +109,7 @@
 
   <div class="monster"><Partner groesse={Math.min(190, hoehe * 0.23)} {pose} /></div>
   <div class="steuerung">
-    <Knopf label="Frage nochmal anhören" farbe="weiss" groesse={96} onclick={frageStellen}><Icon name="lautsprecher" /></Knopf>
+    <Knopf label="Frage nochmal anhören" farbe="weiss" groesse={96} disabled={spricht || ergebnis === 'richtig'} onclick={frageStellen}><Icon name="lautsprecher" /></Knopf>
     {#if fertigKnopf}
       <Knopf label="Weiter" farbe="sonne" groesse={120} pulsieren onclick={() => onfertig({ richtig: false })}><Icon name="weiter" groesse={60} /></Knopf>
     {/if}

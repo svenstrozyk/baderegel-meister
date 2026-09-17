@@ -18,6 +18,7 @@ Keine klassische Prüfung im Kurs – alle drei Ziele zählen gleich.
 - Warum-Erklärungen in Kindersprache, positive Formulierungen, keine Angstbilder (Moment *vor* der Gefahr zeigen, nie Unfälle)
 - Kind als Lehrer (Rollentausch), gemeinsame Nutzung mit Eltern
 - Sitzungen ≤ 7 Minuten, bewusster Abschluss
+- Sitzung abbrechen nur nach Rückfrage; schon Erreichtes wird trotzdem am Ende gefeiert
 - Kein Fehler-Buzzer, keine Zeitlimits, keine Streaks, keine Zufallsbelohnungen für Nichtstun
 
 ## Modi (Version 1)
@@ -25,7 +26,8 @@ Keine klassische Prüfung im Kurs – alle drei Ziele zählen gleich.
 | Modus | Zweck | Stufe |
 |---|---|---|
 | A · Geschichte + Geste | Regel einführen (3 Bilder, Erzählung, Geste nachmachen) | – |
-| B · Richtig oder falsch? | Situation einschätzen | Einschätzen |
+| B · Richtig oder falsch? | Situation einschätzen; nach „Daumen runter“-Situationen Anschlussfrage „Welche Regel hilft hier?“ (Raten allein reicht nicht) | Einschätzen (höchstens 1 Fehler pro Sitzung) |
+| Gemischte Wiederholung | 1 Situation einer früher gelernten Regel pro Sitzung (verschränktes Üben) | zählt nicht |
 | C · Regel-Detektiv | Wimmelbild, Verstöße finden | Wiederholung / Einschätzen |
 | D · Ich bin der Trainer | Kind erklärt Regel + Warum, Eltern bestätigen | Kennen + Verstehen |
 | „Welche Regel?“ / „Warum?“ | Symbol wählen / Bild-Antwort wählen | Kennen / Verstehen |

@@ -1,6 +1,6 @@
-<!-- Heimat: Partner-Monster groß, Insel-Karte mit Regeln, Album/Orden, „Heute dran“. -->
+<!-- Heimat: Partner-Monster groß mit „Heute dran“-Knopf als Hauptaktion, Insel-Karte mit Regeln, Album/Orden. -->
 <script>
-  import Regelbild from '../ui/Regelbild.svelte';
+  import Piktogramm from '../ui/Piktogramm.svelte';
   import ZielAnzeige from '../ui/ZielAnzeige.svelte';
   import Wasser from '../ui/Wasser.svelte';
   import Knopf from '../ui/Knopf.svelte';
@@ -37,11 +37,13 @@
         feier = { von: app.gesehenEntwicklung, zu: monsterStufe() };
         return;
       }
-      await spiele(pfad.app(begruessen ? 'willkommen' : 'heute-dran'));
+      await ansage();
       pose = 'zeigen';
     })();
     return () => (lebt = false);
   });
+
+  const ansage = () => spiele(pfad.app(begruessen ? 'willkommen' : 'heute-dran'));
 
   function insel(r) {
     if (VERFUEGBAR.includes(r.id)) {
@@ -61,22 +63,31 @@
 
 <svelte:window bind:innerWidth={breite} bind:innerHeight={hoehe} />
 
-<Wasser hoehe={22} sonne={false} />
+<Wasser hoehe={22} sonne={false} ruhig />
 <section class="ansicht heimat">
   <header class="leiste">
-    <ElternGate groesse={72} icon="zahnrad" onoffen={() => gehe('eltern')} label="Elternbereich: 3 Sekunden gedrückt halten" />
+    <Knopf label="Nochmal anhören" farbe="weiss" groesse={88} onclick={ansage}><Icon name="lautsprecher" /></Knopf>
     <div class="rechts">
       <Knopf label="Detektiv" farbe="koralle" groesse={112} onclick={() => gehe('detektiv')}><Icon name="lupe" groesse={62} fuellung="#c9f0ff" /></Knopf>
       <Knopf label="Album" farbe="weiss" groesse={100} onclick={() => gehe('album')}><Icon name="album" groesse={54} /></Knopf>
       <Knopf label="Orden" farbe="sonne" groesse={100} onclick={() => gehe('orden')}><Icon name="orden" groesse={54} /></Knopf>
+      <!-- Eltern-Gate bewusst klein, blass und abseits der Kinder-Knöpfe -->
+      <span class="gate"><ElternGate groesse={60} icon="zahnrad" onoffen={() => gehe('eltern')} label="Elternbereich: 3 Sekunden gedrückt halten" /></span>
     </div>
   </header>
 
   <div class="partnerbereich">
     <button type="button" class="monsterknopf" aria-label="Monster sagt Hallo" onclick={monsterTippen}>
-      <Partner groesse={monsterGroesse} {pose} />
+      <Partner groesse={monsterGroesse} {pose} wippen={false} />
     </button>
     {#if app.profil}<div class="namensschild">{app.profil.name}</div>{/if}
+    {#if heuteId != null}
+      <div class="los">
+        <Knopf label="Heute dran: los geht's" farbe="sonne" groesse={Math.min(132, hoehe * 0.16)} pulsieren onclick={() => gehe('sitzung', { regelId: heuteId })}>
+          <Icon name="play" groesse={Math.min(68, hoehe * 0.08)} />
+        </Knopf>
+      </div>
+    {/if}
   </div>
 
   <nav class="karte" aria-label="Regel-Inseln">
@@ -99,7 +110,7 @@
       >
         {#if r.id === heuteId}<span class="boje" aria-hidden="true"></span>{/if}
         <span class="sandberg">
-          <span class="symbol"><Regelbild regelId={r.id} grau={!aktiv} /></span>
+          <span class="symbol"><Piktogramm regelId={r.id} grau={!aktiv} groesse={200} /></span>
         </span>
         {#if aktiv}
           <span class="ziele"><ZielAnzeige regelId={r.id} groesse={22} abstand={3} /></span>
@@ -127,6 +138,8 @@
   }
   .leiste { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; }
   .rechts { display: flex; gap: 20px; align-items: center; }
+  .gate { margin-left: 28px; opacity: 0.55; }
+  .los { margin-top: 10px; }
 
   .partnerbereich { display: grid; justify-items: center; align-content: center; gap: 8px; padding-bottom: 6vh; }
   .monsterknopf { background: none; border: 0; padding: 0; cursor: pointer; }
@@ -189,6 +202,7 @@
     width: 82%; aspect-ratio: 1; border-radius: 50%; overflow: hidden;
     border: 3px solid var(--tinte);
   }
+  .symbol :global(svg) { width: 100%; height: 100%; display: block; }
   .bald .sandberg { background: #cfdbe3; filter: saturate(0.2); box-shadow: 0 6px 0 rgba(16, 36, 58, 0.5); border-color: rgba(16, 36, 58, 0.55); }
 
   .wolke {
@@ -210,7 +224,6 @@
   .heute { z-index: 2; }
   .heute .sandberg {
     box-shadow: 0 6px 0 var(--tinte), 0 0 0 12px var(--sonne), 0 0 0 17px var(--tinte);
-    animation: pulsieren 1.8s ease-in-out infinite;
   }
   .boje {
     position: absolute;
@@ -220,7 +233,6 @@
     border-right: 22px solid transparent;
     border-top: 30px solid var(--koralle);
     filter: drop-shadow(0 -4px 0 var(--tinte)) drop-shadow(0 4px 0 var(--tinte));
-    animation: wippen 1.2s ease-in-out infinite;
   }
   .wackelt { animation: wackeln 0.3s ease-in-out 2; }
 </style>

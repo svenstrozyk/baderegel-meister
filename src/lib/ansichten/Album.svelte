@@ -18,27 +18,55 @@
     ...UEBERRASCHUNGEN.filter((u) => app.fortschritt.ueberraschungen?.includes(u.id)).map((u) => ({ key: `ueberraschung-${u.id}`, ueberraschung: u })),
   ]);
 
-  function standard(i) {
-    return { x: 8 + (i % 6) * 15, y: 50 + Math.floor(i / 6) * 22 };
+  // Fester Platz je Karte (Regel 1–10, danach Überraschungen) statt nach Listen-Index:
+  // neue Karten verschieben nicht verschobene Karten nicht, und alle Plätze liegen sichtbar im Bild.
+  const PLAETZE = ALLE_REGELN.length + UEBERRASCHUNGEN.length;
+  const ZIEH_SCHWELLE = 24; // px – kleines Wackeln beim Tippen zählt nicht als Ziehen
+
+  function platzNummer(k) {
+    if (k.ueberraschung) return ALLE_REGELN.length + UEBERRASCHUNGEN.findIndex((u) => u.id === k.ueberraschung.id);
+    return ALLE_REGELN.findIndex((r) => r.id === k.regelId);
   }
-  const position = (k, i) => app.album[k.key] ?? standard(i);
+
+  const raster = $derived.by(() => {
+    const kb = (kartenBreite / breite) * 100;
+    const kh = ((kartenBreite * 1.4) / hoehe) * 100;
+    const spalten = Math.max(1, Math.min(PLAETZE, Math.floor(96 / (kb + 1.5))));
+    const zeilen = Math.ceil(PLAETZE / spalten);
+    const zeilenAbstand = Math.min(kh + 2, 84 / zeilen);
+    return { kb, kh, spalten, zeilenAbstand, maxX: 100 - kb, maxY: 100 - kh };
+  });
+
+  function standard(k) {
+    const n = platzNummer(k);
+    const { kb, kh, spalten, zeilenAbstand } = raster;
+    // unterste Reihe (Strand) zuerst füllen
+    return { x: 2 + (n % spalten) * (kb + 1.5), y: 98 - kh - Math.floor(n / spalten) * zeilenAbstand };
+  }
+  function position(k) {
+    const p = app.album[k.key] ?? standard(k);
+    // Gespeicherte Positionen können von einem anderen Bildschirm stammen → in den sichtbaren Bereich holen
+    return { x: Math.max(0, Math.min(raster.maxX, p.x)), y: Math.max(0, Math.min(raster.maxY, p.y)) };
+  }
+
+  const ansage = () => spiele(pfad.app(karten.length ? 'album' : 'album-leer'));
 
   $effect(() => {
     let lebt = true;
-    warte(500).then(() => lebt && spiele(pfad.app(karten.length ? 'album' : 'album-leer')));
+    warte(500).then(() => lebt && ansage());
     return () => (lebt = false);
   });
 
   let zug = null;
   let gezogen = $state(null);
 
-  function runter(e, k, i) {
+  function runter(e, k) {
     try {
       e.currentTarget.setPointerCapture?.(e.pointerId);
     } catch {
       /* Pointer nicht (mehr) aktiv */
     }
-    const p = position(k, i);
+    const p = position(k);
     zug = { k, startX: e.clientX, startY: e.clientY, px: p.x, py: p.y, bewegt: false };
     gezogen = k.key;
   }
@@ -47,7 +75,7 @@
     const rect = szene.getBoundingClientRect();
     const dx = e.clientX - zug.startX;
     const dy = e.clientY - zug.startY;
-    if (Math.hypot(dx, dy) > 10) zug.bewegt = true;
+    if (Math.hypot(dx, dy) > ZIEH_SCHWELLE) zug.bewegt = true;
     if (!zug.bewegt) return;
     const maxX = 100 - (kartenBreite / rect.width) * 100;
     const maxY = 100 - ((kartenBreite * 1.4) / rect.height) * 100;
@@ -85,8 +113,8 @@
     </div>
   {/if}
 
-  {#each karten as k, i (k.key)}
-    {@const p = position(k, i)}
+  {#each karten as k (k.key)}
+    {@const p = position(k)}
     <div
       class="karte"
       class:gezogen={gezogen === k.key}
@@ -95,7 +123,7 @@
       role="button"
       tabindex="0"
       aria-label="Karte anhören oder verschieben"
-      onpointerdown={(e) => runter(e, k, i)}
+      onpointerdown={(e) => runter(e, k)}
       onkeydown={(e) => e.key === 'Enter' && vorlesen(k)}
     >
       <Sammelkarte regelId={k.regelId ?? null} ueberraschung={k.ueberraschung ?? null} breite={kartenBreite} />
@@ -104,6 +132,7 @@
 
   <div class="zurueck">
     <Knopf label="Nach Hause" farbe="weiss" groesse={96} onclick={() => gehe('heimat')}><Icon name="haus" groesse={50} /></Knopf>
+    <Knopf label="Nochmal anhören" farbe="weiss" groesse={88} onclick={ansage}><Icon name="lautsprecher" /></Knopf>
   </div>
 </section>
 
@@ -130,5 +159,5 @@
   .karte.gezogen { cursor: grabbing; transform: scale(1.08) rotate(-3deg); z-index: 5; filter: drop-shadow(0 16px 10px rgba(16, 36, 58, 0.3)); }
   .leer { position: absolute; left: 0; right: 0; top: 62%; display: flex; justify-content: center; gap: 40px; }
   .platzhalter { width: var(--b); aspect-ratio: 5 / 7; border: 5px dashed rgba(16, 36, 58, 0.45); border-radius: 18px; background: rgba(255, 253, 247, 0.35); }
-  .zurueck { position: absolute; left: var(--rand-l); top: var(--rand-o); z-index: 10; }
+  .zurueck { position: absolute; left: var(--rand-l); top: var(--rand-o); z-index: 10; display: flex; gap: 20px; align-items: center; }
 </style>

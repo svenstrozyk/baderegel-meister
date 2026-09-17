@@ -35,11 +35,12 @@
   let feier = $state(null);
   let pose = $state('winken');
   let lebt = true;
+  let folge = $state([]);
 
   $effect(() => {
     (async () => {
       await warte(700);
-      const folge = [];
+      folge = [];
       // höchstens zwei Symbol-Ansagen, volle zuerst – Sitzung soll kurz bleiben
       const angesagt = [...aenderungen].sort((a, b) => (a.zu === 'voll' ? -1 : 0) - (b.zu === 'voll' ? -1 : 0)).slice(0, 2);
       for (const z of angesagt) folge.push(pfad.app(`${SYMBOL[z.ziel]}-${z.zu}`));
@@ -48,7 +49,7 @@
       if (ueberraschung) folge.push(pfad.app('ueberraschung'));
       folge.push(pfad.app('ende'));
       if (lebt) pose = aenderungen.length ? 'jubeln' : 'winken';
-      if (lebt) await spieleFolge(folge);
+      if (lebt) await spieleFolge([...folge]);
       if (lebt && diff.entwickelt && app.gesehenEntwicklung < diff.entwicklungZu) {
         feier = { von: diff.entwicklungVon, zu: diff.entwicklungZu };
       }
@@ -74,7 +75,8 @@
   </div>
 
   <div class="steuerung">
-    <Knopf label="Nach Hause" farbe="sonne" groesse={130} pulsieren onclick={() => gehe('heimat')}><Icon name="haus" groesse={68} /></Knopf>
+    <Knopf label="Nochmal anhören" farbe="weiss" groesse={96} disabled={!folge.length} onclick={() => spieleFolge([...folge])}><Icon name="lautsprecher" /></Knopf>
+    <Knopf label="Weiter nach Hause" farbe="sonne" groesse={130} pulsieren onclick={() => gehe('heimat')}><Icon name="weiter" groesse={68} /></Knopf>
   </div>
 </div>
 
@@ -110,5 +112,5 @@
     display: grid; place-items: center;
     animation: hereinploppen 0.6s 0.4s var(--weich) both;
   }
-  .steuerung { position: absolute; right: var(--rand-r); bottom: var(--rand-u); }
+  .steuerung { position: absolute; right: var(--rand-r); bottom: var(--rand-u); display: flex; gap: 20px; align-items: flex-end; }
 </style>

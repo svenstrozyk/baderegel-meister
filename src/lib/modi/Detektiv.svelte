@@ -8,7 +8,7 @@
   import Knopf from '../ui/Knopf.svelte';
   import Icon from '../ui/Icon.svelte';
   import Partner from '../ui/Partner.svelte';
-  import Regelbild from '../ui/Regelbild.svelte';
+  import Piktogramm from '../ui/Piktogramm.svelte';
   import Konfetti from '../ui/Konfetti.svelte';
   import Sammelkarte from '../ui/Sammelkarte.svelte';
   import { spiele, spieleFolge, warte, pfad } from '../audio.js';
@@ -132,7 +132,12 @@
           {/each}
         {/if}
       </div>
-      <Knopf label="Tipp" farbe="sonne" groesse={88} onclick={tipp} disabled={!!fertig}><Icon name="gluehbirne" groesse={48} fuellung="#fffdf7" /></Knopf>
+      <!-- Monster und Lautsprecher in der Kopfleiste, damit sie keine Stellen im Suchbild verdecken -->
+      <div class="werkzeuge">
+        <div class="monster" aria-hidden="true"><Partner groesse={Math.min(96, fensterHoehe * 0.12)} {pose} wippen={false} /></div>
+        <Knopf label="Nochmal anhören" farbe="weiss" groesse={88} onclick={() => spiele(audio('intro'))}><Icon name="lautsprecher" /></Knopf>
+        <Knopf label="Tipp" farbe="sonne" groesse={88} onclick={tipp} disabled={!!fertig}><Icon name="gluehbirne" groesse={48} fuellung="#fffdf7" /></Knopf>
+      </div>
     </header>
 
     <div class="flaeche" bind:this={flaeche} bind:clientWidth={breite} bind:clientHeight={hoehe}>
@@ -166,7 +171,7 @@
                   style:top="{f.bereich.y - f.bereich.r * SEITENVERHAELTNIS * 0.72}%"
                   aria-hidden="true"
                 >
-                  {#if f.art === 'fehler'}<Regelbild regelId={f.regel} />{:else}<Icon name="stern" groesse={34} farbe="#10243a" />{/if}
+                  {#if f.art === 'fehler'}<Piktogramm regelId={f.regel} groesse={66} />{:else}<Icon name="stern" groesse={34} farbe="#10243a" />{/if}
                 </span>
               {/if}
             {/if}
@@ -179,10 +184,6 @@
       {/if}
     </div>
 
-    <div class="monster"><Partner groesse={Math.min(180, fensterHoehe * 0.22)} {pose} /></div>
-    <div class="steuerung">
-      <Knopf label="Nochmal anhören" farbe="weiss" groesse={88} onclick={() => spiele(audio('intro'))}><Icon name="lautsprecher" /></Knopf>
-    </div>
 
     {#if fertig}
       <div class="feier" role="dialog" aria-label="Alle gefunden">
@@ -196,7 +197,7 @@
           {/if}
         </div>
         <div class="weiter">
-          <Knopf label="Weiter" farbe="gras" groesse={120} pulsieren onclick={() => gehe('detektiv')}><Icon name="haken" groesse={64} /></Knopf>
+          <Knopf label="Weiter" farbe="gras" groesse={120} pulsieren onclick={() => gehe('detektiv')}><Icon name="weiter" groesse={64} /></Knopf>
         </div>
       </div>
     {/if}
@@ -264,6 +265,8 @@
     pointer-events: none;
     animation: hereinploppen 0.5s 0.15s var(--weich) both;
   }
+  .marke :global(svg) { width: 100%; height: 100%;
+  }
   .marke.richtig { background: var(--gras); }
 
   .blase { position: absolute; width: 0; height: 0; pointer-events: none; }
@@ -278,8 +281,8 @@
   .blase i:nth-child(3) { left: -18px; top: -2px; width: 9px; height: 9px; animation-delay: 0.18s; }
   @keyframes blubb { from { transform: translateY(0) scale(0.4); opacity: 1 } to { transform: translateY(-46px) scale(1.2); opacity: 0 } }
 
-  .monster { position: absolute; left: var(--rand-l); bottom: var(--rand-u); z-index: 2; pointer-events: none; filter: drop-shadow(0 4px 0 rgba(16, 36, 58, 0.4)); }
-  .steuerung { position: absolute; right: var(--rand-r); bottom: var(--rand-u); z-index: 2; }
+  .werkzeuge { display: flex; gap: 16px; align-items: center; }
+  .monster { pointer-events: none; line-height: 0; }
 
   .feier {
     position: fixed; inset: 0; z-index: 50;

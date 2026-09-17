@@ -112,6 +112,9 @@
       {/if}
     </div>
   {:else if schritt === 'aussehen'}
+    <div class="ecke">
+      <Knopf label="Nochmal anhören" farbe="weiss" groesse={88} onclick={async () => { if (await ansage('waehle-farbe')) ansage('waehle-muster'); }}><Icon name="lautsprecher" /></Knopf>
+    </div>
     <div class="aussehen">
       <div class="buehne">
         <Monster {art} {farbe} {muster} {pose} groesse={vorschau} />
@@ -153,6 +156,11 @@
       </div>
     </div>
   {:else}
+    {#if !app.profil && !namensFeld}
+      <div class="ecke">
+        <Knopf label="Nochmal anhören" farbe="weiss" groesse={88} onclick={() => ansage('name-eltern')}><Icon name="lautsprecher" /></Knopf>
+      </div>
+    {/if}
     <div class="namen">
       <div class="buehne">
         <Monster {art} {farbe} {muster} {pose} groesse={vorschau} />
@@ -229,6 +237,7 @@
   .musterknopf.an { outline: 7px solid var(--weiss); outline-offset: 2px; transform: scale(1.08); }
   .aktionen { display: flex; gap: 24px; align-items: center; }
 
+  .ecke { position: absolute; left: var(--rand-l); top: var(--rand-o); z-index: 2; }
   .frage {
     position: absolute; top: 4%; right: 14%;
     width: 84px; height: 84px; border-radius: 50%;

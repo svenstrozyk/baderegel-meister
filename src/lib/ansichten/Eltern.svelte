@@ -83,7 +83,7 @@
     <div class="block">
       <h2>Einstellungen</h2>
       <label class="schalter">
-        <input type="checkbox" bind:checked={app.einstellungen.testmodus} />
+        <input type="checkbox" checked={app.einstellungen.testmodus} onchange={(e) => { app.einstellungen.testmodus = e.currentTarget.checked; app.gesehenEntwicklung = monsterStufe(); }} />
         <span class="spur"><span class="griff"></span></span>
         <span>Testmodus: ein Tag reicht</span>
       </label>

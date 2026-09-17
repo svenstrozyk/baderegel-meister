@@ -38,7 +38,7 @@
   {#if phase === 'nachher'}
     <Konfetti />
     <div class="weiter">
-      <Knopf label="Weiter" farbe="gras" groesse={120} pulsieren onclick={onfertig}><Icon name="haken" groesse={64} /></Knopf>
+      <Knopf label="Weiter" farbe="gras" groesse={120} pulsieren onclick={onfertig}><Icon name="weiter" groesse={64} /></Knopf>
     </div>
   {/if}
 </div>

@@ -25,18 +25,42 @@ export const szeneVon = (id) => DETEKTIV.find((s) => s.id === id);
 export const kurzVon = (id) => ALLE_REGELN.find((r) => r.id === id);
 export const monsterVon = (art) => MONSTER.monster.find((m) => m.id === art);
 
-const gespeichert = laden() ?? {};
+const gespeichert = normalisieren(laden());
 
 export const app = $state({
   // profil: { art, farbe, muster, name, zubehoer: string[] } | null
-  profil: gespeichert.profil ?? null,
-  fortschritt: gespeichert.fortschritt ?? leererFortschritt(),
-  einstellungen: { testmodus: false, ...(gespeichert.einstellungen ?? {}) },
+  profil: gespeichert.profil,
+  fortschritt: gespeichert.fortschritt,
+  einstellungen: gespeichert.einstellungen,
   // album: { [kartenId]: { x, y } } in Prozent der Szene
-  album: gespeichert.album ?? {},
+  album: gespeichert.album,
   // zuletzt angezeigte Entwicklungsstufe (für Feier-Animation)
-  gesehenEntwicklung: gespeichert.gesehenEntwicklung ?? 1,
+  gesehenEntwicklung: gespeichert.gesehenEntwicklung,
 });
+
+/** Macht gespeicherte Daten robust: fehlende/kaputte Teile werden durch Standardwerte ersetzt statt die App abstürzen zu lassen. */
+function normalisieren(roh) {
+  const d = istObjekt(roh) ? roh : {};
+  const fp = istObjekt(d.fortschritt) ? d.fortschritt : {};
+  const regeln = istObjekt(fp.regeln) ? fp.regeln : {};
+  for (const [id, r] of Object.entries(regeln)) {
+    if (!istObjekt(r)) delete regeln[id];
+    else if (!istObjekt(r.teile)) r.teile = {};
+  }
+  const p = d.profil;
+  const profilOk = istObjekt(p) && MONSTER.monster.some((m) => m.id === p.art) && typeof p.name === 'string';
+  return {
+    profil: profilOk ? { ...p, zubehoer: Array.isArray(p.zubehoer) ? p.zubehoer : [] } : null,
+    fortschritt: { ...leererFortschritt(), ...fp, regeln, ueberraschungen: Array.isArray(fp.ueberraschungen) ? fp.ueberraschungen : [] },
+    einstellungen: { testmodus: false, ...(istObjekt(d.einstellungen) ? d.einstellungen : {}) },
+    album: istObjekt(d.album) ? d.album : {},
+    gesehenEntwicklung: Number.isInteger(d.gesehenEntwicklung) ? d.gesehenEntwicklung : 1,
+  };
+}
+
+function istObjekt(x) {
+  return !!x && typeof x === 'object' && !Array.isArray(x);
+}
 
 $effect.root(() => {
   $effect(() => {

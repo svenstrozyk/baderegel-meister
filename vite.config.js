@@ -9,7 +9,10 @@ export default defineConfig({
     svelte(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['bilder/**/*', 'audio/**/*', 'icons/*'],
+      // Eigener Service Worker (src/sw.js) für Range-Requests bei Audio (iOS offline)
+      strategies: 'injectManifest',
+      srcDir: 'src',
+      filename: 'sw.js',
       manifest: {
         name: 'Baderegel-Meister',
         short_name: 'Baderegeln',
@@ -26,7 +29,7 @@ export default defineConfig({
           { src: 'icons/icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
         ],
       },
-      workbox: { globPatterns: ['**/*.{js,css,html,webp,m4a,svg,json,png}'], maximumFileSizeToCacheInBytes: 8 * 1024 * 1024 },
+      injectManifest: { globPatterns: ['**/*.{js,css,html,webp,m4a,svg,json,png}'], maximumFileSizeToCacheInBytes: 8 * 1024 * 1024 },
     }),
   ],
 });
