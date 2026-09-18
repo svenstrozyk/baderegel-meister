@@ -8,8 +8,32 @@
   let fortschritt = $state(0);
   let aufgabe = $state(false);
   let start = 0;
-  let frame = 0;
+  let uhr = 0; // Intervall statt requestAnimationFrame: läuft auch, wenn der Browser Frames drosselt
+  let knopf = $state();
+  let gedrueckt = false;
+  let fingerLiegtAuf = false;
 
+  // iOS Safari schickt bei langem Berühren gern ein pointercancel/pointerleave, obwohl der Finger noch
+  // aufliegt. Deshalb zählt nur echtes Loslassen (pointerup bzw. touchend/touchcancel) als Abbruch.
+  function starten() {
+    if (gedrueckt) return;
+    gedrueckt = true;
+    start = performance.now();
+    clearInterval(uhr);
+    uhr = setInterval(() => {
+      if (!gedrueckt) return;
+      fortschritt = Math.min(1, (performance.now() - start) / DAUER);
+      if (fortschritt >= 1) {
+        beenden();
+        aufgabe = true;
+      }
+    }, 40);
+  }
+  function beenden() {
+    gedrueckt = false;
+    clearInterval(uhr);
+    fortschritt = 0;
+  }
   function los(e) {
     e.preventDefault();
     try {
@@ -17,24 +41,35 @@
     } catch {
       /* Pointer nicht (mehr) aktiv */
     }
-    start = performance.now();
-    cancelAnimationFrame(frame);
-    const tick = (t) => {
-      fortschritt = Math.min(1, (t - start) / DAUER);
-      if (fortschritt >= 1) {
-        fortschritt = 0;
-        aufgabe = true;
-        return;
-      }
-      frame = requestAnimationFrame(tick);
+    starten();
+  }
+  function abgebrochen() {
+    // Bei Touch entscheidet touchend, nicht das (auf iOS unzuverlässige) pointercancel
+    if (!fingerLiegtAuf) beenden();
+  }
+
+  $effect(() => {
+    if (!knopf) return;
+    const runter = (e) => {
+      e.preventDefault(); // kein Kontextmenü/Scrollen/Lupe beim langen Halten
+      fingerLiegtAuf = true;
+      starten();
     };
-    frame = requestAnimationFrame(tick);
-  }
-  function abbrechen() {
-    cancelAnimationFrame(frame);
-    fortschritt = 0;
-  }
-  $effect(() => () => cancelAnimationFrame(frame));
+    const hoch = () => {
+      fingerLiegtAuf = false;
+      beenden();
+    };
+    // nicht-passiv, damit preventDefault wirkt (Svelte registriert touchstart sonst passiv)
+    knopf.addEventListener('touchstart', runter, { passive: false });
+    knopf.addEventListener('touchend', hoch);
+    knopf.addEventListener('touchcancel', hoch);
+    return () => {
+      knopf.removeEventListener('touchstart', runter);
+      knopf.removeEventListener('touchend', hoch);
+      knopf.removeEventListener('touchcancel', hoch);
+      clearInterval(uhr);
+    };
+  });
 
   const r = 42;
   const umfang = 2 * Math.PI * r;
@@ -43,12 +78,12 @@
 <button
   type="button"
   class="gate"
+  bind:this={knopf}
   style:--g="{groesse}px"
   aria-label={label}
   onpointerdown={los}
-  onpointerup={abbrechen}
-  onpointercancel={abbrechen}
-  onpointerleave={abbrechen}
+  onpointerup={beenden}
+  onpointercancel={abgebrochen}
   oncontextmenu={(e) => e.preventDefault()}
   onkeydown={(e) => e.key === 'Enter' && e.repeat === false && (aufgabe = true)}
 >
